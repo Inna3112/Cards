@@ -7,7 +7,7 @@ import s from './Test.module.css'
 export const Test = () => {
     return (
         <div className={s.test}>
-            <SuperInputText className={s.input}/>
+            <SuperInputText placeholder={'placeholder'}/>
             <SuperButton>Click me</SuperButton>
             <SuperCheckbox />
         </div>

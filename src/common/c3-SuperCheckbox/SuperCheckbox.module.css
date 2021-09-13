@@ -3,23 +3,22 @@
     align-items: center;
 }
 .checkbox {
-/*!*appearance: none;*! Изменяет внешний вид элемента при сохранении его функции.*/
+/*/*appearance: none;*! Изменяет внешний вид элемента при сохранении его функции.*/
 /*    Если задать его значение none, то чекбокс пропадет, но по нему можна будет щелкать и его */
 /*    состояние будет меняться*/
+/*    appearance: none;*/
     width: 20px;
     height: 20px;
     margin-right: 10px;
-    /*background: #335533;*/
-    /*background-repeat: no-repeat;*/
-    /*background-position: center center;*/
-    /*background-size: 90% 90%;*/
+    border: 1px solid #21268F;
 }
 .checkbox:checked{
+    /*appearance: none;*/
+    /*background-image: url("checked1.png");*/
 
-    background: #99ff99;
 }
 .checkbox:focus{
-    outline: #99ff99 solid 1px;
+    outline: #9A91C8 solid 1px;
 }
 .spanClassName {
 

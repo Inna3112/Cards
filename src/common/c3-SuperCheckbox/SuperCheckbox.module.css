@@ -6,13 +6,18 @@
 /*/*appearance: none;*! Изменяет внешний вид элемента при сохранении его функции.*/
 /*    Если задать его значение none, то чекбокс пропадет, но по нему можна будет щелкать и его */
 /*    состояние будет меняться*/
-/*    appearance: none;*/
+    appearance: none;
+    position: relative;
     width: 20px;
     height: 20px;
     margin-right: 10px;
     border: 1px solid #21268F;
 }
-.checkbox:checked{
+.checkbox:checked::after {
+    position: absolute;
+    content: '▼';
+    top: 10%;
+    left: 10%;
     /*appearance: none;*/
     /*background-image: url("checked1.png");*/
 

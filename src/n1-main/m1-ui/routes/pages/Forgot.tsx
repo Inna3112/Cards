@@ -1,10 +1,10 @@
 import React from 'react'
 
 
-export const EnterNewPassword = () => {
+export const Forgot = () => {
     return (
         <div>
-            EnterNewPassword
+            Recover password
         </div>
     )
 }

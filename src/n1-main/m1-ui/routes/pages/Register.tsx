@@ -1,10 +1,10 @@
 import React from 'react'
 
 
-export const Registration = () => {
+export const Register = () => {
     return (
         <div>
-            Registration
+            Register
         </div>
     )
 }

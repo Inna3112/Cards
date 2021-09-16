@@ -6,6 +6,7 @@ import {Error404} from './pages/Error404';
 import {Register} from './pages/Register';
 import {Forgot} from './pages/Forgot';
 import {SetPassword} from './pages/SetPassword';
+import {Main} from './pages/Main';
 
 export const PATH = {
     MAIN: '/main',
@@ -22,7 +23,7 @@ export const Routes = () => {
         <div>
             <Switch>
             <Route path={'/'} exact render={() => <Redirect to={PATH.PROFILE}/>}/>
-            {/*<Route path={PATH.MAIN} render={() => <Main />}/>*/}
+            <Route path={PATH.MAIN} render={() => <Main />}/>
             <Route path={PATH.LOGIN} render={() => <Login />}/>
             <Route path={PATH.REGISTER} render={() => <Register />}/>
             <Route path={PATH.PROFILE} render={() => <Profile />}/>

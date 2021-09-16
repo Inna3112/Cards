@@ -8,11 +8,13 @@ import {Forgot} from './pages/Forgot';
 import {SetPassword} from './pages/SetPassword';
 
 export const PATH = {
+    MAIN: '/main',
     LOGIN: '/login',
     REGISTER: '/register',
     PROFILE: '/profile',
     FORGOT: '/forgot',
     SET_PASSWORD: '/set-password',
+    ERROR404: '/error404'
 }
 
 export const Routes = () => {
@@ -20,6 +22,7 @@ export const Routes = () => {
         <div>
             <Switch>
             <Route path={'/'} exact render={() => <Redirect to={PATH.PROFILE}/>}/>
+            {/*<Route path={PATH.MAIN} render={() => <Main />}/>*/}
             <Route path={PATH.LOGIN} render={() => <Login />}/>
             <Route path={PATH.REGISTER} render={() => <Register />}/>
             <Route path={PATH.PROFILE} render={() => <Profile />}/>

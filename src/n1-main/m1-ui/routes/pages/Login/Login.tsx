@@ -3,9 +3,14 @@ import {SuperInputText} from '../../../../../common/c1-SuperInputText/SuperInput
 import {SuperButton} from '../../../../../common/c2-SuperButton/SuperButton';
 import s from './Login.module.css'
 import {SuperCheckbox} from '../../../../../common/c3-SuperCheckbox/SuperCheckbox';
+import {useDispatch} from "react-redux";
+import {loginSuccess} from "../../../../m2-bll/login-reducer";
 
 
 export const Login = () => {
+    const dispatch = useDispatch()
+
+
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [rememberMe, setRememberMe] = useState(false)
@@ -14,7 +19,7 @@ export const Login = () => {
     const passwordHandler = (e: ChangeEvent<HTMLInputElement>) => setPassword(e.currentTarget.value)
     const rememberMeHandler = () => setRememberMe(!rememberMe)
     const loginHandler = () => {
-        alert('email and password dispatch')
+        dispatch(loginSuccess({email, password, rememberMe}))
     }
 
     return (

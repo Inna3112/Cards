@@ -52,6 +52,6 @@ export const loginSuccess = (loginData: LoginDataType) => (dispatch: Dispatch) =
         })
         .catch((error) => {
             dispatch(isLoggedInChange(false))
-            dispatch(setError(error))
+            dispatch(setError(error.response.data.error))
         })
 }

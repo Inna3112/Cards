@@ -33,7 +33,7 @@ export const Register = () => {
         return <Redirect to={'/login'} />
     }
     return (
-        <div className={s.register}>
+        <div className={s.registerBlock}>
             <h1>Register</h1>
             <SuperInputText placeholder={'Email'} value={email} onChange={emailHandler}/>
             <SuperInputText placeholder={'Password'} value={password} onChange={passwordHandler}/>

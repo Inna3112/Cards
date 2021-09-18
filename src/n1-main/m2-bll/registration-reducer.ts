@@ -8,7 +8,7 @@ const initialState = {
         email: '',
         password: ''
     },
-    isRegister: false,
+    isRegistered: false,
 }
 
 export const registrationReducer = (state = initialState, action: ActionsType): typeof initialState => {
@@ -20,7 +20,7 @@ export const registrationReducer = (state = initialState, action: ActionsType): 
         }
         case "IS-REGISTER-CHANGE": {
             return {
-                ...state, isRegister: action.isRegister
+                ...state, isRegistered: action.isRegistered
             }
         }
         default:
@@ -29,14 +29,15 @@ export const registrationReducer = (state = initialState, action: ActionsType): 
 }
 
 export const setRegister = () => ({type: 'SET-REGISTER'}) as const
-export const isRegisterChange = (isRegister: boolean) => ({type: 'IS-REGISTER-CHANGE', isRegister}) as const
+export const isRegisterChange = (isRegistered: boolean) => ({type: 'IS-REGISTER-CHANGE', isRegistered}) as const
 
-export const registerSuccess = (email: string, password: string) => async (dispatch: Dispatch) => {
-   try{
-       const result = await authAPI.register(email, password)
-       dispatch(setRegister())
-       dispatch(isRegisterChange(true))
-   } catch (error){
-       dispatch(isRegisterChange(false))
-   }
+export const registerSuccess = (email: string, password: string) => (dispatch: Dispatch) => {
+    authAPI.register(email, password)
+        .then((res) => {
+            dispatch(setRegister())
+            dispatch(isRegisterChange(true))
+        })
+        .catch((error) => {
+            dispatch(isRegisterChange(true))
+        })
 }

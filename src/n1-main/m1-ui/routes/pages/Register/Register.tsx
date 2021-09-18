@@ -2,12 +2,16 @@ import React, {ChangeEvent, useState} from 'react'
 import {SuperInputText} from '../../../../../common/c1-SuperInputText/SuperInputText';
 import {SuperButton} from '../../../../../common/c2-SuperButton/SuperButton';
 import s from './Register.module.css'
-import {useDispatch} from 'react-redux';
-import {registerSuccess} from "../../../../m2-bll/registration-reducer";
+import {useDispatch, useSelector} from 'react-redux';
+import {registerSuccess} from '../../../../m2-bll/registration-reducer';
+import {AppRootStateType} from '../../../../m2-bll/store';
+import {Redirect} from 'react-router-dom';
 
 
 export const Register = () => {
     const dispatch = useDispatch()
+    const isRegistered = useSelector<AppRootStateType, boolean>(state => state.registration.isRegistered)
+
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirm, setConfirm] = useState('')
@@ -25,6 +29,9 @@ export const Register = () => {
 
     }
 
+    if(isRegistered){
+        return <Redirect to={'/login'} />
+    }
     return (
         <div className={s.register}>
             <h1>Register</h1>

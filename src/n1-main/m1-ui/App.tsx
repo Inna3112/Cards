@@ -5,7 +5,7 @@ import Routes from './routes/Routes';
 import {HashRouter} from 'react-router-dom';
 import {store} from '../m2-bll/store';
 import {Provider} from 'react-redux';
-import {Test} from '../../n2-features/f0-test/Test';
+
 
 
 const App = () => {
@@ -15,7 +15,7 @@ const App = () => {
             <Provider store={store}>
                 <Header/>
                 <Routes/>
-                <Test />
+                {/*<Test />*/}
             </Provider>
         </HashRouter>
     </div>

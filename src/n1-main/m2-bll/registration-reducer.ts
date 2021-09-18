@@ -1,14 +1,28 @@
-type ActionsType = any
+import {Dispatch} from 'redux';
+import {authAPI} from '../m3-dal/api';
 
-const initialRegistrationState = {
+type ActionsType = ReturnType<typeof setRegister>
 
+const initialState = {
+    email: '',
+    password: '',
 }
 
-export const registrationReducer = (state = initialRegistrationState, action: ActionsType): typeof initialRegistrationState=> {
+export const registrationReducer = (state = initialState, action: ActionsType): typeof initialState => {
     switch (action.type) {
-
-        default: return state
+        case "SET-REGISTER":{
+            return {
+                ...state
+            }
+        }
+        default:
+            return state
     }
 }
 
-export const AC = () => ({type: 'ANY-TYPE'}) as const
+export const setRegister = () => ({type: 'SET-REGISTER'}) as const
+
+export const registerSuccess = (email: string, password: string) => async (dispatch: Dispatch) => {
+    const result = authAPI.register(email, password)
+    dispatch(setRegister())
+}

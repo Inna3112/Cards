@@ -17,7 +17,6 @@ text-decoration: none;
 }
 .header{
     display: flex;
-    width: 300px;
     /*transition-duration: 500ms;*/
     /*transform: translate(-240px);*/
 }

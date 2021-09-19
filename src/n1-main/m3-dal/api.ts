@@ -6,32 +6,39 @@ const instance = axios.create({
     withCredentials: true,
 })
 
-export type UserType = {
-    avatar: string,
+export type ResponseType = UserType &{
     created: string,
     deviceTokens: DeviceTokenType [],
-    email: string,
     isAdmin: boolean,
-    name: string,
-    publicCardPacksCount: number,
     rememberMe: boolean,
     token: string,
     tokenDeathTime: number,
     updated: string,
     verified: boolean,
     __v: number,
-    _id: string,
+    error?: string,
 }
 type DeviceTokenType = {
     _id: string,
     device: string,
 }
 
+export type UserType = {
+    _id: string,
+    email: string,
+    name: string,
+    avatar: string,
+    publicCardPacksCount: number,
+}
+
 export const authAPI = {
     register(email: string, password: string) {
-        return instance.post<UserType>('auth/register', {email, password})
+        return instance.post<ResponseType>('auth/register', {email, password})
     },
     login(email: string, password: string, rememberMe: boolean) {
-        return instance.post<UserType>('auth/login', {email, password, rememberMe})
+        return instance.post<ResponseType>('auth/login', {email, password, rememberMe})
+    },
+    me(){
+        return instance.post<ResponseType>('auth/me', {})
     }
 }

@@ -7,22 +7,20 @@ import {store} from '../m2-bll/store';
 import {Provider} from 'react-redux';
 
 
-
-
 const App = () => {
 
 
-  return (
-    <div className="App">
-        <HashRouter>
-            <Provider store={store}>
-                <Header/>
-                <Routes/>
-                {/*<Test />*/}
-            </Provider>
-        </HashRouter>
-    </div>
-  );
+    return (
+        <div className="App">
+            <HashRouter>
+                <Provider store={store}>
+                    <Header/>
+                    <Routes/>
+                    {/*<Test />*/}
+                </Provider>
+            </HashRouter>
+        </div>
+    );
 }
 
 export default App;

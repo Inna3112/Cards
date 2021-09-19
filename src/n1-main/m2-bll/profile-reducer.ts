@@ -1,32 +1,23 @@
-import {UserType} from '../m3-dal/api';
-
+import {authAPI, UserType} from '../m3-dal/api';
+import {Dispatch} from 'redux';
+import {setError} from './login-reducer';
 
 const initialState = {
     userProfile: {
-        avatar: '',
-        created: '',
-        deviceTokens: [{_id: '', device: ''},],
-        email: '',
-        isAdmin: false,
-        name: '',
-        publicCardPacksCount: 0,
-        rememberMe: false,
-        token: '',
-        tokenDeathTime: 0,
-        updated: '',
-        verified: false,
-        __v: 0,
         _id: '',
+        email: '',
+        name: '',
+        avatar: '',
+        publicCardPacksCount: 0,
     }
 }
-
 
 export const profileReducer = (state = initialState, action: ActionsType): typeof initialState => {
     switch (action.type) {
         case "SET-PROFILE":{
-            debugger
             return {
-                ...state, userProfile: {...action.userProfile, deviceTokens: [...action.userProfile.deviceTokens]}
+                ...state,
+                userProfile: {...action.userProfile}
             }
         }
         default:
@@ -35,6 +26,21 @@ export const profileReducer = (state = initialState, action: ActionsType): typeo
 }
 
 export const setProfile = (userProfile: UserType) => ({type: 'SET-PROFILE', userProfile}) as const
+
+export const setProfileSuccess = () => (dispatch: Dispatch) => {
+    authAPI.me()
+        .then((res) => {
+            dispatch(setProfile({
+                _id: res.data._id,
+                email: res.data.email,
+                name: res.data.name,
+                avatar: res.data.avatar,
+                publicCardPacksCount: res.data.publicCardPacksCount}))
+        })
+        .catch((error) => {
+            dispatch(setError(error.response.data.error))
+        })
+}
 
 
 // types

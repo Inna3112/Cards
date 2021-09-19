@@ -14,6 +14,7 @@ export const Login = () => {
     const dispatch = useDispatch()
     const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.login.isLoggedIn)
     const error = useSelector<AppRootStateType, string>(state => state.login.error)
+    const isLoading = useSelector<AppRootStateType, boolean>(state => state.login.isLoading)
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -31,6 +32,7 @@ export const Login = () => {
     }
     return (
         <div className={s.loginBlock}>
+            {isLoading ? <div style={{color: 'green'}}>Loading...</div> : ''}
             <h1>Login</h1>
             <SuperInputText placeholder={'Email'} value={email} onChange={emailHandler}/>
             <SuperInputText placeholder={'Password'} value={password} onChange={passwordHandler}/>

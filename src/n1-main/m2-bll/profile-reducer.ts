@@ -1,5 +1,4 @@
-import {authAPI, UserType} from '../m3-dal/api';
-import {Dispatch} from "redux";
+import {UserType} from '../m3-dal/api';
 
 
 const initialState = {
@@ -25,6 +24,7 @@ const initialState = {
 export const profileReducer = (state = initialState, action: ActionsType): typeof initialState => {
     switch (action.type) {
         case "SET-PROFILE":{
+            debugger
             return {
                 ...state, userProfile: {...action.userProfile, deviceTokens: [...action.userProfile.deviceTokens]}
             }

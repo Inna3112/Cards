@@ -1,7 +1,6 @@
 import {Dispatch} from 'redux';
 import {authAPI} from '../m3-dal/api';
-import {setPriority} from "os";
-import {setProfile} from "./profile-reducer";
+import {setProfile} from './profile-reducer';
 
 type ActionsType = ReturnType<typeof setLogin> | ReturnType<typeof isLoggedInChange> | ReturnType<typeof setError>
 type LoginDataType = {

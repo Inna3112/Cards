@@ -10,6 +10,8 @@ import {Provider} from 'react-redux';
 
 
 const App = () => {
+
+
   return (
     <div className="App">
         <HashRouter>

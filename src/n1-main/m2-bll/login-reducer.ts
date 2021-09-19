@@ -54,6 +54,16 @@ export const loginSuccess = (loginData: LoginDataType) => (dispatch: Dispatch) =
             dispatch(setError(error.response.data.error))
         })
 }
+export const logoutSuccess = () => (dispatch: Dispatch) => {
+    authAPI.logout()
+        .then(() => {
+            dispatch(isLoggedInChange(false))
+        })
+        .catch((error) => {
+            dispatch(setError(error.response.data.error))
+        })
+}
+
 
 // types
 type ActionsType = ReturnType<typeof setLogin>

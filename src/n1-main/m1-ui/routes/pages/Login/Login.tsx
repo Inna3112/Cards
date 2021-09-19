@@ -32,8 +32,8 @@ export const Login = () => {
     }
     return (
         <div className={s.loginBlock}>
-            {isLoading ? <div style={{color: 'green'}}>Loading...</div> : ''}
             <h1>Login</h1>
+            {isLoading ? <div style={{color: 'green'}}>Loading...</div> : ''}
             <SuperInputText placeholder={'Email'} value={email} onChange={emailHandler}/>
             <SuperInputText placeholder={'Password'} value={password} onChange={passwordHandler}/>
             <SuperCheckbox checked={rememberMe} onClick={rememberMeHandler}>Remember me</SuperCheckbox>

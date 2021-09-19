@@ -22,7 +22,6 @@ export type LoginResponseType = {
     __v: number,
     _id: string,
 }
-
 type DeviceTokenType = {
     _id: string,
     device: string,

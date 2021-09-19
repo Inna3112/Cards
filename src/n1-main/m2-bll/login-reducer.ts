@@ -1,5 +1,5 @@
 import {Dispatch} from 'redux';
-import {authAPI} from "../m3-dal/api";
+import {authAPI} from '../m3-dal/api';
 
 type ActionsType = ReturnType<typeof setLogin> | ReturnType<typeof isLoggedInChange> | ReturnType<typeof setError>
 type LoginDataType = {
@@ -9,20 +9,20 @@ type LoginDataType = {
 }
 
 const initialState = {
-    loginData: {
-        email: '',
-        password: '',
-        rememberMe: false,
-    },
+    // loginData: {
+    //     email: '',
+    //     password: '',
+    //     rememberMe: false,
+    // },
     isLoggedIn: false,
     error: '',
 }
 
 export const loginReducer = (state = initialState, action: ActionsType): typeof initialState => {
     switch (action.type) {
-        case "SET-LOGIN":{
+        case "SET-LOGIN": {
             return {
-                ...state, loginData: {...state.loginData}
+                ...state
             }
         }
         case "IS-LOGGED-IN-CHANGE": {
@@ -30,7 +30,7 @@ export const loginReducer = (state = initialState, action: ActionsType): typeof 
                 ...state, isLoggedIn: action.isLoggedIn
             }
         }
-        case "SET-ERROR":{
+        case "SET-ERROR": {
             return {
                 ...state, error: action.error
             }
@@ -46,7 +46,7 @@ export const setError = (error: string) => ({type: 'SET-ERROR', error}) as const
 
 export const loginSuccess = (loginData: LoginDataType) => (dispatch: Dispatch) => {
     authAPI.login(loginData.email, loginData.password, loginData.rememberMe)
-        .then((res) => {
+        .then(() => {
             dispatch(setLogin())
             dispatch(isLoggedInChange(true))
         })

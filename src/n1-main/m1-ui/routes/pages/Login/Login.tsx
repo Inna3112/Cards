@@ -32,15 +32,20 @@ export const Login = () => {
     }
     return (
         <div className={s.loginBlock}>
-            <h1>Login</h1>
-            {isLoading ? <div style={{color: 'green'}}>Loading...</div> : ''}
-            <SuperInputText placeholder={'Email'} value={email} onChange={emailHandler}/>
-            <SuperInputText placeholder={'Password'} value={password} onChange={passwordHandler}/>
-            <SuperCheckbox checked={rememberMe} onClick={rememberMeHandler}>Remember me</SuperCheckbox>
-            <NavLink to={PATH.FORGOT} className={s.link} activeClassName={s.active}>forgot</NavLink>
-            <SuperButton onClick={loginHandler}>Login</SuperButton>
-            <NavLink to={PATH.REGISTER} className={s.link} activeClassName={s.active}>register</NavLink>
-            {error ? <div style={{color: 'red'}}>{error}</div> : ''}
+            <div className={s.loginList}>
+                <h1 className={s.loginTitle}>Login</h1>
+                {isLoading ? <div style={{color: 'green'}}>Loading...</div> : ''}
+                <SuperInputText className={s.loginInput} placeholder={'Email'} value={email} onChange={emailHandler}/>
+                <SuperInputText className={s.loginInput} placeholder={'Password'} value={password} onChange={passwordHandler}/>
+                <div className={s.rememberBlock}>
+                    <SuperCheckbox checked={rememberMe} onClick={rememberMeHandler}>Remember me</SuperCheckbox>
+                    <NavLink to={PATH.FORGOT} className={s.forgotLink} activeClassName={s.forgotLincActive}>Forgot password</NavLink>
+                </div>
+                <SuperButton className={s.loginButton} onClick={loginHandler}>Login</SuperButton>
+                <div className={s.loginText}>Don't have an account?</div>
+                <NavLink to={PATH.REGISTER} className={s.signUpLink} activeClassName={s.signUpLinkActive}>Sign Up</NavLink>
+                {error ? <div style={{color: 'red'}}>{error}</div> : ''}
+            </div>
         </div>
     )
 }

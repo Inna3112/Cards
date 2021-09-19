@@ -3,3 +3,64 @@
     flex-direction: column;
     align-items: center;
 }
+
+.loginList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 415px;
+    height: 600px;
+    border-radius: 8px;
+    background-color: #F9F9FE;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+.loginTitle {
+    margin-top: 25px;
+}
+
+.loginInput {
+    width: 330px;
+    height: 36px;
+    font-size: 16px;
+    line-height: 24px;
+}
+.rememberBlock {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 330px;
+    margin: 20px 0;
+}
+.forgotLink {
+    text-decoration: none;
+    color: #2D2E46;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.forgotLinkActive {
+    color: #9A91C8;
+}
+
+.loginButton {
+    margin-top: 130px;
+    width: 266px;
+}
+
+.loginText {
+    font-size: 14px;
+    line-height: 24px;
+    color: #2D2E46;
+    opacity: 50%;
+}
+.signUpLink {
+    text-decoration: none;
+    color: #21268F;
+    font-size: 16px;
+    line-height: 24px;
+}
+.signUpLinkActive{
+
+}

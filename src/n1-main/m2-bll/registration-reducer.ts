@@ -33,11 +33,11 @@ export const isRegisterChange = (isRegistered: boolean) => ({type: 'IS-REGISTER-
 
 export const registerSuccess = (email: string, password: string) => (dispatch: Dispatch) => {
     authAPI.register(email, password)
-        .then((res) => {
+        .then(() => {
             dispatch(setRegister())
             dispatch(isRegisterChange(true))
         })
-        .catch((error) => {
+        .catch(() => {
             dispatch(isRegisterChange(true))
         })
 }

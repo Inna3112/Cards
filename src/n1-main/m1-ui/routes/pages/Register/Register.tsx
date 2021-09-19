@@ -34,12 +34,16 @@ export const Register = () => {
     }
     return (
         <div className={s.registerBlock}>
-            <h1>Register</h1>
-            <SuperInputText placeholder={'Email'} value={email} onChange={emailHandler}/>
-            <SuperInputText placeholder={'Password'} value={password} onChange={passwordHandler}/>
-            <SuperInputText placeholder={'Confirm password'} value={confirm} onChange={confirmHandler}/>
-            <SuperButton>Cancel</SuperButton>
-            <SuperButton onClick={registerHandler}>Register</SuperButton>
+            <div className={s.registerList}>
+                <h1 className={s.registerTitle}>Sign Up</h1>
+                <SuperInputText className={s.registerInput} placeholder={'Email'} value={email} onChange={emailHandler}/>
+                <SuperInputText className={s.registerInput} placeholder={'Password'} value={password} onChange={passwordHandler}/>
+                <SuperInputText className={s.registerInput} placeholder={'Confirm password'} value={confirm} onChange={confirmHandler}/>
+                <div className={s.registerBtnBlock}>
+                    <SuperButton className={s.cancelBtn}>Cancel</SuperButton>
+                    <SuperButton className={s.signUpBtn} onClick={registerHandler}>Sign Up</SuperButton>
+                </div>
+            </div>
         </div>
     )
 }

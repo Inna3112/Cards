@@ -1,5 +1,7 @@
 import {Dispatch} from 'redux';
 import {authAPI} from '../m3-dal/api';
+import {setPriority} from "os";
+import {setProfile} from "./profile-reducer";
 
 type ActionsType = ReturnType<typeof setLogin> | ReturnType<typeof isLoggedInChange> | ReturnType<typeof setError>
 type LoginDataType = {
@@ -9,11 +11,6 @@ type LoginDataType = {
 }
 
 const initialState = {
-    // loginData: {
-    //     email: '',
-    //     password: '',
-    //     rememberMe: false,
-    // },
     isLoggedIn: false,
     error: '',
 }
@@ -46,9 +43,10 @@ export const setError = (error: string) => ({type: 'SET-ERROR', error}) as const
 
 export const loginSuccess = (loginData: LoginDataType) => (dispatch: Dispatch) => {
     authAPI.login(loginData.email, loginData.password, loginData.rememberMe)
-        .then(() => {
+        .then((res) => {
             dispatch(setLogin())
             dispatch(isLoggedInChange(true))
+            dispatch(setProfile(res.data))
         })
         .catch((error) => {
             dispatch(isLoggedInChange(false))

@@ -4,18 +4,19 @@ import {SuperInputText} from '../../../../../common/c1-SuperInputText/SuperInput
 import {NavLink} from 'react-router-dom';
 import {PATH} from '../../Routes';
 import {SuperButton} from '../../../../../common/c2-SuperButton/SuperButton';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../../m2-bll/store';
+import {setEmailSuccess} from "../../../../m2-bll/passwordRecover-reducer";
 
 
 export const Forgot = () => {
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
     const error = useSelector<AppRootStateType, string>(state => state.login.error)
     const isLoading = useSelector<AppRootStateType, boolean>(state => state.login.isLoading)
 
     const [email, setEmail] = useState('')
     const emailHandler = (e: ChangeEvent<HTMLInputElement>) => setEmail(e.currentTarget.value)
-    const forgotHandler = () => {}
+    const forgotHandler = () => dispatch(setEmailSuccess(email))
 
     return (
         <div className={s.forgotBlock}>

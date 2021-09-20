@@ -33,7 +33,7 @@ export const authAPI = {
             from: "test-front-admin <ai73a@yandex.by>",
             message: `<div style="background-color: lime; padding: 15px">		
 	        passwordRecoveryLink: 	
-	                <a href='http://localhost:3000/#/set-new-password/$token$'>link</a></div>`
+	                <a href='http://localhost:3000/Cards#/set-password/$token$'>link</a></div>`
         })
     },
 }

@@ -44,6 +44,18 @@ export const setEmailSuccess = (email: string) => (dispatch: Dispatch) => {
             dispatch(setError(error.response.data.error))
         })
 }
+export const setNewPasswordSuccess = (password: string, token: string) => (dispatch: Dispatch) => {
+    dispatch(setIsLoading(true))
+    authAPI.setNewPassword(password, token)
+        .then(() => {
+            dispatch(setIsLoading(false))
+            dispatch(setError(''))
+        })
+        .catch((error) => {
+            dispatch(setIsLoading(false))
+            dispatch(setError(error.response.data.error))
+        })
+}
 
 // Types
 type ActionsType = ReturnType<typeof setForgotEmail>

@@ -4,7 +4,7 @@ import {Login} from './pages/Login/Login';
 import {Profile} from './pages/Profile/Profile';
 import {Error404} from './pages/Error404';
 import {Register} from './pages/Register/Register';
-import {Forgot} from './pages/Forgot';
+import {Forgot} from './pages/Forgot/Forgot';
 import {SetPassword} from './pages/SetPassword';
 import {Main} from './pages/Main';
 

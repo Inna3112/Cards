@@ -14,7 +14,13 @@ const initialState = {
 
 export const profileReducer = (state = initialState, action: ActionsType): typeof initialState => {
     switch (action.type) {
-        case "SET-PROFILE":{
+        case "SET-PROFILE": {
+            return {
+                ...state,
+                userProfile: {...action.userProfile}
+            }
+        }
+        case "UPDATE-PROFILE": {
             return {
                 ...state,
                 userProfile: {...action.userProfile}
@@ -26,6 +32,7 @@ export const profileReducer = (state = initialState, action: ActionsType): typeo
 }
 
 export const setProfile = (userProfile: UserType) => ({type: 'SET-PROFILE', userProfile}) as const
+export const updateProfile = (userProfile: UserType) => ({type: 'UPDATE-PROFILE', userProfile}) as const
 
 export const setProfileSuccess = () => (dispatch: Dispatch) => {
     authAPI.me()
@@ -35,7 +42,23 @@ export const setProfileSuccess = () => (dispatch: Dispatch) => {
                 email: res.data.email,
                 name: res.data.name,
                 avatar: res.data.avatar,
-                publicCardPacksCount: res.data.publicCardPacksCount}))
+                publicCardPacksCount: res.data.publicCardPacksCount
+            }))
+        })
+        .catch((error) => {
+            dispatch(setError(error.response.data.error))
+        })
+}
+export const updateProfileSuccess = (name: string, avatar: string) => (dispatch: Dispatch) => {
+    authAPI.updateMe(name, avatar)
+        .then((res) => {
+            dispatch(updateProfile({
+                _id: initialState.userProfile._id,
+                email: initialState.userProfile.email,
+                name: res.data.name,
+                avatar: res.data.avatar,
+                publicCardPacksCount: initialState.userProfile.publicCardPacksCount
+            }))
         })
         .catch((error) => {
             dispatch(setError(error.response.data.error))
@@ -45,3 +68,4 @@ export const setProfileSuccess = () => (dispatch: Dispatch) => {
 
 // types
 type ActionsType = ReturnType<typeof setProfile>
+    | ReturnType<typeof updateProfile>

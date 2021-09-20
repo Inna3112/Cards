@@ -5,6 +5,40 @@ const instance = axios.create({
     baseURL: 'http://localhost:7542/2.0/',
     withCredentials: true,
 })
+const instanceForgot = axios.create({
+    baseURL: 'https://neko-back.herokuapp.com/2.0',
+    withCredentials: true,
+})
+
+
+export const authAPI = {
+    register(email: string, password: string) {
+        return instance.post<ResponseType>('auth/register', {email, password})
+    },
+    login(email: string, password: string, rememberMe: boolean) {
+        return instance.post<ResponseType>('auth/login', {email, password, rememberMe})
+    },
+    logout(){
+        return instance.delete<{info: string}>('auth/me')
+    },
+    me(){
+        return instance.post<ResponseType>('auth/me', {})
+    },
+    updateMe(name: string, avatar: string){
+        return instance.put<UpdateUserType>('auth/me', {name, avatar})
+    },
+    forgot(email: string){
+        return instanceForgot.post('auth/forgot', {
+            email,
+            from: "test-front-admin <ai73a@yandex.by>",
+            message: `<div style="background-color: lime; padding: 15px">		
+	        passwordRecoveryLink: 	
+	                <a href='http://localhost:3000/#/set-new-password/$token$'>link</a></div>`
+        })
+    },
+}
+
+// types
 type UpdateUserType = {
     updatedUser: ResponseType,
     token: string,
@@ -33,22 +67,4 @@ export type UserType = {
     name: string,
     avatar: string,
     publicCardPacksCount: number,
-}
-
-export const authAPI = {
-    register(email: string, password: string) {
-        return instance.post<ResponseType>('auth/register', {email, password})
-    },
-    login(email: string, password: string, rememberMe: boolean) {
-        return instance.post<ResponseType>('auth/login', {email, password, rememberMe})
-    },
-    logout(){
-        return instance.delete<{info: string}>('auth/me')
-    },
-    me(){
-        return instance.post<ResponseType>('auth/me', {})
-    },
-    updateMe(name: string, avatar: string){
-        return instance.put<UpdateUserType>('auth/me', {name, avatar})
-    }
 }

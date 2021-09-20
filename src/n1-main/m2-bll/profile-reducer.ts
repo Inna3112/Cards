@@ -20,19 +20,12 @@ export const profileReducer = (state = initialState, action: ActionsType): typeo
                 userProfile: {...action.userProfile}
             }
         }
-        case "UPDATE-PROFILE": {
-            return {
-                ...state,
-                userProfile: {...action.userProfile}
-            }
-        }
         default:
             return state
     }
 }
 
 export const setProfile = (userProfile: UserType) => ({type: 'SET-PROFILE', userProfile}) as const
-export const updateProfile = (userProfile: UserType) => ({type: 'UPDATE-PROFILE', userProfile}) as const
 
 export const setProfileSuccess = () => (dispatch: Dispatch) => {
     authAPI.me()
@@ -52,11 +45,11 @@ export const setProfileSuccess = () => (dispatch: Dispatch) => {
 export const updateProfileSuccess = (name: string, avatar: string) => (dispatch: Dispatch) => {
     authAPI.updateMe(name, avatar)
         .then((res) => {
-            dispatch(updateProfile({
+            dispatch(setProfile({
                 _id: initialState.userProfile._id,
                 email: initialState.userProfile.email,
-                name: res.data.name,
-                avatar: res.data.avatar,
+                name: res.data.updatedUser.name,
+                avatar: res.data.updatedUser.avatar,
                 publicCardPacksCount: initialState.userProfile.publicCardPacksCount
             }))
         })
@@ -68,4 +61,3 @@ export const updateProfileSuccess = (name: string, avatar: string) => (dispatch:
 
 // types
 type ActionsType = ReturnType<typeof setProfile>
-    | ReturnType<typeof updateProfile>

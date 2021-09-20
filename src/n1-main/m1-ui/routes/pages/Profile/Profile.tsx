@@ -1,23 +1,40 @@
-import React, {useEffect} from 'react'
+import React, {ChangeEvent, useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../../m2-bll/store';
 import s from './Profile.module.css'
-import {setProfileSuccess} from '../../../../m2-bll/profile-reducer';
+import {setProfileSuccess, updateProfileSuccess} from '../../../../m2-bll/profile-reducer';
 import {UserType} from '../../../../m3-dal/api';
+import {SuperInputText} from "../../../../../common/c1-SuperInputText/SuperInputText";
 
 
 export const Profile = () => {
     const userProfile = useSelector<AppRootStateType, UserType>(state => state.profile.userProfile)
     const dispatch = useDispatch()
 
+    const [editMode, setEditMode] = useState(false)
+    const [name, setName] = useState(userProfile.name)
+
     useEffect(() => {
         dispatch(setProfileSuccess())
     }, [])
 
+    const activateEditMode = () => {
+        setEditMode(true)
+    }
+    const changeName = (e: ChangeEvent<HTMLInputElement>) => {
+        setName(e.currentTarget.value)
+    }
+    const setNewName = () => {
+        dispatch(updateProfileSuccess(name, userProfile.avatar))
+        setEditMode(false)
+    }
+
     return (
         <div className={s.profileBlock}>
             <img className={s.img} src="https://klike.net/uploads/posts/2019-03/1551511801_1.jpg" alt="avaImg"/>
-            <div>{userProfile.name}</div>
+            { !editMode
+                ? <div onClick={activateEditMode}>{userProfile.name}</div>
+                : <SuperInputText value={name} onChange={changeName} onBlur={setNewName}/>}
             <div>{userProfile.publicCardPacksCount}</div>
         </div>
     )

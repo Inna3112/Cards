@@ -5,10 +5,14 @@ const instance = axios.create({
     baseURL: 'http://localhost:7542/2.0/',
     withCredentials: true,
 })
-
+type UpdateUserType = {
+    updatedUser: ResponseType,
+    token: string,
+    tokenDeathTime: number,
+}
 export type ResponseType = UserType &{
     created: string,
-    deviceTokens: DeviceTokenType [],
+    deviceTokens?: DeviceTokenType [],
     isAdmin: boolean,
     rememberMe: boolean,
     token: string,
@@ -45,6 +49,6 @@ export const authAPI = {
         return instance.post<ResponseType>('auth/me', {})
     },
     updateMe(name: string, avatar: string){
-        return instance.put('auth/me', {name, avatar})
+        return instance.put<UpdateUserType>('auth/me', {name, avatar})
     }
 }

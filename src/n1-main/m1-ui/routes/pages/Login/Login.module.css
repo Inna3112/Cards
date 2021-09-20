@@ -26,6 +26,7 @@
     font-size: 16px;
     line-height: 24px;
 }
+
 .rememberBlock {
     display: flex;
     justify-content: space-between;
@@ -33,11 +34,16 @@
     width: 330px;
     margin: 20px 0;
 }
+
 .forgotLink {
     text-decoration: none;
     color: #2D2E46;
     font-size: 14px;
     line-height: 16px;
+}
+
+.forgotLink:hover {
+    color: #9A91C8;
 }
 
 .forgotLinkActive {
@@ -55,12 +61,18 @@
     color: #2D2E46;
     opacity: 50%;
 }
+
 .signUpLink {
     text-decoration: none;
     color: #21268F;
     font-size: 16px;
     line-height: 24px;
 }
-.signUpLinkActive{
+
+.signUpLink:hover {
+    color: #9A91C8;
+}
+
+.signUpLinkActive {
 
 }

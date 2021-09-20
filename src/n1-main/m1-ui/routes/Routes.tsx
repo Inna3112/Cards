@@ -5,7 +5,7 @@ import {Profile} from './pages/Profile/Profile';
 import {Error404} from './pages/Error404';
 import {Register} from './pages/Register/Register';
 import {Forgot} from './pages/Forgot/Forgot';
-import {SetPassword} from './pages/SetPassword';
+import {SetPassword} from './pages/SetPassword/SetPassword';
 import {Main} from './pages/Main';
 
 export const PATH = {

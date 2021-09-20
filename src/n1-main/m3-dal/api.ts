@@ -36,6 +36,9 @@ export const authAPI = {
 	                </div>`
         })
     },
+    setNewPassword(password: string, resetPasswordToken: string){
+        return instanceForgot.post<InfoResponseType>('auth/new-password', {password, resetPasswordToken})
+    }
 }
 
 // types

@@ -38,10 +38,13 @@ export const authAPI = {
     login(email: string, password: string, rememberMe: boolean) {
         return instance.post<ResponseType>('auth/login', {email, password, rememberMe})
     },
+    logout(){
+        return instance.delete<{info: string}>('auth/me')
+    },
     me(){
         return instance.post<ResponseType>('auth/me', {})
     },
-    logout(){
-        return instance.delete('auth/me')
-    },
+    updateMe(name: string, avatar: string){
+        return instance.put('auth/me', {name, avatar})
+    }
 }

@@ -16,7 +16,7 @@ export const Profile = () => {
 
     useEffect(() => {
         dispatch(setProfileSuccess())
-    }, [])
+    }, [dispatch])
 
     const activateEditMode = () => {
         setEditMode(true)

@@ -5,12 +5,13 @@ import s from './Register.module.css'
 import {useDispatch, useSelector} from 'react-redux';
 import {registerSuccess} from '../../../../m2-bll/registration-reducer';
 import {AppRootStateType} from '../../../../m2-bll/store';
-import {Redirect} from 'react-router-dom';
+import {Redirect, useHistory} from 'react-router-dom';
 
 
 export const Register = () => {
     const dispatch = useDispatch()
     const isRegistered = useSelector<AppRootStateType, boolean>(state => state.registration.isRegistered)
+    const history = useHistory()
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -26,9 +27,11 @@ export const Register = () => {
             //error
             alert('Password must be eaquel confirm')
         }
-
     }
-
+    const cancelHandler = () => {
+        history.goBack()
+        // history.push('/login')
+    }
     if(isRegistered){
         return <Redirect to={'/login'} />
     }
@@ -40,7 +43,7 @@ export const Register = () => {
                 <SuperInputText className={s.registerInput} placeholder={'Password'} value={password} onChange={passwordHandler}/>
                 <SuperInputText className={s.registerInput} placeholder={'Confirm password'} value={confirm} onChange={confirmHandler}/>
                 <div className={s.registerBtnBlock}>
-                    <SuperButton className={s.cancelBtn}>Cancel</SuperButton>
+                    <SuperButton className={s.cancelBtn} onClick={cancelHandler}>Cancel</SuperButton>
                     <SuperButton className={s.signUpBtn} onClick={registerHandler}>Sign Up</SuperButton>
                 </div>
             </div>

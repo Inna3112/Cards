@@ -1,11 +1,11 @@
 import React, {ChangeEvent, useState} from 'react'
 import s from './SetPassword.module.css'
-import {SuperInputText} from '../../../../../common/c1-SuperInputText/SuperInputText';
-import {SuperButton} from '../../../../../common/c2-SuperButton/SuperButton';
 import {Redirect, useParams} from 'react-router-dom';
-import {useDispatch, useSelector} from "react-redux";
-import {setNewPasswordSuccess} from '../../../../m2-bll/passwordRecover-reducer';
-import {AppRootStateType} from '../../../../m2-bll/store';
+import {useDispatch, useSelector} from 'react-redux';
+import {AppRootStateType} from '../../../n1-main/m2-bll/store';
+import {setNewPasswordSuccess} from '../../../n1-main/m2-bll/passwordRecover-reducer';
+import {SuperInputText} from '../../../common/c1-SuperInputText/SuperInputText';
+import {SuperButton} from '../../../common/c2-SuperButton/SuperButton';
 
 
 export const SetPassword = () => {

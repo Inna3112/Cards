@@ -1,13 +1,13 @@
 import React, {ChangeEvent, useState} from 'react'
 import s from '../Login/Login.module.css';
-import {SuperInputText} from '../../../../../common/c1-SuperInputText/SuperInputText';
-import {NavLink} from 'react-router-dom';
-import {PATH} from '../../Routes';
-import {SuperButton} from '../../../../../common/c2-SuperButton/SuperButton';
+import {NavLink, Redirect} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import {AppRootStateType} from '../../../../m2-bll/store';
-import {setEmailSuccess} from '../../../../m2-bll/passwordRecover-reducer';
-import {CheckEmail} from "./CheckEmail/CheckEmail";
+import {CheckEmail} from './CheckEmail/CheckEmail';
+import {AppRootStateType} from '../../../n1-main/m2-bll/store';
+import {setEmailSuccess} from '../../../n1-main/m2-bll/passwordRecover-reducer';
+import {SuperInputText} from '../../../common/c1-SuperInputText/SuperInputText';
+import {SuperButton} from '../../../common/c2-SuperButton/SuperButton';
+import {PATH} from '../../../n1-main/m1-ui/routes/Routes';
 
 
 export const Forgot = () => {
@@ -20,9 +20,9 @@ export const Forgot = () => {
     const emailHandler = (e: ChangeEvent<HTMLInputElement>) => setEmail(e.currentTarget.value)
     const forgotHandler = () => dispatch(setEmailSuccess(email))
 
-    // if (isEmailSet) {
-    //     return <Redirect to={'/set-password'}/>
-    // }
+    if (isEmailSet) {
+        return <Redirect to={'/set-password'}/>
+    }
 
     return (<>
             {

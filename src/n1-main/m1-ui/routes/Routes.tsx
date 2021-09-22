@@ -1,12 +1,12 @@
 import React from 'react'
 import { Switch, Redirect, Route } from 'react-router-dom';
-import {Login} from './pages/Login/Login';
-import {Profile} from './pages/Profile/Profile';
-import {Error404} from './pages/Error404';
-import {Register} from './pages/Register/Register';
-import {Forgot} from './pages/Forgot/Forgot';
-import {SetPassword} from './pages/SetPassword/SetPassword';
 import {Main} from './pages/Main';
+import {Login} from '../../../n2-features/f1-auth/Login/Login';
+import {Register} from '../../../n2-features/f1-auth/Register/Register';
+import {Profile} from './pages/Profile/Profile';
+import {SetPassword} from '../../../n2-features/f1-auth/SetPassword/SetPassword';
+import {Forgot} from '../../../n2-features/f1-auth/Forgot/Forgot';
+import {Error404} from './pages/Error404';
 
 export const PATH = {
     MAIN: '/main',

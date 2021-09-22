@@ -1,13 +1,13 @@
 import React, {ChangeEvent, useState} from 'react'
-import {SuperInputText} from '../../../../../common/c1-SuperInputText/SuperInputText';
-import {SuperButton} from '../../../../../common/c2-SuperButton/SuperButton';
 import s from './Login.module.css'
-import {SuperCheckbox} from '../../../../../common/c3-SuperCheckbox/SuperCheckbox';
 import {useDispatch, useSelector} from 'react-redux';
-import {loginSuccess} from '../../../../m2-bll/login-reducer';
 import {NavLink, Redirect} from 'react-router-dom';
-import {AppRootStateType} from '../../../../m2-bll/store';
-import {PATH} from '../../Routes';
+import {AppRootStateType} from '../../../n1-main/m2-bll/store';
+import {loginSuccess} from '../../../n1-main/m2-bll/login-reducer';
+import {SuperInputText} from '../../../common/c1-SuperInputText/SuperInputText';
+import {SuperCheckbox} from '../../../common/c3-SuperCheckbox/SuperCheckbox';
+import {PATH} from '../../../n1-main/m1-ui/routes/Routes';
+import {SuperButton} from '../../../common/c2-SuperButton/SuperButton';
 
 
 export const Login = () => {

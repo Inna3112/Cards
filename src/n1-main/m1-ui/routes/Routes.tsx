@@ -3,7 +3,7 @@ import { Switch, Redirect, Route } from 'react-router-dom';
 import {Main} from './pages/Main';
 import {Login} from '../../../n2-features/f1-auth/Login/Login';
 import {Register} from '../../../n2-features/f1-auth/Register/Register';
-import {Profile} from './pages/Profile/Profile';
+import {Profile} from '../../../n2-features/f2-profile/Profile/Profile';
 import {SetPassword} from '../../../n2-features/f1-auth/SetPassword/SetPassword';
 import {Forgot} from '../../../n2-features/f1-auth/Forgot/Forgot';
 import {Error404} from './pages/Error404';

@@ -1,10 +1,10 @@
 import React, {ChangeEvent, useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux';
-import {AppRootStateType} from '../../../../m2-bll/store';
+import {AppRootStateType} from '../../../n1-main/m2-bll/store';
 import s from './Profile.module.css'
-import {setProfileSuccess, updateProfileSuccess} from '../../../../m2-bll/profile-reducer';
-import {UserType} from '../../../../m3-dal/api';
-import {SuperInputText} from "../../../../../common/c1-SuperInputText/SuperInputText";
+import {setProfileSuccess, updateProfileSuccess} from '../../../n1-main/m2-bll/profile-reducer';
+import {UserType} from '../../../n1-main/m3-dal/api';
+import {SuperInputText} from '../../../common/c1-SuperInputText/SuperInputText';
 
 
 export const Profile = () => {

@@ -18,20 +18,25 @@ export const authAPI = {
     login(email: string, password: string, rememberMe: boolean) {
         return instance.post<ResponseType>('auth/login', {email, password, rememberMe})
     },
-    logout(){
+    logout() {
         return instance.delete<InfoResponseType>('auth/me')
     },
-    me(){
+    me() {
         return instance.post<ResponseType>('auth/me', {})
     },
-    updateMe(name: string, avatar: string){
+    updateMe(name: string, avatar: string) {
         return instance.put<UpdateUserType>('auth/me', {name, avatar})
     },
-    forgot(requestData: ForgotRequestType){
+    forgot(requestData: ForgotRequestType) {
         return instanceForgot.post<InfoResponseType>('auth/forgot', requestData)
     },
-    setNewPassword(password: string, resetPasswordToken: string){
+    setNewPassword(password: string, resetPasswordToken: string) {
         return instanceForgot.post<InfoResponseType>('auth/new-password', {password, resetPasswordToken})
+    }
+}
+export const packsAPI = {
+    getPacks() {
+        return instance.get<getPackResponseType>('cards/pack')
     }
 }
 
@@ -41,7 +46,7 @@ type UpdateUserType = {
     token: string,
     tokenDeathTime: number,
 }
-export type ResponseType = UserType &{
+export type ResponseType = UserType & {
     created: string,
     deviceTokens?: DeviceTokenType [],
     isAdmin: boolean,
@@ -74,4 +79,26 @@ export type ForgotRequestType = {
     email: string
     from: string
     message: string
+}
+export type CardsPackType = {
+    _id: string
+    user_id: string
+    name: string
+    path: string
+    cardsCount: number
+    grade: number
+    shots: number
+    rating: number
+    type: string
+    created: string
+    updated: string
+    __v: number
+}
+export type getPackResponseType = {
+    cardsPacks: CardsPackType[]
+    cardPacksTotalCount: number
+    maxCardsCount: number
+    minCardsCount: number
+    page: number
+    pageCount: number
 }

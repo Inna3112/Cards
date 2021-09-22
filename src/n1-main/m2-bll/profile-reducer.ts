@@ -46,11 +46,11 @@ export const updateProfileSuccess = (name: string, avatar: string) => (dispatch:
     authAPI.updateMe(name, avatar)
         .then((res) => {
             dispatch(setProfile({
-                _id: initialState.userProfile._id,
-                email: initialState.userProfile.email,
+                _id: res.data.updatedUser._id,
+                email: res.data.updatedUser.email,
                 name: res.data.updatedUser.name,
                 avatar: res.data.updatedUser.avatar,
-                publicCardPacksCount: initialState.userProfile.publicCardPacksCount
+                publicCardPacksCount: res.data.updatedUser.publicCardPacksCount
             }))
         })
         .catch((error) => {

@@ -13,20 +13,27 @@ import {PATH} from '../../Routes';
 export const Login = () => {
     const dispatch = useDispatch()
     const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.login.isLoggedIn)
-    const error = useSelector<AppRootStateType, string>(state => state.login.error)
+    const errorFromStore = useSelector<AppRootStateType, string>(state => state.login.error)
     const isLoading = useSelector<AppRootStateType, boolean>(state => state.login.isLoading)
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [rememberMe, setRememberMe] = useState(false)
+    const [error, setError] = useState('')
 
     const emailHandler = (e: ChangeEvent<HTMLInputElement>) => setEmail(e.currentTarget.value)
     const passwordHandler = (e: ChangeEvent<HTMLInputElement>) => setPassword(e.currentTarget.value)
     const rememberMeHandler = () => setRememberMe(!rememberMe)
     const loginHandler = () => {
-        dispatch(loginSuccess({email, password, rememberMe}))
+        if(email !== '' && password !== '') {
+            dispatch(loginSuccess({email, password, rememberMe}))
+        } else {
+            setError('Field is required!')
+        }
     }
-
+    const inputOnClickHandler = () => {
+        setError('')
+    }
     if(isLoggedIn){
         return <Redirect to={'/profile'} />
     }
@@ -35,8 +42,12 @@ export const Login = () => {
             <div className={s.loginList}>
                 <h1 className={s.loginTitle}>Login</h1>
                 {isLoading ? <div style={{color: 'green'}}>Loading...</div> : ''}
-                <SuperInputText className={s.loginInput} placeholder={'Email'} value={email} onChange={emailHandler}/>
-                <SuperInputText className={s.loginInput} placeholder={'Password'} value={password} onChange={passwordHandler}/>
+                <SuperInputText className={s.loginInput} placeholder={'Email'}
+                                error={error} value={email} onChange={emailHandler}
+                                onClick={inputOnClickHandler}/>
+                <SuperInputText className={s.loginInput} placeholder={'Password'}
+                                error={error} value={password} onChange={passwordHandler}
+                                onClick={inputOnClickHandler}/>
                 <div className={s.rememberBlock}>
                     <SuperCheckbox checked={rememberMe} onClick={rememberMeHandler}>Remember me</SuperCheckbox>
                     <NavLink to={PATH.FORGOT} className={s.forgotLink} activeClassName={s.forgotLincActive}>Forgot password</NavLink>
@@ -44,7 +55,7 @@ export const Login = () => {
                 <SuperButton className={s.loginButton} onClick={loginHandler}>Login</SuperButton>
                 <div className={s.loginText}>Don't have an account?</div>
                 <NavLink to={PATH.REGISTER} className={s.signUpLink} activeClassName={s.signUpLinkActive}>Sign Up</NavLink>
-                {error ? <div style={{color: 'red'}}>{error}</div> : ''}
+                {errorFromStore ? <div style={{color: 'red'}}>{errorFromStore}</div> : ''}
             </div>
         </div>
     )

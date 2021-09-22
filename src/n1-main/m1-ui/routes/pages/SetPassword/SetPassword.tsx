@@ -13,6 +13,7 @@ export const SetPassword = () => {
     console.log('token: ' + token)
     const dispatch = useDispatch()
     const isPasswordSet = useSelector<AppRootStateType, boolean>(state => state.passwordRecover.isPasswordSet)
+
     const [password, setPassword] = useState('')
     const passwordHandler = (e: ChangeEvent<HTMLInputElement>) => setPassword(e.currentTarget.value)
     const setNewPassword = () => {

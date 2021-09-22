@@ -27,14 +27,8 @@ export const authAPI = {
     updateMe(name: string, avatar: string){
         return instance.put<UpdateUserType>('auth/me', {name, avatar})
     },
-    forgot(email: string){
-        return instanceForgot.post<InfoResponseType>('auth/forgot', {
-            email,
-            from: "test-front-admin <ai73a@yandex.by>",
-            message: `<div style="background-color: lime; padding: 15px">		
-	        passwordRecoveryLink: <a href='http://localhost:3000/#/set-new-password/$token$'>link</a>
-	                </div>`
-        })
+    forgot(requestData: ForgotRequestType){
+        return instanceForgot.post<InfoResponseType>('auth/forgot', requestData)
     },
     setNewPassword(password: string, resetPasswordToken: string){
         return instanceForgot.post<InfoResponseType>('auth/new-password', {password, resetPasswordToken})
@@ -74,4 +68,10 @@ export type UserType = {
 export type InfoResponseType = {
     info: string,
     error?: string
+}
+
+export type ForgotRequestType = {
+    email: string
+    from: string
+    message: string
 }

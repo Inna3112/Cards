@@ -14,7 +14,7 @@ export const PATH = {
     REGISTER: '/register',
     PROFILE: '/profile',
     FORGOT: '/forgot',
-    SET_PASSWORD: '/set-new-password',
+    SET_PASSWORD: '/set-new-password/:token',
     ERROR404: '/error404'
 }
 

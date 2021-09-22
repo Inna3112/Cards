@@ -1,5 +1,5 @@
 import {Dispatch} from 'redux';
-import {authAPI} from '../m3-dal/api';
+import {authAPI, ForgotRequestType} from '../m3-dal/api';
 import {setError, setIsLoading} from './login-reducer';
 
 const initialState = {
@@ -37,8 +37,15 @@ export const isPasswordSetChange = (isPasswordSet: boolean) => ({type: 'IS-PASSW
 
 // Thunks
 export const setEmailSuccess = (email: string) => (dispatch: Dispatch) => {
+    let requestObj: ForgotRequestType = {
+        email: email,
+        from: "test-front-admin <ai73a@yandex.by>",
+        message: `<div style="background-color: lime; padding: 15px">		
+	        passwordRecoveryLink: <a href='http://localhost:3000/#/set-new-password/$token$'>link</a>
+	                </div>`
+    }
     dispatch(setIsLoading(true))
-    authAPI.forgot(email)
+    authAPI.forgot(requestObj)
         .then(() => {
             dispatch(setIsLoading(false))
             dispatch(setForgotEmail(email))
@@ -53,6 +60,7 @@ export const setEmailSuccess = (email: string) => (dispatch: Dispatch) => {
 }
 export const setNewPasswordSuccess = (password: string, token: string) => (dispatch: Dispatch) => {
     dispatch(setIsLoading(true))
+
     authAPI.setNewPassword(password, token)
         .then(() => {
             dispatch(isPasswordSetChange(true))

@@ -27,6 +27,7 @@ function Header() {
             {/*<NavLink to={PATH.FORGOT} className={s.link} activeClassName={s.active}>forgot</NavLink>*/}
             <NavLink to={PATH.SET_PASSWORD} className={s.link} activeClassName={s.active}>setPassword</NavLink>
             <NavLink to={PATH.PACKS_LIST} className={s.link} activeClassName={s.active}>PacksList</NavLink>
+            <NavLink to={PATH.CARDS} className={s.link} activeClassName={s.active}>Cards</NavLink>
             <NavLink to={PATH.ERROR404} className={s.link} activeClassName={s.active}>error 404</NavLink>
             <SuperButton onClick={logoutHandler}>logout</SuperButton>
         </div>

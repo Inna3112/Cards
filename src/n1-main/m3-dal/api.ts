@@ -124,7 +124,7 @@ type PackType = {
     private?: boolean
     type?: string
 }
-type CardType = {
+export type CardType = {
     answer: string
     question: string
     cardsPack_id: string

@@ -38,15 +38,15 @@ export const packsAPI = {
     getPacks() {
         return instance.get<getPackResponseType>('cards/pack')
     },
-    createPacks(pack: PackType){
+    createPacks(pack: PackType) {
         return instance.post('cards/pack', {cardsPack: pack})
     },
 }
 export const cardsAPI = {
     getCards() {
-        return instance.get('')
+        return instance.get<GetCardsResponseType>('cards/card')
     },
-    createCard(){
+    createCard() {
         return instance.post('')
     },
 }
@@ -123,4 +123,27 @@ type PackType = {
     deckCover?: string
     private?: boolean
     type?: string
+}
+type CardType = {
+    answer: string
+    question: string
+    cardsPack_id: string
+    grade: number
+    rating: number
+    shots: number
+    type: string
+    user_id: string
+    created: string
+    updated: string
+    __v: number
+    _id: string
+}
+type GetCardsResponseType = {
+    cards: CardType[]
+    cardsTotalCount: number
+    maxGrade: number
+    minGrade: number
+    page: number
+    pageCount: number
+    packUserId: string
 }

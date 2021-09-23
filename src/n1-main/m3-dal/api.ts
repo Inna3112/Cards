@@ -1,5 +1,4 @@
 import axios from 'axios';
-import * as buffer from "buffer";
 
 
 const instance = axios.create({
@@ -41,6 +40,14 @@ export const packsAPI = {
     },
     createPacks(pack: PackType){
         return instance.post('cards/pack', {cardsPack: pack})
+    },
+}
+export const cardsAPI = {
+    getCards() {
+        return instance.get('')
+    },
+    createCard(){
+        return instance.post('')
     },
 }
 

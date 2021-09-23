@@ -95,7 +95,7 @@ export type CardsPackType = {
     __v: number
 }
 export type getPackResponseType = {
-    cardsPacks: CardsPackType[]
+    cardPacks: CardsPackType[]
     cardPacksTotalCount: number
     maxCardsCount: number
     minCardsCount: number

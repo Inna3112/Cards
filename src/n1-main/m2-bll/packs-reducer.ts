@@ -29,7 +29,7 @@ export const packsReducer = (state = initialState, action: ActionsType): typeof 
         case "SET-PACKS": {
             return {
                 ...state,
-                cardsPacks: action.packs
+                cardsPacks: action.packs.map(p => ({...p}))
             }
         }
         default:
@@ -40,12 +40,10 @@ export const packsReducer = (state = initialState, action: ActionsType): typeof 
 export const setPacks = (packs: CardsPackType[]) => ({type: 'SET-PACKS', packs}) as const
 
 // thunks
-export const setPacksSuccess = () => (dispatch: Dispatch) => {
-    // debugger
-    packsAPI.getPacks()
-        .then(res => {
-            dispatch(setPacks(res.data.cardsPacks))
-        })
+export const setPacksSuccess = () => async (dispatch: Dispatch) => {
+    const res = await packsAPI.getPacks()
+    dispatch(setPacks(res.data.cardPacks))
+
 }
 
 

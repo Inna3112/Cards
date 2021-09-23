@@ -5,6 +5,7 @@ const initialState = {
     cardsPacks: [{
         _id: '',
         user_id: '',
+        user_name: '',
         name: '',
         path: '',
         cardsCount: 0,

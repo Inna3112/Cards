@@ -37,7 +37,10 @@ export const authAPI = {
 export const packsAPI = {
     getPacks() {
         return instance.get<getPackResponseType>('cards/pack')
-    }
+    },
+    createPacks(packTitle: string){
+        return instance.post('cards/pack', {packTitle: 'My first pack'})
+    },
 }
 
 // types
@@ -83,6 +86,7 @@ export type ForgotRequestType = {
 export type CardsPackType = {
     _id: string
     user_id: string
+    user_name: string
     name: string
     path: string
     cardsCount: number

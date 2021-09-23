@@ -13,12 +13,12 @@ export const Packs = () => {
     const user = useSelector<AppRootStateType, UserType>(state => state.profile.userProfile)
     const packs = useSelector<AppRootStateType, CardsPackType[]>(state => state.packs.cardsPacks)
 
-    useEffect(() => {
-        dispatch(setPacksSuccess())
-    }, [])
-    // const click = ()=>{
+    // useEffect(() => {
     //     dispatch(setPacksSuccess())
-    // }
+    // }, [])
+    const click = ()=>{
+        dispatch(setPacksSuccess())
+    }
     return (
         <div className={s.container}>
             <div className={s.box}>
@@ -37,7 +37,7 @@ export const Packs = () => {
                     <div className={s.paramsBox}>
                         <h3>Show packs cards</h3>
                         <div className={s.onlyMyFilter}>
-                            <button>All</button>
+                            <button onClick={click}>All</button>
                             <button>My</button>
                         </div>
                         <span id="range-slider">
@@ -53,13 +53,13 @@ export const Packs = () => {
                             <thead>
                             <tr>
                                 <th>
-                                    <button>Name</button>
+                                    <button>name</button>
                                 </th>
                                 <th>
-                                    <button>Stack</button>
+                                    <button>cards count</button>
                                 </th>
                                 <th>
-                                    <button>Update</button>
+                                    <button>update</button>
                                 </th>
                                 <th>
                                     <button>sort by author</button>
@@ -84,7 +84,7 @@ export const Packs = () => {
                                         user_id={pack.user_id}
                                         type={pack.type}
                                         name={pack.name}
-                                        // user_name={pack.user_name}
+                                        user_name={pack.user_name}
                                         updated={pack.updated}
                                         created={pack.created}
                                         cardsCount={pack.cardsCount}/>

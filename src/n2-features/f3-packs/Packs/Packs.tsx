@@ -3,7 +3,7 @@ import s from './Packs.module.css'
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../n1-main/m2-bll/store';
 import {CardsPackType, UserType} from '../../../n1-main/m3-dal/api';
-import {setPacksSuccess} from '../../../n1-main/m2-bll/packs-reducer';
+import {addPacksSuccess, setPacksSuccess} from '../../../n1-main/m2-bll/packs-reducer';
 import {Pack} from './Pack/Pack';
 
 
@@ -19,6 +19,10 @@ export const Packs = () => {
     const click = ()=>{
         dispatch(setPacksSuccess())
     }
+    const addPack = () => {
+        dispatch(addPacksSuccess())
+    }
+
     return (
         <div className={s.container}>
             <div className={s.box}>
@@ -65,7 +69,7 @@ export const Packs = () => {
                                     <button>sort by author</button>
                                 </th>
                                 <th>
-                                    <button>add</button>
+                                    <button onClick={addPack}>add</button>
                                 </th>
                             </tr>
                             </thead>

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import * as buffer from "buffer";
 
 
 const instance = axios.create({
@@ -38,8 +39,8 @@ export const packsAPI = {
     getPacks() {
         return instance.get<getPackResponseType>('cards/pack')
     },
-    createPacks(packTitle: string){
-        return instance.post('cards/pack', {packTitle: 'My first pack'})
+    createPacks(pack: PackType){
+        return instance.post('cards/pack', {cardsPack: pack})
     },
 }
 
@@ -105,4 +106,14 @@ export type getPackResponseType = {
     minCardsCount: number
     page: number
     pageCount: number
+}
+type PackType = {
+    name?: string
+    path?: string
+    grade?: number
+    shots?: number
+    rating?: number
+    deckCover?: string
+    private?: boolean
+    type?: string
 }

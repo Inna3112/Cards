@@ -44,9 +44,26 @@ export const setPacks = (packs: CardsPackType[]) => ({type: 'SET-PACKS', packs})
 export const setPacksSuccess = () => async (dispatch: Dispatch) => {
     const res = await packsAPI.getPacks()
     dispatch(setPacks(res.data.cardPacks))
-
 }
-
+export const addPacksSuccess = () => async (dispatch: any) => {
+    const pack = {
+        name: 'My first pack',
+        path: '',
+        grade: 0,
+        shots: 0,
+        rating: 0,
+        deckCover: '',
+        private: false,
+        type: ''
+    }
+    try {
+        let res = await packsAPI.createPacks(pack)
+        console.log(res)
+        dispatch(setPacksSuccess())
+    }catch (err){
+        console.log(err)
+    }
+}
 
 // types
 type ActionsType = ReturnType<typeof setPacks>

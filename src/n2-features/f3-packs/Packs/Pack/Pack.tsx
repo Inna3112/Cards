@@ -1,7 +1,9 @@
 import React, {useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../../n1-main/m2-bll/store';
-import {UserType} from '../../../../n1-main/m3-dal/api';
+import { UserType} from '../../../../n1-main/m3-dal/api';
+import {setCurdsSuccess} from '../../../../n1-main/m2-bll/cards-reducer';
+import { useHistory} from 'react-router-dom';
 
 type PropsType = {
     _id: string
@@ -36,9 +38,11 @@ export const Pack: React.FC<PropsType> = (props) => {
     } = props
 
     const dispatch = useDispatch()
-    const [packName, setPackName] = useState('')
+    const history = useHistory()
+
     const user = useSelector<AppRootStateType, UserType | null>(state => state.profile.userProfile)
 
+    const [packName, setPackName] = useState('')
     const deleteHandler = () => {
         // dispatch(deletePackTC(props._id))
     }
@@ -52,6 +56,10 @@ export const Pack: React.FC<PropsType> = (props) => {
     const onClickQuestionHandle = () => {
 
     }
+    const openCardsTable = () => {
+        dispatch(setCurdsSuccess(_id))
+        history.push(`/cards/${_id}`)
+    }
     return (
 
         <tr onClick={(e) => {
@@ -61,11 +69,10 @@ export const Pack: React.FC<PropsType> = (props) => {
             e.stopPropagation()
         }
         }>
-            <td>
-                {name}
-            </td>
+            <td onClick={openCardsTable}>{name}</td>
             <td>{cardsCount}</td>
-            <td>{new Date(updated).toLocaleDateString('ru', {day: '2-digit', month: '2-digit', year: 'numeric'})}</td>
+            <td>{created}</td>
+            {/*<td>{new Date(updated).toLocaleDateString('ru', {day: '2-digit', month: '2-digit', year: 'numeric'})}</td>*/}
             <td>{user_name}</td>
             <td>
                 {user_id === user?._id &&

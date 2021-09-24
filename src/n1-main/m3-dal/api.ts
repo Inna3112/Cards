@@ -42,12 +42,13 @@ export const packsAPI = {
         return instance.post('cards/pack', {cardsPack: pack})
     },
 }
+    // `users?page=${currentPage}&count=${pageSize}`
 export const cardsAPI = {
-    getCards() {
-        return instance.get<GetCardsResponseType>('cards/card')
+    getCards(packId: string) {
+        return instance.get<GetCardsResponseType>(`cards/card?cardsPack_id=${packId}`)
     },
-    createCard() {
-        return instance.post('')
+    createCard(card: CardRequestType) {
+        return instance.post('cards/card', {card: card})
     },
 }
 
@@ -146,4 +147,17 @@ type GetCardsResponseType = {
     page: number
     pageCount: number
     packUserId: string
+}
+export type CardRequestType = {
+    cardsPack_id: string
+    question?: string
+    answer?: string
+    grade?: number
+    shots?: number
+    rating?: number
+    answerImg?: string
+    questionImg?: string
+    questionVideo?: string
+    answerVideo?: string
+    type?: string
 }

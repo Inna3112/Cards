@@ -57,8 +57,7 @@ export const addPacksSuccess = () => async (dispatch: any) => {
         type: ''
     }
     try {
-        let res = await packsAPI.createPacks(pack)
-        console.log(res)
+        await packsAPI.createPacks(pack)
         dispatch(setPacksSuccess())
     }catch (err){
         console.log(err)

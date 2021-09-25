@@ -12,11 +12,6 @@ const initialState = {
 
 export const loginReducer = (state = initialState, action: ActionsType): typeof initialState => {
     switch (action.type) {
-        case "SET-LOGIN": {
-            return {
-                ...state
-            }
-        }
         case "IS-LOGGED-IN-CHANGE": {
             return {
                 ...state, isLoggedIn: action.isLoggedIn
@@ -45,7 +40,6 @@ export const loginReducer = (state = initialState, action: ActionsType): typeof 
     }
 }
 // AC
-export const setLogin = () => ({type: 'SET-LOGIN'}) as const
 export const isLoggedInChange = (isLoggedIn: boolean) => ({type: 'IS-LOGGED-IN-CHANGE', isLoggedIn}) as const
 export const setError = (error: string) => ({type: 'SET-ERROR', error}) as const
 export const setIsLoading = (isLoading: boolean) => ({type: 'SET-IS-LOADING', isLoading}) as const
@@ -61,14 +55,13 @@ export const loginSuccess = (loginData: LoginDataType) => (dispatch:any) => {
     authAPI.login(loginData.email, loginData.password, loginData.rememberMe)
         .then(() => {
             dispatch(setIsLoading(false))
-            dispatch(setLogin())
             dispatch(isLoggedInChange(true))
             dispatch(setError(''))
         })
         .catch((error) => {
             dispatch(setIsLoading(false))
             dispatch(isLoggedInChange(false))
-            dispatch(setError(error.response.data.error))
+            // dispatch(setError(error.response.data.error))
         })
 }
 export const logoutSuccess = () => (dispatch: Dispatch) => {
@@ -92,7 +85,7 @@ export const getMe = () => {
 
 
 // types
-type ActionsType = ReturnType<typeof setLogin>
+type ActionsType =
     | ReturnType<typeof isLoggedInChange>
     | ReturnType<typeof setError>
     | ReturnType<typeof setIsLoading>

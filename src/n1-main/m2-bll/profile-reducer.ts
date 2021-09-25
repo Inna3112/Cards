@@ -39,7 +39,7 @@ export const setProfileSuccess = () => (dispatch: Dispatch) => {
             }))
         })
         .catch((error) => {
-
+            // dispatch()
         })
 }
 export const updateProfileSuccess = (name: string, avatar: string) => (dispatch: Dispatch) => {

@@ -18,6 +18,9 @@ function Header() {
     if (!isLoggedIn) {
         return <Redirect to={'/login'}/>
     }
+    // if (!isAuth) {
+    //     return <Redirect to={'/login'}/>
+    // }
     return (
         <div className={s.header}>
             <NavLink to={PATH.MAIN} className={s.link} activeClassName={s.active}>main</NavLink>

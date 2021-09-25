@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useState} from 'react'
 import s from '../Login/Login.module.css';
-import {NavLink, Redirect} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {CheckEmail} from './CheckEmail/CheckEmail';
 import {AppRootStateType} from '../../../n1-main/m2-bll/store';
@@ -20,9 +20,6 @@ export const Forgot = () => {
     const emailHandler = (e: ChangeEvent<HTMLInputElement>) => setEmail(e.currentTarget.value)
     const forgotHandler = () => dispatch(setEmailSuccess(email))
 
-    if (isEmailSet) {
-        return <Redirect to={'/set-password'}/>
-    }
 
     return (<>
             {

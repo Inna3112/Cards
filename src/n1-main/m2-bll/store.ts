@@ -7,8 +7,10 @@ import {passwordRecoverReducer} from './passwordRecover-reducer';
 import {enterNewPasswordReducer} from './enterNewPassword-reducer';
 import {cardsReducer} from './cards-reducer';
 import {packsReducer} from './packs-reducer';
+import {appReducer} from "./app-reducer";
 
 const rootReducer = combineReducers({
+    app: appReducer,
     profile: profileReducer,
     login: loginReducer,
     registration: registrationReducer,

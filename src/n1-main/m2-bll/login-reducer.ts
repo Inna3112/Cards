@@ -2,6 +2,9 @@ import {Dispatch} from 'redux';
 import {authAPI} from '../m3-dal/api';
 
 const initialState = {
+    userId: '',
+    email: '',
+    isAuth: false,
     isLoggedIn: false,
     error: '',
     isLoading: false,
@@ -29,6 +32,14 @@ export const loginReducer = (state = initialState, action: ActionsType): typeof 
                 ...state, isLoading: action.isLoading
             }
         }
+        case "SET-AUTH-USER-DATA":{
+            return {
+                ...state,
+                userId: action.userId,
+                email: action.email,
+                isAuth: action.isAuth
+            }
+        }
         default:
             return state
     }
@@ -38,9 +49,14 @@ export const setLogin = () => ({type: 'SET-LOGIN'}) as const
 export const isLoggedInChange = (isLoggedIn: boolean) => ({type: 'IS-LOGGED-IN-CHANGE', isLoggedIn}) as const
 export const setError = (error: string) => ({type: 'SET-ERROR', error}) as const
 export const setIsLoading = (isLoading: boolean) => ({type: 'SET-IS-LOADING', isLoading}) as const
-
+export const setAuthUserData = (userId: string, email: string, isAuth: boolean) => ({
+    type: 'SET-AUTH-USER-DATA',
+        userId: userId,
+        email: email,
+        isAuth: isAuth,
+}) as const
 // thunks
-export const loginSuccess = (loginData: LoginDataType) => (dispatch: Dispatch) => {
+export const loginSuccess = (loginData: LoginDataType) => (dispatch:any) => {
     dispatch(setIsLoading(true))
     authAPI.login(loginData.email, loginData.password, loginData.rememberMe)
         .then(() => {
@@ -58,11 +74,20 @@ export const loginSuccess = (loginData: LoginDataType) => (dispatch: Dispatch) =
 export const logoutSuccess = () => (dispatch: Dispatch) => {
     authAPI.logout()
         .then(() => {
+            dispatch(setAuthUserData('', '', false))
             dispatch(isLoggedInChange(false))
         })
         .catch((error) => {
             dispatch(setError(error.response.data.error))
         })
+}
+
+export const getMe = () => {
+    return async (dispatch: any) => {
+        const res = await authAPI.me()
+        let {_id, email} = res.data
+        dispatch(setAuthUserData(_id, email, true))
+    }
 }
 
 
@@ -71,6 +96,8 @@ type ActionsType = ReturnType<typeof setLogin>
     | ReturnType<typeof isLoggedInChange>
     | ReturnType<typeof setError>
     | ReturnType<typeof setIsLoading>
+    | ReturnType<typeof setAuthUserData>
+
 type LoginDataType = {
     email: string,
     password: string,

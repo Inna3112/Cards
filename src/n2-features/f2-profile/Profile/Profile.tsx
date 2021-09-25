@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect, useState} from 'react'
+import React, {ChangeEvent, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../n1-main/m2-bll/store';
 import s from './Profile.module.css'
@@ -14,9 +14,9 @@ export const Profile = () => {
     const [editMode, setEditMode] = useState(false)
     const [name, setName] = useState(userProfile.name)
 
-    useEffect(() => {
-        dispatch(setProfileSuccess())
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(setProfileSuccess())
+    // }, [dispatch])
 
     const activateEditMode = () => {
         setEditMode(true)

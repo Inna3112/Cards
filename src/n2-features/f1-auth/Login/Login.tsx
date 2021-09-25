@@ -37,6 +37,7 @@ export const Login = () => {
     if(isLoggedIn){
         return <Redirect to={'/profile'} />
     }
+
     return (
         <div className={s.loginBlock}>
             <div className={s.loginList}>

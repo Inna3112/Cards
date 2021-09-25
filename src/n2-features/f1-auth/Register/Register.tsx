@@ -11,6 +11,7 @@ import {SuperButton} from '../../../common/c2-SuperButton/SuperButton';
 export const Register = () => {
     const dispatch = useDispatch()
     const isRegistered = useSelector<AppRootStateType, boolean>(state => state.registration.isRegistered)
+    // const isAuth = useSelector<AppRootStateType, boolean>(state => state.login.isAuth)
     const history = useHistory()
 
     const [email, setEmail] = useState('')

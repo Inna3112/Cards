@@ -1,7 +1,7 @@
-import {Dispatch} from 'redux';
 import {authAPI} from '../m3-dal/api';
 
 type ActionsType = ReturnType<typeof setRegister> | ReturnType<typeof isRegisterChange>
+
 
 const initialState = {
     authData: {
@@ -31,13 +31,13 @@ export const registrationReducer = (state = initialState, action: ActionsType): 
 export const setRegister = () => ({type: 'SET-REGISTER'}) as const
 export const isRegisterChange = (isRegistered: boolean) => ({type: 'IS-REGISTER-CHANGE', isRegistered}) as const
 
-export const registerSuccess = (email: string, password: string) => (dispatch: Dispatch) => {
+export const registerSuccess = (email: string, password: string) => (dispatch: any) => {
     authAPI.register(email, password)
         .then(() => {
             dispatch(setRegister())
             dispatch(isRegisterChange(true))
         })
         .catch(() => {
-            dispatch(isRegisterChange(true))
+            dispatch(isRegisterChange(false))
         })
 }

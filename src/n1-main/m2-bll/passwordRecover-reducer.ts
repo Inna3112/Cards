@@ -50,6 +50,7 @@ export const setEmailSuccess = (email: string) => (dispatch: Dispatch) => {
             dispatch(setIsLoading(false))
             dispatch(setForgotEmail(email))
             dispatch(isEmailSetChange(true))
+            // dispatch(isPasswordSetChange(false))
             dispatch(setError(''))
         })
         .catch((error) => {
@@ -64,6 +65,7 @@ export const setNewPasswordSuccess = (password: string, token: string) => (dispa
     authAPI.setNewPassword(password, token)
         .then(() => {
             dispatch(isPasswordSetChange(true))
+            // dispatch(isEmailSetChange(false))
             dispatch(setIsLoading(false))
             dispatch(setError(''))
         })

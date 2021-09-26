@@ -1,21 +1,49 @@
-.input:focus {
-    outline: none;
-    border-bottom: 2px solid #24254a;
-}
-
-.superInput {
+/* form starting stylings ------------------------------- */
+.group {
     position: relative;
-    margin: 10px;
-    padding: 10px;
-    border: none;
-    border-bottom: 2px solid #ECECF9;
-    color: #24254a;
+    /*border: 1px solid grey;*/
+    margin-top: 35px;
 }
 
+.group input {
+    background: transparent;
+    padding: 5px 5px 5px 5px;
+    display: block;
+    width: 300px;
+    border: none;
+    border-bottom: 1px solid #757575;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 10px;
+}
+
+input:focus {
+    outline: none;
+}
+
+/* LABEL ======================================= */
+.group label {
+    color: #999;
+    font-size: 16px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 1px;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+}
+
+/* active state */
+input:focus ~ label, input:valid ~ label {
+    top: -15px;
+    font-size: 13px;
+    color: #5264AE;
+}
 .errorInput {
     margin: 10px;
-    border: 2px solid #dd3355;
-    color: #162E33;
 }
 
 .error {

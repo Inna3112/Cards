@@ -1,70 +1,32 @@
-@keyframes blink {
-    0% {
-        left: -130%;
-    }
-    100% {
-        left: 130%;
-    }
-}
-
 .default {
-    background: #21268F;
-    color: #ECECF9;
-    box-shadow: 0px 4px 18px rgba(33, 38, 143, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+    border: none;
+    height: 36px;
+    padding: 9px 35px 9px 35px;
     border-radius: 30px;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
     line-height: 19px;
+    /* identical to box height */
     text-align: center;
     letter-spacing: 0.01em;
-    padding: 10px 30px;
-    /*outline: none;*/
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+.white {
+    background: #D7D8EF;
+    color: #21268F;
+    opacity: 0.8;
+}
+
+.blue {
+    background: #21268F;
+    color: #ECECF9;
+    box-shadow: 0 4px 18px rgba(33, 38, 143, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .red {
-    background: #dd3355;
-}
-.button {
-    position: relative;
-    margin: 10px;
-    overflow: hidden;
-}
-.button::after{
-    display: block;
-    content: '';
-    position: absolute;
-    left: -130%;
-    top: 0;
-    height: 100%;
-    width: 20%;
-    transform: skew(45deg);
-    background-color: #ffffff;
-    opacity: 0.7;
-    z-index: 14;
-}
-.button:hover::after{
-    animation: blink 0.35s ease;
-}
-.button:hover::before{
-    display: block;
-    content: '';
-    position: absolute;
-    left: -100vw;
-    top: 0;
-    height: 100vh;
-    width: 300vw;
-    background-color: #ffffff;
-    opacity: 0.2;
-    z-index: 7;
-}
-.button:focus {
-    /*outline: #9A91C8 solid 1px;*/
-}
-.button:active {
-    background: #9A91C8;
-}
-.button:disabled{
-    color: #005500;
-    cursor: auto;
+    background: #F1453D;
+    color: #ECECF9;
+    box-shadow: 0 4px 18px rgba(241, 69, 61, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }

@@ -53,7 +53,7 @@ export const Login = () => {
                     <SuperCheckbox checked={rememberMe} onClick={rememberMeHandler}>Remember me</SuperCheckbox>
                     <NavLink to={PATH.FORGOT} className={s.forgotLink} activeClassName={s.forgotLincActive}>Forgot password</NavLink>
                 </div>
-                <SuperButton className={s.loginButton} onClick={loginHandler}>Login</SuperButton>
+                <SuperButton style={{width: '266px'}} color={"blue"} className={s.loginButton} onClick={loginHandler}>Login</SuperButton>
                 <div className={s.loginText}>Don't have an account?</div>
                 <NavLink to={PATH.REGISTER} className={s.signUpLink} activeClassName={s.signUpLinkActive}>Sign Up</NavLink>
                 {errorFromStore ? <div style={{color: 'red'}}>{errorFromStore}</div> : ''}

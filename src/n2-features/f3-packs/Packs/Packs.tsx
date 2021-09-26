@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import s from './Packs.module.css'
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../n1-main/m2-bll/store';
@@ -13,12 +13,10 @@ export const Packs = () => {
     const user = useSelector<AppRootStateType, UserType>(state => state.profile.userProfile)
     const packs = useSelector<AppRootStateType, CardsPackType[]>(state => state.packs.cardsPacks)
 
-    // useEffect(() => {
-    //     dispatch(setPacksSuccess())
-    // }, [])
-    const click = ()=>{
+    useEffect(() => {
         dispatch(setPacksSuccess())
-    }
+    }, [dispatch])
+
     const addPack = () => {
         dispatch(addPacksSuccess())
     }
@@ -35,13 +33,12 @@ export const Packs = () => {
                             <h3>
                                 {user?.name}
                             </h3>
-                            <p>Front-end developer</p>
                         </div>
                     </div>
                     <div className={s.paramsBox}>
                         <h3>Show packs cards</h3>
                         <div className={s.onlyMyFilter}>
-                            <button onClick={click}>All</button>
+                            <button>All</button>
                             <button>My</button>
                         </div>
                         <span id="range-slider">
@@ -53,49 +50,41 @@ export const Packs = () => {
                 <div className={s.columnContent}>
                     <div>
                         <h2>Packs list</h2>
-                        <table className={s.tableBox}>
-                            <thead>
-                            <tr>
-                                <th>
-                                    <button>name</button>
-                                </th>
-                                <th>
-                                    <button>cards count</button>
-                                </th>
-                                <th>
-                                    <button>update</button>
-                                </th>
-                                <th>
-                                    <button>sort by author</button>
-                                </th>
-                                <th>
-                                    <button onClick={addPack}>add</button>
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {packs && packs.map(pack => {
-                                return (
-                                    <Pack
-                                        // loading={loading}
-                                        key={pack._id}
-                                        __v={pack.__v}
-                                        _id={pack._id}
-                                        grade={pack.grade}
-                                        path={pack.path}
-                                        rating={pack.rating}
-                                        shots={pack.shots}
-                                        user_id={pack.user_id}
-                                        type={pack.type}
-                                        name={pack.name}
-                                        user_name={pack.user_name}
-                                        updated={pack.updated}
-                                        created={pack.created}
-                                        cardsCount={pack.cardsCount}/>
-                                )
-                            })}
-                            </tbody>
-                        </table>
+                        <div className={s.tableBox}>
+                            <table className={s.table}>
+                                <thead>
+                                <tr className={s.listItem}>
+                                    <th>name</th>
+                                    <th>cards count</th>
+                                    <th>update</th>
+                                    <th>sort by author</th>
+                                    <th><button className={s.btn} onClick={addPack}>add</button></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {packs && packs.map(pack => {
+                                    return (
+                                        <Pack
+                                            // loading={loading}
+                                            key={pack._id}
+                                            __v={pack.__v}
+                                            _id={pack._id}
+                                            grade={pack.grade}
+                                            path={pack.path}
+                                            rating={pack.rating}
+                                            shots={pack.shots}
+                                            user_id={pack.user_id}
+                                            type={pack.type}
+                                            name={pack.name}
+                                            user_name={pack.user_name}
+                                            updated={pack.updated}
+                                            created={pack.created}
+                                            cardsCount={pack.cardsCount}/>
+                                    )
+                                })}
+                                </tbody>
+                            </table>
+                        </div>
                         <div className={s.tableSettings}>
                             {/*<Pagination totalItemsCount={cardPacksTotalCount}*/}
                             {/*            pageSize={pageCount}*/}

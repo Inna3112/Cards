@@ -29,31 +29,33 @@ export const Cards = () => {
     return (
         <div className={s.container}>
             <h2>Cards list</h2>
-            <table className={s.tableBox}>
-                <thead>
-                <tr>
-                    <th>question</th>
-                    <th>answer</th>
-                    <th>grade</th>
-                    <th>updated</th>
-                    <th>url</th>
-                    <th><button onClick={addCard}>add</button></th>
-                </tr>
-                </thead>
-                <tbody>
-                {cards && cards.map(card => {
-                    return (
-                        <Card
-                            question={card.question}
-                            answer={card.answer}
-                            grade={card.grade}
-                            updated={card.updated}
-                            packId={card.cardsPack_id}
-                        />
-                    )
-                })}
-                </tbody>
-            </table>
+            <div className={s.tableBox}>
+                <table className={s.table}>
+                    <thead>
+                    <tr className={s.listItem}>
+                        <th>question</th>
+                        <th>answer</th>
+                        <th>grade</th>
+                        <th>updated</th>
+                        <th></th>
+                        <th><button className={s.btn} onClick={addCard}>add</button></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {cards && cards.map(card => {
+                        return (
+                            <Card
+                                question={card.question}
+                                answer={card.answer}
+                                grade={card.grade}
+                                updated={card.updated}
+                                packId={card.cardsPack_id}
+                            />
+                        )
+                    })}
+                    </tbody>
+                </table>
+            </div>
         </div>
     )
 }

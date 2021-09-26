@@ -24,7 +24,6 @@ export const Card: React.FC<PropsType> = (props) => {
             <td>{answer}</td>
             <td>{grade}</td>
             <td>{updated}</td>
-            <td>url</td>
             <td><button>del</button></td>
             <td><button>update</button></td>
         </tr>

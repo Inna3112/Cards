@@ -5,6 +5,8 @@ import {AppRootStateType} from '../../../n1-main/m2-bll/store';
 import {CardsPackType, UserType} from '../../../n1-main/m3-dal/api';
 import {addPacksSuccess, setPacksSuccess} from '../../../n1-main/m2-bll/packs-reducer';
 import {Pack} from './Pack/Pack';
+import {SuperInputText} from "../../../common/c1-SuperInputText/SuperInputText";
+import {SuperButton} from "../../../common/c2-SuperButton/SuperButton";
 
 
 
@@ -48,8 +50,12 @@ export const Packs = () => {
                     </div>
                 </div>
                 <div className={s.columnContent}>
-                    <div>
+                    <div className={s.tableBlock}>
                         <h2>Packs list</h2>
+                        <div className={s.searchBlock}>
+                            <input className={s.packInput} placeholder={'Search'}/>
+                            <SuperButton color={"blue"}>Add new pack</SuperButton>
+                        </div>
                         <div className={s.tableBox}>
                             <table className={s.table}>
                                 <thead>
@@ -59,6 +65,7 @@ export const Packs = () => {
                                     <th>update</th>
                                     <th>sort by author</th>
                                     <th><button className={s.btn} onClick={addPack}>add</button></th>
+                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>

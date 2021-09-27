@@ -3,7 +3,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../../n1-main/m2-bll/store';
 import { UserType} from '../../../../n1-main/m3-dal/api';
 import {setCurdsSuccess} from '../../../../n1-main/m2-bll/cards-reducer';
-import { useHistory} from 'react-router-dom';
+import {NavLink, useHistory} from 'react-router-dom';
+import s from "../Packs.module.css";
 
 type PropsType = {
     _id: string
@@ -56,10 +57,10 @@ export const Pack: React.FC<PropsType> = (props) => {
     const onClickQuestionHandle = () => {
 
     }
-    const openCardsTable = () => {
-        dispatch(setCurdsSuccess(_id))
-        history.push(`/cards/${_id}`)
-    }
+    // const openCardsTable = () => {
+    //     dispatch(setCurdsSuccess(_id))
+    //     history.push(`/cards/${_id}`)
+    // }
     return (
 
         <tr onClick={(e) => {
@@ -69,22 +70,21 @@ export const Pack: React.FC<PropsType> = (props) => {
             e.stopPropagation()
         }
         }>
-            <td onClick={openCardsTable}>{name}</td>
+            <td>{name}</td>
             <td>{cardsCount}</td>
             <td>{created}</td>
             {/*<td>{new Date(updated).toLocaleDateString('ru', {day: '2-digit', month: '2-digit', year: 'numeric'})}</td>*/}
             <td>{user_name}</td>
             <td>
                 {user_id === user?._id &&
-                <button onClick={deleteHandler}>del</button>}
+                <button className={s.btn} onClick={deleteHandler}>del</button>}
                 {user_id === user?._id &&
-                <button onClick={updateHandler}>update</button>}
-                {/*<NavLink*/}
-                {/*    to={`/cards/${props._id}/${name}`}>*/}
-                {/*    learn*/}
-                {/*</NavLink>*/}
+                <button className={s.btn} onClick={updateHandler}>update</button>}
+                <NavLink
+                    to={`/cards/${props._id}/${name}`}>
+                    <button className={s.btn}>learn</button>
+                </NavLink>
             </td>
-
         </tr>
 
     )

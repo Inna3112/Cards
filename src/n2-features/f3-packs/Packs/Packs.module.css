@@ -74,11 +74,28 @@
     /*padding: 2.4rem 3.6rem;*/
     overflow: hidden;
 }
+.tableBlock{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.searchBlock{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    width: 90%;
+    margin-left: 50px;
+    margin-bottom: 10px;
+}
+.packInput{
+    width: 700px;
+}
 .tableBox {
     overflow: hidden;
     margin: 0 auto;
     border: 1px solid;
     width: 90%;
+    /*width: 900px;*/
 
     background-color: #FEFEFF;
 }
@@ -106,6 +123,7 @@
 }
 .btn {
     padding: 5px 6px 5px 6px;
+    margin: 1px;
     font-style: normal;
     font-weight: 600;
     font-size: 12px;

@@ -37,7 +37,6 @@ export const Cards = () => {
                         <th>answer</th>
                         <th>grade</th>
                         <th>updated</th>
-                        <th></th>
                         <th><button className={s.btn} onClick={addCard}>add</button></th>
                     </tr>
                     </thead>

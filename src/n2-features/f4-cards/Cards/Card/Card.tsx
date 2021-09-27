@@ -1,4 +1,5 @@
 import React from 'react'
+import s from "../Cards.module.css";
 
 type PropsType = {
     question: string
@@ -24,8 +25,10 @@ export const Card: React.FC<PropsType> = (props) => {
             <td>{answer}</td>
             <td>{grade}</td>
             <td>{updated}</td>
-            <td><button>del</button></td>
-            <td><button>update</button></td>
+            <td>
+                <button className={s.btn}>del</button>
+                <button className={s.btn}>update</button>
+            </td>
         </tr>
 
     )

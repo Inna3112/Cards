@@ -1,5 +1,6 @@
 import {Dispatch} from 'redux';
 import {CardsPackType, packsAPI} from '../m3-dal/api';
+import {AppRootStateType} from "./store";
 
 const initialState = {
     cardsPacks: [{
@@ -33,17 +34,27 @@ export const packsReducer = (state = initialState, action: ActionsType): typeof 
                 cardsPacks: action.packs.map(p => ({...p}))
             }
         }
+        case "SET-MY-PACKS": {
+            return {
+                ...state,
+                cardsPacks: state.cardsPacks.filter(pack => pack.user_id === action.userId)
+            }
+        }
         default:
             return state
     }
 }
 // AC
 export const setPacks = (packs: CardsPackType[]) => ({type: 'SET-PACKS', packs}) as const
+export const setMyPacks = (userId: string) => ({type: 'SET-MY-PACKS', userId}) as const
 
 // thunks
-export const setPacksSuccess = () => async (dispatch: Dispatch) => {
+export const setPacksSuccess = () => async (dispatch: Dispatch, getState: () => AppRootStateType) => {
+    const state = getState()
+    const user_id = state.profile.userProfile._id
     const res = await packsAPI.getPacks()
     dispatch(setPacks(res.data.cardPacks))
+    // dispatch(setMyPacks(user_id))
 }
 export const addPacksSuccess = () => async (dispatch: any) => {
     const pack = {
@@ -66,4 +77,5 @@ export const addPacksSuccess = () => async (dispatch: any) => {
 
 // types
 type ActionsType = ReturnType<typeof setPacks>
+| ReturnType<typeof setMyPacks>
 

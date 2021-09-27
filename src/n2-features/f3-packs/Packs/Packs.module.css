@@ -59,15 +59,26 @@
     padding: 2.4rem;
 }
 
-.onlyMyFilter {
+.filterBtnBlock {
     display: flex;
+    justify-content: center;
     margin: 2.4rem auto;
 }
 
-.onlyMyFilter button {
-    width: 100%;
+.filterBtnBlock button {
+    width: 100px;
+    height: 36px;
+    /*background: #9A91C8;*/
+    background: #FFF;
+    border-radius: 0px 2px 2px 0px;
+    border: none;
 }
-
+.filterBtnBlock button:active {
+    background: #9A91C8;
+}
+/*.filterBtnBlock button:hover {*/
+/*    background: #9A91C8;*/
+/*}*/
 .columnContent {
     width: 100%;
     grid-column: 4 / span 9;

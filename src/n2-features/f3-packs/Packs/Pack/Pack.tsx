@@ -72,8 +72,8 @@ export const Pack: React.FC<PropsType> = (props) => {
         }>
             <td>{name}</td>
             <td>{cardsCount}</td>
-            <td>{created}</td>
-            {/*<td>{new Date(updated).toLocaleDateString('ru', {day: '2-digit', month: '2-digit', year: 'numeric'})}</td>*/}
+            {/*<td>{created}</td>*/}
+            <td>{new Date(updated).toLocaleDateString('ru', {day: '2-digit', month: '2-digit', year: 'numeric'})}</td>
             <td>{user_name}</td>
             <td>
                 {user_id === user?._id &&

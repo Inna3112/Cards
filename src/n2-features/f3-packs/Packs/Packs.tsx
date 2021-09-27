@@ -3,11 +3,9 @@ import s from './Packs.module.css'
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../n1-main/m2-bll/store';
 import {CardsPackType, UserType} from '../../../n1-main/m3-dal/api';
-import {addPacksSuccess, setPacksSuccess} from '../../../n1-main/m2-bll/packs-reducer';
+import {addPacksSuccess, setMyPacks, setPacksSuccess} from '../../../n1-main/m2-bll/packs-reducer';
 import {Pack} from './Pack/Pack';
-import {SuperInputText} from "../../../common/c1-SuperInputText/SuperInputText";
 import {SuperButton} from "../../../common/c2-SuperButton/SuperButton";
-
 
 
 export const Packs = () => {
@@ -22,6 +20,8 @@ export const Packs = () => {
     const addPack = () => {
         dispatch(addPacksSuccess())
     }
+    const getAllPacks = () => dispatch(setPacksSuccess())
+    const getMyPacks = () => dispatch(setMyPacks(user._id))
 
     return (
         <div className={s.container}>
@@ -39,9 +39,9 @@ export const Packs = () => {
                     </div>
                     <div className={s.paramsBox}>
                         <h3>Show packs cards</h3>
-                        <div className={s.onlyMyFilter}>
-                            <button>All</button>
-                            <button>My</button>
+                        <div className={s.filterBtnBlock}>
+                            <button onClick={getAllPacks}>All</button>
+                            <button onClick={getMyPacks}>My</button>
                         </div>
                         <span id="range-slider">
                             Number of cards
@@ -54,7 +54,7 @@ export const Packs = () => {
                         <h2>Packs list</h2>
                         <div className={s.searchBlock}>
                             <input className={s.packInput} placeholder={'Search'}/>
-                            <SuperButton color={"blue"}>Add new pack</SuperButton>
+                            <SuperButton color={"blue"} onClick={addPack}>Add new pack</SuperButton>
                         </div>
                         <div className={s.tableBox}>
                             <table className={s.table}>
@@ -64,7 +64,7 @@ export const Packs = () => {
                                     <th>cards count</th>
                                     <th>update</th>
                                     <th>sort by author</th>
-                                    <th><button className={s.btn} onClick={addPack}>add</button></th>
+                                    {/*<th><button className={s.btn} onClick={addPack}>add</button></th>*/}
                                     <th></th>
                                 </tr>
                                 </thead>

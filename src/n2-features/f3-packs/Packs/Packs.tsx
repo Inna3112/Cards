@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import s from './Packs.module.css'
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../n1-main/m2-bll/store';
@@ -13,6 +13,7 @@ export const Packs = () => {
     const user = useSelector<AppRootStateType, UserType>(state => state.profile.userProfile)
     const packs = useSelector<AppRootStateType, CardsPackType[]>(state => state.packs.cardsPacks)
 
+
     useEffect(() => {
         dispatch(setPacksSuccess())
     }, [dispatch])
@@ -20,8 +21,13 @@ export const Packs = () => {
     const addPack = () => {
         dispatch(addPacksSuccess())
     }
-    const getAllPacks = () => dispatch(setPacksSuccess())
-    const getMyPacks = () => dispatch(setMyPacks(user._id))
+    const getAllPacks = () => {
+        dispatch(setPacksSuccess())
+
+    }
+    const getMyPacks = () => {
+        dispatch(setMyPacks(user._id))
+    }
 
     return (
         <div className={s.container}>
@@ -74,7 +80,6 @@ export const Packs = () => {
                                         <Pack
                                             // loading={loading}
                                             key={pack._id}
-                                            __v={pack.__v}
                                             _id={pack._id}
                                             grade={pack.grade}
                                             path={pack.path}

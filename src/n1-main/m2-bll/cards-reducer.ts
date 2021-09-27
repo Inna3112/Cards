@@ -14,7 +14,6 @@ const initialState = {
         user_id: '',
         created: '',
         updated: '',
-        __v: 0,
         _id: '',
     }],
     cardsTotalCount: 0,

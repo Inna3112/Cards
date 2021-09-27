@@ -15,8 +15,7 @@ const initialState = {
         rating: 0,
         type: '',
         created: '',
-        updated: '',
-        __v: 0
+        updated: ''
     }],
     cardPacksTotalCount: 0,
     maxCardsCount: 1,
@@ -48,7 +47,6 @@ export const packsReducer = (state = initialState, action: ActionsType): typeof 
 // AC
 export const setPacks = (packs: CardsPackType[]) => ({type: 'SET-PACKS', packs}) as const
 export const setMyPacks = (userId: string) => ({type: 'SET-MY-PACKS', userId}) as const
-// export const deletePack = (packId: string) => ({type: 'DELETE-PACK', packId}) as const
 
 // thunks
 export const setPacksSuccess = () => async (dispatch: Dispatch, getState: () => AppRootStateType) => {

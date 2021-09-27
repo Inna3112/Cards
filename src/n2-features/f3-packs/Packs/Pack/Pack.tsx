@@ -19,7 +19,6 @@ type PropsType = {
     type: string
     created: string
     updated: string
-    __v: number
 }
 export const Pack: React.FC<PropsType> = (props) => {
     let {
@@ -34,8 +33,7 @@ export const Pack: React.FC<PropsType> = (props) => {
         rating,
         type,
         created,
-        updated,
-        __v
+        updated
     } = props
 
     const dispatch = useDispatch()

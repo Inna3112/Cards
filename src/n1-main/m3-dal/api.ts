@@ -76,7 +76,6 @@ export type ResponseType = UserType & {
     tokenDeathTime: number,
     updated: string,
     verified: boolean,
-    __v: number,
     error?: string,
 }
 type DeviceTokenType = {
@@ -114,7 +113,6 @@ export type CardsPackType = {
     type: string
     created: string
     updated: string
-    __v: number
 }
 export type getPackResponseType = {
     cardPacks: CardsPackType[]
@@ -146,7 +144,6 @@ export type CardType = {
     user_id: string
     created: string
     updated: string
-    __v: number
     _id: string
 }
 type GetCardsResponseType = {

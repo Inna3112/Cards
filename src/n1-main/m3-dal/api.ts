@@ -44,9 +44,12 @@ export const packsAPI = {
                 user_id}
         })
     },
-    createPacks(pack: PackType) {
+    createPack(pack: PackType) {
         return instance.post('cards/pack', {cardsPack: pack})
     },
+    deletePack(id: string){
+        return instance.delete('cards/pack', {params: {id}})
+    }
 }
     // `users?page=${currentPage}&count=${pageSize}`
 export const cardsAPI = {

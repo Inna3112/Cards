@@ -1,6 +1,6 @@
 import {Dispatch} from 'redux';
 import {CardsPackType, packsAPI} from '../m3-dal/api';
-import {AppRootStateType} from "./store";
+import {AppRootStateType} from './store';
 
 const initialState = {
     cardsPacks: [{
@@ -40,6 +40,7 @@ export const packsReducer = (state = initialState, action: ActionsType): typeof 
                 cardsPacks: state.cardsPacks.filter(pack => pack.user_id === action.userId)
             }
         }
+
         default:
             return state
     }
@@ -47,6 +48,7 @@ export const packsReducer = (state = initialState, action: ActionsType): typeof 
 // AC
 export const setPacks = (packs: CardsPackType[]) => ({type: 'SET-PACKS', packs}) as const
 export const setMyPacks = (userId: string) => ({type: 'SET-MY-PACKS', userId}) as const
+// export const deletePack = (packId: string) => ({type: 'DELETE-PACK', packId}) as const
 
 // thunks
 export const setPacksSuccess = () => async (dispatch: Dispatch, getState: () => AppRootStateType) => {
@@ -68,14 +70,20 @@ export const addPacksSuccess = () => async (dispatch: any) => {
         type: ''
     }
     try {
-        await packsAPI.createPacks(pack)
+        await packsAPI.createPack(pack)
         dispatch(setPacksSuccess())
     }catch (err){
         console.log(err)
     }
 }
+export const deletePack = (packId: string) => async (dispatch: any) => {
+    await packsAPI.deletePack(packId)
+    dispatch(setPacksSuccess())
+}
+
 
 // types
 type ActionsType = ReturnType<typeof setPacks>
 | ReturnType<typeof setMyPacks>
+
 

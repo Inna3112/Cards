@@ -56,6 +56,7 @@ export const loginSuccess = (loginData: LoginDataType) => (dispatch:any) => {
         .then(() => {
             dispatch(setIsLoading(false))
             dispatch(isLoggedInChange(true))
+            dispatch(getMe())
             dispatch(setError(''))
         })
         .catch((error) => {

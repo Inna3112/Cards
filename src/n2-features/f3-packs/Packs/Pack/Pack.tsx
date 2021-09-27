@@ -2,9 +2,9 @@ import React, {useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../../n1-main/m2-bll/store';
 import { UserType} from '../../../../n1-main/m3-dal/api';
-import {setCurdsSuccess} from '../../../../n1-main/m2-bll/cards-reducer';
 import {NavLink, useHistory} from 'react-router-dom';
 import s from "../Packs.module.css";
+import {deletePack} from "../../../../n1-main/m2-bll/packs-reducer";
 
 type PropsType = {
     _id: string
@@ -45,7 +45,7 @@ export const Pack: React.FC<PropsType> = (props) => {
 
     const [packName, setPackName] = useState('')
     const deleteHandler = () => {
-        // dispatch(deletePackTC(props._id))
+        dispatch(deletePack(_id))
     }
     const updateHandler = () => {
         // dispatch(updatePackTC(props._id, packName))

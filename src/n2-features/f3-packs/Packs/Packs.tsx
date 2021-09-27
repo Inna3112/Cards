@@ -1,22 +1,28 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import s from './Packs.module.css'
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../n1-main/m2-bll/store';
 import {CardsPackType, UserType} from '../../../n1-main/m3-dal/api';
-import {addPacksSuccess, setMyPacks, setPacksSuccess} from '../../../n1-main/m2-bll/packs-reducer';
+import {addPacksSuccess, setMyPacks, setPacksSuccess, setPage} from '../../../n1-main/m2-bll/packs-reducer';
 import {Pack} from './Pack/Pack';
-import {SuperButton} from "../../../common/c2-SuperButton/SuperButton";
+import {SuperButton} from '../../../common/c2-SuperButton/SuperButton';
+import {Pagination} from '../../../common/Pagination/Pagination';
+
+
 
 
 export const Packs = () => {
     const dispatch = useDispatch()
     const user = useSelector<AppRootStateType, UserType>(state => state.profile.userProfile)
     const packs = useSelector<AppRootStateType, CardsPackType[]>(state => state.packs.cardsPacks)
+    const cardPacksTotalCount = useSelector<AppRootStateType, number>(state => state.packs.cardPacksTotalCount)
+    const pageCount = useSelector<AppRootStateType, number | 10>(state => state.packs.pageCount)
+    const page = useSelector<AppRootStateType, number | 1>(state => state.packs.page)
 
 
     useEffect(() => {
         dispatch(setPacksSuccess())
-    }, [dispatch])
+    }, [dispatch, page, pageCount, cardPacksTotalCount])
 
     const addPack = () => {
         dispatch(addPacksSuccess())
@@ -28,6 +34,7 @@ export const Packs = () => {
     const getMyPacks = () => {
         dispatch(setMyPacks(user._id))
     }
+    const onPageChangedHandler = (curPage: number) =>dispatch(setPage(curPage))
 
     return (
         <div className={s.container}>
@@ -36,7 +43,8 @@ export const Packs = () => {
                     <div className={s.profileContainer}>
                         <div className={s.profileBox}>
                             <div className={s.avatarBox}>
-                                <img src="https://klike.net/uploads/posts/2019-03/1551511801_1.jpg" alt="avaImg" className={s.profileAvatar}/>
+                                <img src="https://klike.net/uploads/posts/2019-03/1551511801_1.jpg" alt="avaImg"
+                                     className={s.profileAvatar}/>
                             </div>
                             <h3>
                                 {user?.name}
@@ -70,8 +78,7 @@ export const Packs = () => {
                                     <th>cards count</th>
                                     <th>update</th>
                                     <th>sort by author</th>
-                                    {/*<th><button className={s.btn} onClick={addPack}>add</button></th>*/}
-                                    <th></th>
+                                    <th>actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -98,13 +105,13 @@ export const Packs = () => {
                             </table>
                         </div>
                         <div className={s.tableSettings}>
-                            {/*<Pagination totalItemsCount={cardPacksTotalCount}*/}
-                            {/*            pageSize={pageCount}*/}
-                            {/*            portionSize={10}*/}
-                            {/*            currentPage={page}*/}
-                            {/*            onPageChanged={onPageChangedHandle}*/}
-                            {/*/>*/}
-                            <span className={s.paramsName}>Select a Page size: </span>
+                            <Pagination totalItemsCount={cardPacksTotalCount}
+                                        pageSize={pageCount}
+                                        portionSize={10}
+                                        currentPage={page}
+                                        onPageChanged={onPageChangedHandler}
+                            />
+                            {/*<span className={s.paramsName}>Select a Page size: </span>*/}
                             {/*<select id={'selectPageCount'} value={pageCount} onChange={onChangePageCountHandle}>*/}
                             {/*    {pageCounts.map((pcValue, i) => {*/}
                             {/*        return (*/}

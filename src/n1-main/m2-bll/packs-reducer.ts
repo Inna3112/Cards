@@ -39,7 +39,12 @@ export const packsReducer = (state = initialState, action: ActionsType): typeof 
                 cardsPacks: state.cardsPacks.filter(pack => pack.user_id === action.userId)
             }
         }
-
+        case "SET-PAGE":{
+            return {
+                ...state,
+                page: action.curPage
+            }
+        }
         default:
             return state
     }
@@ -47,14 +52,13 @@ export const packsReducer = (state = initialState, action: ActionsType): typeof 
 // AC
 export const setPacks = (packs: CardsPackType[]) => ({type: 'SET-PACKS', packs}) as const
 export const setMyPacks = (userId: string) => ({type: 'SET-MY-PACKS', userId}) as const
+export const setPage = (curPage: number) => ({type: 'SET-PAGE', curPage}) as const
 
 // thunks
 export const setPacksSuccess = () => async (dispatch: Dispatch, getState: () => AppRootStateType) => {
-    const state = getState()
-    const user_id = state.profile.userProfile._id
+
     const res = await packsAPI.getPacks()
     dispatch(setPacks(res.data.cardPacks))
-    // dispatch(setMyPacks(user_id))
 }
 export const addPacksSuccess = () => async (dispatch: any) => {
     const pack = {
@@ -83,5 +87,6 @@ export const deletePack = (packId: string) => async (dispatch: any) => {
 // types
 type ActionsType = ReturnType<typeof setPacks>
 | ReturnType<typeof setMyPacks>
+| ReturnType<typeof setPage>
 
 

@@ -35,8 +35,14 @@ export const authAPI = {
     }
 }
 export const packsAPI = {
-    getPacks() {
-        return instance.get<getPackResponseType>('cards/pack')
+    getPacks(packName?: string, min?: number, max?: number, sortPacks?: SortPacksType,
+             page?: number, pageCount?: number, user_id?: string) {
+        return instance.get<getPackResponseType>('cards/pack', {params: {packName, min, max,
+                sortPacks,
+                page,
+                pageCount,
+                user_id}
+        })
     },
     createPacks(pack: PackType) {
         return instance.post('cards/pack', {cardsPack: pack})
@@ -125,6 +131,7 @@ type PackType = {
     private?: boolean
     type?: string
 }
+type SortPacksType = '0updated' | '1updated'
 export type CardType = {
     answer: string
     question: string

@@ -6,7 +6,7 @@ import {addPacksSuccess, setPacksSuccess, setPage, setUserId} from '../../../n1-
 import {Pack} from './Pack/Pack';
 import {Pagination} from '../../../common/Pagination/Pagination';
 import {Profile} from '../../f2-profile/Profile/Profile';
-import {SearchBlock} from "../../../common/SearchBlock/SearchBlock";
+import {SearchBlock} from '../../../common/SearchBlock/SearchBlock';
 
 
 export const Packs = () => {
@@ -73,7 +73,7 @@ export const Packs = () => {
                 <div className={s.columnContent}>
                     <div className={s.tableBlock}>
                         <h2>Packs list</h2>
-                        <SearchBlock />
+                        <SearchBlock placeholder={'Search name'} btnName={'Search'}/>
                         <div className={s.tableBox}>
                             <table className={s.table}>
                                 <thead>

@@ -6,6 +6,7 @@ import {AppRootStateType} from '../../../n1-main/m2-bll/store';
 import {CardType} from '../../../n1-main/m3-dal/api';
 import {createCurdSuccess} from "../../../n1-main/m2-bll/cards-reducer";
 import {useParams, useLocation} from "react-router-dom";
+import {SearchBlock} from "../../../common/SearchBlock/SearchBlock";
 
 
 export const Cards = () => {
@@ -29,6 +30,8 @@ export const Cards = () => {
     return (
         <div className={s.container}>
             <h2>Cards list</h2>
+            <SearchBlock placeholder={'Search question'} btnName={'Search'} />
+            <SearchBlock placeholder={'Search answer'} btnName={'Search'}/>
             <div className={s.tableBox}>
                 <table className={s.table}>
                     <thead>

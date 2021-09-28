@@ -2,17 +2,9 @@ import React from 'react'
 import s from './Header.module.css'
 import {NavLink} from 'react-router-dom'
 import {PATH} from '../routes/Routes';
-import {SuperButton} from '../../../common/c2-SuperButton/SuperButton';
-import {useDispatch} from 'react-redux';
-import {logoutSuccess} from '../../m2-bll/login-reducer';
 
 
 function Header() {
-    const dispatch = useDispatch()
-
-    const logoutHandler = () => {
-        dispatch(logoutSuccess())
-    }
 
     return (
         <div className={s.header}>
@@ -25,7 +17,6 @@ function Header() {
             <NavLink to={PATH.PACKS_LIST} className={s.link} activeClassName={s.active}>PacksList</NavLink>
             <NavLink to={PATH.CARDS} className={s.link} activeClassName={s.active}>Cards</NavLink>
             {/*<NavLink to={PATH.ERROR404} className={s.link} activeClassName={s.active}>error 404</NavLink>*/}
-            <NavLink to={'/login'}><SuperButton color={"blue"} onClick={logoutHandler}>logout</SuperButton></NavLink>
         </div>
     )
 }

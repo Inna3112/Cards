@@ -4,6 +4,9 @@ import {AppRootStateType} from '../../../n1-main/m2-bll/store';
 import s from './Profile.module.css'
 import {UserType} from '../../../n1-main/m3-dal/api';
 import {updateProfileSuccess} from '../../../n1-main/m2-bll/profile-reducer';
+import {SuperButton} from "../../../common/c2-SuperButton/SuperButton";
+import {NavLink} from "react-router-dom";
+import {logoutSuccess} from "../../../n1-main/m2-bll/login-reducer";
 
 
 export const Profile = () => {
@@ -24,6 +27,10 @@ export const Profile = () => {
         dispatch(updateProfileSuccess(name, userProfile.avatar))
         setEditMode(false)
     }
+    const logoutHandler = () => {
+        dispatch(logoutSuccess())
+    }
+
     return (
         <div className={s.profileBlock}>
             <img className={s.img} src={userProfile.avatar ? userProfile.avatar : "https://klike.net/uploads/posts/2019-03/1551511801_1.jpg"}
@@ -31,7 +38,8 @@ export const Profile = () => {
             { !editMode
                 ? <h3 onClick={activateEditMode}>{userProfile.name}</h3>
                 : <input value={name} onChange={changeName} onBlur={setNewName}/>}
-            <div>Packs count: {userProfile.publicCardPacksCount}</div>
+            <div className={s.counts}>Packs count: {userProfile.publicCardPacksCount}</div>
+            <NavLink to={'/login'}><SuperButton color={"blue"} onClick={logoutHandler}>logout</SuperButton></NavLink>
         </div>
     )
 }

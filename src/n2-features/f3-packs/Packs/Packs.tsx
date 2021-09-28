@@ -2,17 +2,16 @@ import React, {useEffect, useState} from 'react'
 import s from './Packs.module.css'
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../n1-main/m2-bll/store';
-import { UserType} from '../../../n1-main/m3-dal/api';
-import {addPacksSuccess, setPackName, setPacksSuccess, setPage, setUserId} from '../../../n1-main/m2-bll/packs-reducer';
+import {addPacksSuccess, setPacksSuccess, setPage, setUserId} from '../../../n1-main/m2-bll/packs-reducer';
 import {Pack} from './Pack/Pack';
-import {SuperButton} from '../../../common/c2-SuperButton/SuperButton';
 import {Pagination} from '../../../common/Pagination/Pagination';
 import {Profile} from '../../f2-profile/Profile/Profile';
+import {SearchBlock} from "../../../common/SearchBlock/SearchBlock";
 
 
 export const Packs = () => {
     const dispatch = useDispatch()
-    const user = useSelector<AppRootStateType, UserType>(state => state.profile.userProfile)
+    // const user = useSelector<AppRootStateType, UserType>(state => state.profile.userProfile)
     const {cardsPacks, cardPacksTotalCount, pageCount, page, user_id} = useSelector((state: AppRootStateType) => state.packs)
     const _id = useSelector<AppRootStateType, string>(state => state.profile.userProfile._id)
 
@@ -22,14 +21,6 @@ export const Packs = () => {
 
     const addPack = () => {
         dispatch(addPacksSuccess())
-    }
-
-    //searchInput
-    const [name, setName] = useState('')
-    const changeHandler = () => {
-        dispatch(setPackName(name))
-        dispatch(setPacksSuccess())
-        setName('')
     }
 
     //my/all packs
@@ -82,15 +73,7 @@ export const Packs = () => {
                 <div className={s.columnContent}>
                     <div className={s.tableBlock}>
                         <h2>Packs list</h2>
-                        <div className={s.searchBlock}>
-                            <input className={s.packInput}
-                                   placeholder={'Search'}
-                                   value={name}
-                                   onChange={(e)=>{setName(e.currentTarget.value)}}
-                            />
-                            <button onClick={changeHandler}>Search</button>
-                            <SuperButton color={"blue"} onClick={addPack}>Add new pack</SuperButton>
-                        </div>
+                        <SearchBlock />
                         <div className={s.tableBox}>
                             <table className={s.table}>
                                 <thead>
@@ -99,7 +82,9 @@ export const Packs = () => {
                                     <th>cards count</th>
                                     <th>update</th>
                                     <th>sort by author</th>
-                                    <th>actions</th>
+                                    <th>
+                                        <button className={s.btn} onClick={addPack}>Add new pack</button>
+                                    </th>
                                 </tr>
                                 </thead>
                                 <tbody>

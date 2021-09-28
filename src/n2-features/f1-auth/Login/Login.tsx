@@ -11,10 +11,12 @@ import {SuperButton} from '../../../common/c2-SuperButton/SuperButton';
 
 
 export const Login = () => {
+
     const dispatch = useDispatch()
     const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.login.isLoggedIn)
     const errorFromStore = useSelector<AppRootStateType, string>(state => state.login.error)
     const isLoading = useSelector<AppRootStateType, boolean>(state => state.login.isLoading)
+    const isAuth = useSelector<AppRootStateType, boolean>(state => state.login.isAuth)
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -34,7 +36,7 @@ export const Login = () => {
     const inputOnClickHandler = () => {
         setError('')
     }
-    if(isLoggedIn){
+    if(isAuth){
         return <Redirect to={'/profile'} />
     }
 

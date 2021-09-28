@@ -1,15 +1,20 @@
-import React, {ChangeEvent, useState} from 'react'
+import React, {ChangeEvent, useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../n1-main/m2-bll/store';
 import s from './Profile.module.css'
 import {UserType} from '../../../n1-main/m3-dal/api';
 import {SuperInputText} from '../../../common/c1-SuperInputText/SuperInputText';
-import {updateProfileSuccess} from '../../../n1-main/m2-bll/profile-reducer';
+import {setProfileSuccess, updateProfileSuccess} from '../../../n1-main/m2-bll/profile-reducer';
 
 
 export const Profile = () => {
+
     const userProfile = useSelector<AppRootStateType, UserType>(state => state.profile.userProfile)
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(setProfileSuccess())
+    }, [dispatch])
 
     const [editMode, setEditMode] = useState(false)
     const [name, setName] = useState(userProfile.name)

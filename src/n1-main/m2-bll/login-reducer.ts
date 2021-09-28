@@ -68,8 +68,9 @@ export const loginSuccess = (loginData: LoginDataType) => (dispatch:any) => {
 export const logoutSuccess = () => (dispatch: Dispatch) => {
     authAPI.logout()
         .then(() => {
+
             dispatch(setAuthUserData('', '', false))
-            dispatch(isLoggedInChange(false))
+            // dispatch(isLoggedInChange(false))
         })
         .catch((error) => {
             dispatch(setError(error.response.data.error))
@@ -86,8 +87,7 @@ export const getMe = () => {
 
 
 // types
-type ActionsType =
-    | ReturnType<typeof isLoggedInChange>
+type ActionsType = ReturnType<typeof isLoggedInChange>
     | ReturnType<typeof setError>
     | ReturnType<typeof setIsLoading>
     | ReturnType<typeof setAuthUserData>

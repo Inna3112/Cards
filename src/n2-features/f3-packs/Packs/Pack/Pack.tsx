@@ -3,8 +3,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../../n1-main/m2-bll/store';
 import { UserType} from '../../../../n1-main/m3-dal/api';
 import {NavLink, useHistory} from 'react-router-dom';
-import s from "../Packs.module.css";
-import {deletePack} from "../../../../n1-main/m2-bll/packs-reducer";
+import s from '../Packs.module.css';
+import {deletePack} from '../../../../n1-main/m2-bll/packs-reducer';
 
 type PropsType = {
     _id: string
@@ -79,7 +79,7 @@ export const Pack: React.FC<PropsType> = (props) => {
                 {user_id === user?._id &&
                 <button className={s.btn} onClick={updateHandler}>update</button>}
                 <NavLink
-                    to={`/cards/${props._id}/${name}`}>
+                    to={`/cards/${_id}`}>
                     <button className={s.btn}>learn</button>
                 </NavLink>
             </td>

@@ -1,9 +1,9 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import s from './Packs.module.css'
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../n1-main/m2-bll/store';
-import {CardsPackType, UserType} from '../../../n1-main/m3-dal/api';
-import {addPacksSuccess, setMyPacks, setPacksSuccess, setPage} from '../../../n1-main/m2-bll/packs-reducer';
+import { UserType} from '../../../n1-main/m3-dal/api';
+import {addPacksSuccess, setPacksSuccess, setPage, setUserId} from '../../../n1-main/m2-bll/packs-reducer';
 import {Pack} from './Pack/Pack';
 import {SuperButton} from '../../../common/c2-SuperButton/SuperButton';
 import {Pagination} from '../../../common/Pagination/Pagination';
@@ -14,27 +14,37 @@ import {Pagination} from '../../../common/Pagination/Pagination';
 export const Packs = () => {
     const dispatch = useDispatch()
     const user = useSelector<AppRootStateType, UserType>(state => state.profile.userProfile)
-    const packs = useSelector<AppRootStateType, CardsPackType[]>(state => state.packs.cardsPacks)
-    const cardPacksTotalCount = useSelector<AppRootStateType, number>(state => state.packs.cardPacksTotalCount)
-    const pageCount = useSelector<AppRootStateType, number | 10>(state => state.packs.pageCount)
-    const page = useSelector<AppRootStateType, number | 1>(state => state.packs.page)
-
-
+    // const packs = useSelector<AppRootStateType, CardsPackType[]>(state => state.packs.cardsPacks)
+    // const cardPacksTotalCount = useSelector<AppRootStateType, number>(state => state.packs.cardPacksTotalCount)
+    // const pageCount = useSelector<AppRootStateType, number | 10>(state => state.packs.pageCount)
+    // const page = useSelector<AppRootStateType, number | 1>(state => state.packs.page)
+    const {cardsPacks, cardPacksTotalCount, pageCount, page, user_id} = useSelector((state: AppRootStateType) => state.packs)
+    const _id = useSelector<AppRootStateType, string>(state => state.profile.userProfile._id)
     useEffect(() => {
         dispatch(setPacksSuccess())
-    }, [dispatch, page, pageCount, cardPacksTotalCount])
+    }, [dispatch, page, pageCount, cardPacksTotalCount, _id])
 
     const addPack = () => {
         dispatch(addPacksSuccess())
     }
-    const getAllPacks = () => {
-        dispatch(setPacksSuccess())
 
-    }
+    //my/all packs
+    const [isMyPacks, setIsMyPacks] = useState(user_id === _id)
+
     const getMyPacks = () => {
-        dispatch(setMyPacks(user._id))
+        dispatch(setUserId(_id))
+        dispatch(setPacksSuccess())
+        setIsMyPacks(true)
     }
-    const onPageChangedHandler = (curPage: number) =>dispatch(setPage(curPage))
+    const getAllPacks = () => {
+        dispatch(setUserId(''))
+        dispatch(setPacksSuccess())
+        setIsMyPacks(false)
+    }
+    const onPageChangedHandler = (curPage: number) =>{
+        dispatch(setPage(curPage))
+        dispatch(setPacksSuccess())
+    }
 
     return (
         <div className={s.container}>
@@ -54,8 +64,8 @@ export const Packs = () => {
                     <div className={s.paramsBox}>
                         <h3>Show packs cards</h3>
                         <div className={s.filterBtnBlock}>
-                            <button onClick={getAllPacks}>All</button>
-                            <button onClick={getMyPacks}>My</button>
+                            <button className={!isMyPacks ? `${s.activeButton} ${s.filterBtn}` : `${s.filterBtn}`} onClick={getAllPacks}>All</button>
+                            <button className={isMyPacks ? `${s.activeButton} ${s.filterBtn}` : `${s.filterBtn}`} onClick={getMyPacks}>My</button>
                         </div>
                         <span id="range-slider">
                             Number of cards
@@ -82,7 +92,7 @@ export const Packs = () => {
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {packs && packs.map(pack => {
+                                {cardsPacks && cardsPacks.map(pack => {
                                     return (
                                         <Pack
                                             // loading={loading}

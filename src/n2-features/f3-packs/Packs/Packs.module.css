@@ -65,14 +65,14 @@
     margin: 2.4rem auto;
 }
 
-.filterBtnBlock button {
+.filterBtn {
     width: 100px;
     height: 36px;
     background: #FFF;
     border-radius: 0 2px 2px 0;
     border: none;
 }
-.filterBtnBlock button:active {
+.activeButton {
     background: #9A91C8;
 }
 

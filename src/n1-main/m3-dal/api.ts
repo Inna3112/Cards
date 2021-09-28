@@ -37,21 +37,24 @@ export const authAPI = {
 export const packsAPI = {
     getPacks(packName?: string, min?: number, max?: number, sortPacks?: SortPacksType,
              page?: number, pageCount?: number, user_id?: string) {
-        return instance.get<getPackResponseType>('cards/pack', {params: {packName, min, max,
+        return instance.get<getPackResponseType>('cards/pack', {
+            params: {
+                packName, min, max,
                 sortPacks,
                 page,
                 pageCount,
-                user_id}
+                user_id
+            }
         })
     },
     createPack(pack: PackType) {
         return instance.post('cards/pack', {cardsPack: pack})
     },
-    deletePack(id: string){
+    deletePack(id: string) {
         return instance.delete('cards/pack', {params: {id}})
     }
 }
-    // `users?page=${currentPage}&count=${pageSize}`
+// `users?page=${currentPage}&count=${pageSize}`
 export const cardsAPI = {
     getCards(packId: string) {
         return instance.get<GetCardsResponseType>(`cards/card?cardsPack_id=${packId}`)
@@ -121,6 +124,7 @@ export type getPackResponseType = {
     minCardsCount: number
     page: number
     pageCount: number
+    // user_id: string
 }
 type PackType = {
     name?: string
@@ -132,7 +136,7 @@ type PackType = {
     private?: boolean
     type?: string
 }
-type SortPacksType = '0updated' | '1updated'
+export type SortPacksType = '0updated' | '1updated'
 export type CardType = {
     answer: string
     question: string

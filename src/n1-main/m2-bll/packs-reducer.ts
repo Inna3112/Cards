@@ -1,5 +1,5 @@
 import {Dispatch} from 'redux';
-import {CardsPackType, packsAPI} from '../m3-dal/api';
+import {CardsPackType, packsAPI, SortPacksType} from '../m3-dal/api';
 import {AppRootStateType} from './store';
 
 const initialState = {
@@ -21,7 +21,10 @@ const initialState = {
     maxCardsCount: 1,
     minCardsCount: 0,
     page: 1,
-    pageCount: 0
+    pageCount: 10,
+    user_id: '',
+    packName: '',
+    sortPacks: '0updated' as SortPacksType,
 }
 
 
@@ -33,16 +36,22 @@ export const packsReducer = (state = initialState, action: ActionsType): typeof 
                 cardsPacks: action.packs.map(p => ({...p}))
             }
         }
-        case "SET-MY-PACKS": {
+        case "SET-USER-ID": {
             return {
                 ...state,
-                cardsPacks: state.cardsPacks.filter(pack => pack.user_id === action.userId)
+                user_id: action.userId
             }
         }
-        case "SET-PAGE":{
+        case "SET-PAGE": {
             return {
                 ...state,
                 page: action.curPage
+            }
+        }
+        case "SET-CARDS-PACKS-TOTAL-COUNT": {
+            return {
+                ...state,
+                cardPacksTotalCount: action.cardsPacksCount
             }
         }
         default:
@@ -51,14 +60,25 @@ export const packsReducer = (state = initialState, action: ActionsType): typeof 
 }
 // AC
 export const setPacks = (packs: CardsPackType[]) => ({type: 'SET-PACKS', packs}) as const
-export const setMyPacks = (userId: string) => ({type: 'SET-MY-PACKS', userId}) as const
+export const setUserId = (userId: string) => ({type: 'SET-USER-ID', userId}) as const
 export const setPage = (curPage: number) => ({type: 'SET-PAGE', curPage}) as const
+export const setCardsPacksTotalCount = (cardsPacksCount: number) => ({type: 'SET-CARDS-PACKS-TOTAL-COUNT', cardsPacksCount}) as const
 
 // thunks
 export const setPacksSuccess = () => async (dispatch: Dispatch, getState: () => AppRootStateType) => {
+    const state = getState()
+    const packName = state.packs.packName
+    const min = state.packs.minCardsCount
+    const max = state.packs.maxCardsCount
+    const sortPacks = state.packs.sortPacks
+    const page = state.packs.page
+    const pageCount = state.packs.pageCount
+    const user_id = state.packs.user_id
 
-    const res = await packsAPI.getPacks()
+    const res = await packsAPI.getPacks(packName, min, max, sortPacks,
+        page, pageCount, user_id)
     dispatch(setPacks(res.data.cardPacks))
+    dispatch(setCardsPacksTotalCount(res.data.cardPacksTotalCount))
 }
 export const addPacksSuccess = () => async (dispatch: any) => {
     const pack = {
@@ -74,7 +94,7 @@ export const addPacksSuccess = () => async (dispatch: any) => {
     try {
         await packsAPI.createPack(pack)
         dispatch(setPacksSuccess())
-    }catch (err){
+    } catch (err) {
         console.log(err)
     }
 }
@@ -86,7 +106,8 @@ export const deletePack = (packId: string) => async (dispatch: any) => {
 
 // types
 type ActionsType = ReturnType<typeof setPacks>
-| ReturnType<typeof setMyPacks>
-| ReturnType<typeof setPage>
+    | ReturnType<typeof setUserId>
+    | ReturnType<typeof setPage>
+    | ReturnType<typeof setCardsPacksTotalCount>
 
 

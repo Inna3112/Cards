@@ -36,7 +36,7 @@ export const Login = () => {
     const inputOnClickHandler = () => {
         setError('')
     }
-    if(isAuth){
+    if(isLoggedIn){
         return <Redirect to={'/profile'} />
     }
 

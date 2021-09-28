@@ -56,7 +56,7 @@ export const loginSuccess = (loginData: LoginDataType) => (dispatch:any) => {
         .then(() => {
             dispatch(setIsLoading(false))
             dispatch(isLoggedInChange(true))
-            dispatch(getMe())
+            // dispatch(getMe())
             dispatch(setError(''))
         })
         .catch((error) => {
@@ -66,11 +66,12 @@ export const loginSuccess = (loginData: LoginDataType) => (dispatch:any) => {
         })
 }
 export const logoutSuccess = () => (dispatch: Dispatch) => {
+
     authAPI.logout()
         .then(() => {
 
             dispatch(setAuthUserData('', '', false))
-            // dispatch(isLoggedInChange(false))
+            dispatch(isLoggedInChange(false))
         })
         .catch((error) => {
             dispatch(setError(error.response.data.error))
@@ -78,6 +79,7 @@ export const logoutSuccess = () => (dispatch: Dispatch) => {
 }
 
 export const getMe = () => {
+    debugger
     return async (dispatch: any) => {
         const res = await authAPI.me()
         let {_id, email} = res.data

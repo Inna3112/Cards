@@ -7,6 +7,7 @@ import {addPacksSuccess, setPacksSuccess, setPage, setUserId} from '../../../n1-
 import {Pack} from './Pack/Pack';
 import {SuperButton} from '../../../common/c2-SuperButton/SuperButton';
 import {Pagination} from '../../../common/Pagination/Pagination';
+import {Profile} from "../../f2-profile/Profile/Profile";
 
 
 
@@ -52,13 +53,14 @@ export const Packs = () => {
                 <div className={s.columnParams}>
                     <div className={s.profileContainer}>
                         <div className={s.profileBox}>
-                            <div className={s.avatarBox}>
-                                <img src="https://klike.net/uploads/posts/2019-03/1551511801_1.jpg" alt="avaImg"
-                                     className={s.profileAvatar}/>
-                            </div>
-                            <h3>
-                                {user?.name}
-                            </h3>
+                            <Profile />
+                        {/*    <div className={s.avatarBox}>*/}
+                        {/*        <img src="https://klike.net/uploads/posts/2019-03/1551511801_1.jpg" alt="avaImg"*/}
+                        {/*             className={s.profileAvatar}/>*/}
+                        {/*    </div>*/}
+                        {/*    <h3>*/}
+                        {/*        {user?.name}*/}
+                        {/*    </h3>*/}
                         </div>
                     </div>
                     <div className={s.paramsBox}>

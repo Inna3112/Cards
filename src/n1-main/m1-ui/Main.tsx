@@ -12,7 +12,7 @@ function Main() {
     return (
         <div>
             {
-                isAuth
+                isLoggedIn
                     ?
                     <div>
                         <Header/>

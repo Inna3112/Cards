@@ -62,6 +62,9 @@ export const cardsAPI = {
     createCard(card: CardRequestType) {
         return instance.post('cards/card', {card: card})
     },
+    deleteCard(id: string){
+        return instance.delete('cards/card', {params: {id}})
+    }
 }
 
 // types
@@ -142,15 +145,15 @@ export type CardType = {
     question: string
     cardsPack_id: string
     grade: number
-    rating: number
+    // rating?: number
     shots: number
-    type: string
+    // type?: string
     user_id: string
-    created: string
     updated: string
     _id: string
+
 }
-type GetCardsResponseType = {
+export type GetCardsResponseType = {
     cards: CardType[]
     cardsTotalCount: number
     maxGrade: number
@@ -165,10 +168,10 @@ export type CardRequestType = {
     answer?: string
     grade?: number
     shots?: number
-    rating?: number
+    // rating?: number
     answerImg?: string
     questionImg?: string
     questionVideo?: string
     answerVideo?: string
-    type?: string
+    // type?: string
 }

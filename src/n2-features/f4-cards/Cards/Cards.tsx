@@ -3,10 +3,10 @@ import s from './Cards.module.css'
 import {useDispatch, useSelector} from 'react-redux';
 import {Card} from './Card/Card';
 import {AppRootStateType} from '../../../n1-main/m2-bll/store';
+import {createCurdSuccess, setCurdsSuccess} from '../../../n1-main/m2-bll/cards-reducer';
+import {useParams, useLocation} from 'react-router-dom';
+import {SearchBlock} from '../../../common/SearchBlock/SearchBlock';
 import {CardType} from '../../../n1-main/m3-dal/api';
-import {createCurdSuccess} from "../../../n1-main/m2-bll/cards-reducer";
-import {useParams, useLocation} from "react-router-dom";
-import {SearchBlock} from "../../../common/SearchBlock/SearchBlock";
 
 
 export const Cards = () => {
@@ -21,9 +21,10 @@ export const Cards = () => {
     const addCard = () => {
         dispatch(createCurdSuccess({
             cardsPack_id: cardsPackId,
-            question: 'What is your name?',
-            answer: 'IIII'
+            question: 'How?',
+            answer: ';)'
         }))
+        dispatch(setCurdsSuccess(cardsPackId))
     }
 
 
@@ -53,6 +54,7 @@ export const Cards = () => {
                                 updated={card.updated}
                                 packId={card.cardsPack_id}
                                 packUserId={card.user_id}
+                                _id={card._id}
                             />
                         )
                     })}

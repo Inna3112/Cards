@@ -4,7 +4,7 @@ import {AppRootStateType} from '../../../../n1-main/m2-bll/store';
 import { UserType} from '../../../../n1-main/m3-dal/api';
 import {NavLink, useHistory} from 'react-router-dom';
 import s from '../Packs.module.css';
-import {deletePack} from '../../../../n1-main/m2-bll/packs-reducer';
+import {deletePack, setPacksSuccess} from '../../../../n1-main/m2-bll/packs-reducer';
 import {setCurdsSuccess} from '../../../../n1-main/m2-bll/cards-reducer';
 
 type PropsType = {
@@ -47,6 +47,7 @@ export const Pack: React.FC<PropsType> = (props) => {
 
     const deleteHandler = () => {
         dispatch(deletePack(_id))
+        dispatch(setPacksSuccess())
     }
     const updateHandler = () => {
         // dispatch(updatePackTC(props._id, packName))

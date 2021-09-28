@@ -5,6 +5,7 @@ import { UserType} from '../../../../n1-main/m3-dal/api';
 import {NavLink, useHistory} from 'react-router-dom';
 import s from '../Packs.module.css';
 import {deletePack} from '../../../../n1-main/m2-bll/packs-reducer';
+import {setCurdsSuccess} from '../../../../n1-main/m2-bll/cards-reducer';
 
 type PropsType = {
     _id: string
@@ -42,6 +43,7 @@ export const Pack: React.FC<PropsType> = (props) => {
     const user = useSelector<AppRootStateType, UserType | null>(state => state.profile.userProfile)
 
     const [packName, setPackName] = useState('')
+    const setCardsOfPack = () => dispatch(setCurdsSuccess(_id))
     const deleteHandler = () => {
         dispatch(deletePack(_id))
     }
@@ -80,7 +82,7 @@ export const Pack: React.FC<PropsType> = (props) => {
                 <button className={s.btn} onClick={updateHandler}>update</button>}
                 <NavLink
                     to={`/cards/${_id}`}>
-                    <button className={s.btn}>learn</button>
+                    <button className={s.btn} onClick={setCardsOfPack}>learn</button>
                 </NavLink>
             </td>
         </tr>

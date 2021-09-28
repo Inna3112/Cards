@@ -49,6 +49,7 @@ export const Cards = () => {
                                 grade={card.grade}
                                 updated={card.updated}
                                 packId={card.cardsPack_id}
+                                packUserId={card.user_id}
                             />
                         )
                     })}

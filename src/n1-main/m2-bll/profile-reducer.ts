@@ -9,7 +9,8 @@ const initialState = {
         name: '',
         avatar: '',
         publicCardPacksCount: 0,
-    }
+    },
+    isAuth: false
 }
 
 export const profileReducer = (state = initialState, action: ActionsType): typeof initialState => {
@@ -17,7 +18,8 @@ export const profileReducer = (state = initialState, action: ActionsType): typeo
         case "SET-PROFILE": {
             return {
                 ...state,
-                userProfile: {...action.userProfile}
+                userProfile: {...action.userProfile},
+                isAuth: action.isAuth
             }
         }
         default:
@@ -25,7 +27,7 @@ export const profileReducer = (state = initialState, action: ActionsType): typeo
     }
 }
 
-export const setProfile = (userProfile: UserType) => ({type: 'SET-PROFILE', userProfile}) as const
+export const setProfile = (userProfile: UserType, isAuth: boolean) => ({type: 'SET-PROFILE', userProfile, isAuth}) as const
 
 export const setProfileSuccess = () => (dispatch: Dispatch) => {
     authAPI.me()
@@ -36,7 +38,7 @@ export const setProfileSuccess = () => (dispatch: Dispatch) => {
                 name: res.data.name,
                 avatar: res.data.avatar,
                 publicCardPacksCount: res.data.publicCardPacksCount
-            }))
+            }, true))
         })
         .catch((error) => {
             // dispatch()
@@ -51,7 +53,7 @@ export const updateProfileSuccess = (name: string, avatar: string) => (dispatch:
                 name: res.data.updatedUser.name,
                 avatar: res.data.updatedUser.avatar,
                 publicCardPacksCount: res.data.updatedUser.publicCardPacksCount
-            }))
+            }, true))
         })
         .catch((error) => {
             dispatch(setError(error.response.data.error))

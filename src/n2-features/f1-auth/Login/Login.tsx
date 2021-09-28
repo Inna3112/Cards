@@ -16,7 +16,6 @@ export const Login = () => {
     const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.login.isLoggedIn)
     const errorFromStore = useSelector<AppRootStateType, string>(state => state.login.error)
     const isLoading = useSelector<AppRootStateType, boolean>(state => state.login.isLoading)
-    const isAuth = useSelector<AppRootStateType, boolean>(state => state.login.isAuth)
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -37,7 +36,7 @@ export const Login = () => {
         setError('')
     }
     if(isLoggedIn){
-        return <Redirect to={'/profile'} />
+        return <Redirect to={'/packs-list'} />
     }
 
     return (

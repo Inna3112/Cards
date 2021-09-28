@@ -54,6 +54,12 @@ export const packsReducer = (state = initialState, action: ActionsType): typeof 
                 cardPacksTotalCount: action.cardsPacksCount
             }
         }
+        case "SET-PACK-NAME":{
+            return {
+                ...state,
+                packName: action.packName
+            }
+        }
         default:
             return state
     }
@@ -63,6 +69,7 @@ export const setPacks = (packs: CardsPackType[]) => ({type: 'SET-PACKS', packs})
 export const setUserId = (userId: string) => ({type: 'SET-USER-ID', userId}) as const
 export const setPage = (curPage: number) => ({type: 'SET-PAGE', curPage}) as const
 export const setCardsPacksTotalCount = (cardsPacksCount: number) => ({type: 'SET-CARDS-PACKS-TOTAL-COUNT', cardsPacksCount}) as const
+export const setPackName = (packName: string) => ({type: 'SET-PACK-NAME', packName}) as const
 
 // thunks
 export const setPacksSuccess = () => async (dispatch: Dispatch, getState: () => AppRootStateType) => {
@@ -109,5 +116,6 @@ type ActionsType = ReturnType<typeof setPacks>
     | ReturnType<typeof setUserId>
     | ReturnType<typeof setPage>
     | ReturnType<typeof setCardsPacksTotalCount>
+    | ReturnType<typeof setPackName>
 
 

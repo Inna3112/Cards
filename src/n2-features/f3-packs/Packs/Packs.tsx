@@ -3,30 +3,33 @@ import s from './Packs.module.css'
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../n1-main/m2-bll/store';
 import { UserType} from '../../../n1-main/m3-dal/api';
-import {addPacksSuccess, setPacksSuccess, setPage, setUserId} from '../../../n1-main/m2-bll/packs-reducer';
+import {addPacksSuccess, setPackName, setPacksSuccess, setPage, setUserId} from '../../../n1-main/m2-bll/packs-reducer';
 import {Pack} from './Pack/Pack';
 import {SuperButton} from '../../../common/c2-SuperButton/SuperButton';
 import {Pagination} from '../../../common/Pagination/Pagination';
-import {Profile} from "../../f2-profile/Profile/Profile";
-
-
+import {Profile} from '../../f2-profile/Profile/Profile';
 
 
 export const Packs = () => {
     const dispatch = useDispatch()
     const user = useSelector<AppRootStateType, UserType>(state => state.profile.userProfile)
-    // const packs = useSelector<AppRootStateType, CardsPackType[]>(state => state.packs.cardsPacks)
-    // const cardPacksTotalCount = useSelector<AppRootStateType, number>(state => state.packs.cardPacksTotalCount)
-    // const pageCount = useSelector<AppRootStateType, number | 10>(state => state.packs.pageCount)
-    // const page = useSelector<AppRootStateType, number | 1>(state => state.packs.page)
     const {cardsPacks, cardPacksTotalCount, pageCount, page, user_id} = useSelector((state: AppRootStateType) => state.packs)
     const _id = useSelector<AppRootStateType, string>(state => state.profile.userProfile._id)
+
     useEffect(() => {
         dispatch(setPacksSuccess())
     }, [dispatch, page, pageCount, cardPacksTotalCount, _id])
 
     const addPack = () => {
         dispatch(addPacksSuccess())
+    }
+
+    //searchInput
+    const [name, setName] = useState('')
+    const changeHandler = () => {
+        dispatch(setPackName(name))
+        dispatch(setPacksSuccess())
+        setName('')
     }
 
     //my/all packs
@@ -42,6 +45,7 @@ export const Packs = () => {
         dispatch(setPacksSuccess())
         setIsMyPacks(false)
     }
+    //pagination
     const onPageChangedHandler = (curPage: number) =>{
         dispatch(setPage(curPage))
         dispatch(setPacksSuccess())
@@ -79,7 +83,12 @@ export const Packs = () => {
                     <div className={s.tableBlock}>
                         <h2>Packs list</h2>
                         <div className={s.searchBlock}>
-                            <input className={s.packInput} placeholder={'Search'}/>
+                            <input className={s.packInput}
+                                   placeholder={'Search'}
+                                   value={name}
+                                   onChange={(e)=>{setName(e.currentTarget.value)}}
+                            />
+                            <button onClick={changeHandler}>Search</button>
                             <SuperButton color={"blue"} onClick={addPack}>Add new pack</SuperButton>
                         </div>
                         <div className={s.tableBox}>

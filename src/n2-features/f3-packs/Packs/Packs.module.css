@@ -34,26 +34,26 @@
     text-align: center;
 }
 
-.avatarBox {
-    text-align: center;
-    margin: 0 auto 2.4rem;
-}
-.avatarBox h3 {
-    color: rgba(45, 46, 70, 1);
-    font: normal 600 1.8rem/2.4rem Poppins, sans-serif;
-}
+/*.avatarBox {*/
+/*    text-align: center;*/
+/*    margin: 0 auto 2.4rem;*/
+/*}*/
+/*.avatarBox h3 {*/
+/*    color: rgba(45, 46, 70, 1);*/
+/*    font: normal 600 1.8rem/2.4rem Poppins, sans-serif;*/
+/*}*/
 
-.avatarBox p {
-    font-weight: 600;
-}
+/*.avatarBox p {*/
+/*    font-weight: 600;*/
+/*}*/
 
-.profileAvatar {
-    max-width: 9.6rem;
-    height: auto;
-    border: 0.2rem solid #fff;
-    border-radius: 50%;
-    margin: 0 auto;
-}
+/*.profileAvatar {*/
+/*    max-width: 9.6rem;*/
+/*    height: auto;*/
+/*    border: 0.2rem solid #fff;*/
+/*    border-radius: 50%;*/
+/*    margin: 0 auto;*/
+/*}*/
 
 .paramsBox {
     padding: 2.4rem;

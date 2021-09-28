@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../../n1-main/m2-bll/store';
 import { UserType} from '../../../../n1-main/m3-dal/api';
@@ -42,25 +42,20 @@ export const Pack: React.FC<PropsType> = (props) => {
 
     const user = useSelector<AppRootStateType, UserType | null>(state => state.profile.userProfile)
 
-    const [packName, setPackName] = useState('')
+
     const setCardsOfPack = () => dispatch(setCurdsSuccess(_id))
+
     const deleteHandler = () => {
         dispatch(deletePack(_id))
     }
     const updateHandler = () => {
         // dispatch(updatePackTC(props._id, packName))
     }
-    const changeHandler = (name: string) => {
-        setPackName(name)
-    }
 
     const onClickQuestionHandle = () => {
 
     }
-    // const openCardsTable = () => {
-    //     dispatch(setCurdsSuccess(_id))
-    //     history.push(`/cards/${_id}`)
-    // }
+
     return (
 
         <tr onClick={(e) => {
@@ -72,7 +67,6 @@ export const Pack: React.FC<PropsType> = (props) => {
         }>
             <td>{name}</td>
             <td>{cardsCount}</td>
-            {/*<td>{created}</td>*/}
             <td>{new Date(updated).toLocaleDateString('ru', {day: '2-digit', month: '2-digit', year: 'numeric'})}</td>
             <td>{user_name}</td>
             <td>

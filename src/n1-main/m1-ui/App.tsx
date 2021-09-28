@@ -1,17 +1,17 @@
 import React, {useEffect} from 'react';
 import './App.css';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import Main from './Main';
-import {AppRootStateType} from "../m2-bll/store";
+import {setProfileSuccess} from '../m2-bll/profile-reducer';
 
 
 const App = () => {
     const dispatch = useDispatch()
-    const isAuth = useSelector<AppRootStateType, boolean>(state => state.login.isAuth)
 
-    // useEffect(() => {
-    //     dispatch(getMe())
-    // }, [dispatch])
+    useEffect(() => {
+        dispatch(setProfileSuccess())
+    }, [dispatch])
+
     return (
         <div className="App">
             <Main />

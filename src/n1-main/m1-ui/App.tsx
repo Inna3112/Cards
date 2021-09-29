@@ -8,13 +8,11 @@ import {AppRootStateType} from '../m2-bll/store';
 
 const App = () => {
     const dispatch = useDispatch()
-    const {packName, maxCardsCount,
-        minCardsCount, sortPacks,
-        page, pageCount, user_id} = useSelector((state: AppRootStateType) => state.packs)
+    const cardPacksTotalCount = useSelector((state: AppRootStateType) => state.packs)
 
     useEffect(() => {
         dispatch(setProfileSuccess())
-    }, [dispatch, packName, minCardsCount, maxCardsCount, sortPacks, page, pageCount, user_id])
+    }, [dispatch, cardPacksTotalCount])
 
     return (
         <div className="App">

@@ -1,23 +1,15 @@
 import React from 'react';
 import Header from './header/Header';
 import Routes from './routes/Routes';
-import {Login} from "../../n2-features/f1-auth/Login/Login";
-import {useSelector} from "react-redux";
-import {AppRootStateType} from "../m2-bll/store";
+
 
 function Main() {
-    const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.login.isLoggedIn)
     return (
         <div>
-            {
-                isLoggedIn
-                    ?
-                    <div>
-                        <Header/>
-                        <Routes/>
-                    </div>
-                    : <Login />
-            }
+            <div>
+                <Header/>
+                <Routes/>
+            </div>
         </div>
     );
 }

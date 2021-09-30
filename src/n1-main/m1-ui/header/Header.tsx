@@ -3,7 +3,7 @@ import s from './Header.module.css'
 import {NavLink} from 'react-router-dom'
 import {PATH} from '../routes/Routes';
 import {SuperButton} from '../../../common/c2-SuperButton/SuperButton';
-import {logoutSuccess} from '../../m2-bll/login-reducer';
+import {logoutSuccess} from '../../m2-bll/auth-reducer';
 import {useDispatch} from 'react-redux';
 
 

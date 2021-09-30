@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import './App.css';
 import {useDispatch} from 'react-redux';
 import Main from './Main';
-import {setProfileSuccess} from "../m2-bll/profile-reducer";
+import {setProfileSuccess} from '../m2-bll/auth-reducer';
 
 
 const App = () => {

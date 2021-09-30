@@ -1,6 +1,6 @@
 import {Dispatch} from 'redux';
 import {authAPI, ForgotRequestType} from '../m3-dal/api';
-import {setError, setIsLoading} from './login-reducer';
+import {setError, setIsLoading} from './auth-reducer';
 
 const initialState = {
     forgotEmail: '',

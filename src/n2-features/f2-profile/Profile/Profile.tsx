@@ -3,13 +3,14 @@ import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../n1-main/m2-bll/store';
 import s from './Profile.module.css'
 import {UserType} from '../../../n1-main/m3-dal/api';
-import {updateProfileSuccess} from '../../../n1-main/m2-bll/profile-reducer';
+import {updateProfileSuccess} from '../../../n1-main/m2-bll/auth-reducer';
+
 
 
 
 export const Profile = () => {
 
-    const user = useSelector<AppRootStateType, UserType>(state => state.login.user)
+    const user = useSelector<AppRootStateType, UserType>(state => state.auth.user)
     const dispatch = useDispatch()
 
     const [editMode, setEditMode] = useState(false)

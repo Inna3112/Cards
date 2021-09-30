@@ -13,7 +13,7 @@ export const Packs = () => {
     const dispatch = useDispatch()
     const {cardsPacks, cardPacksTotalCount, pageCount, page, user_id, packName, maxCardsCount,
         minCardsCount} = useSelector((state: AppRootStateType) => state.packs)
-    const _id = useSelector<AppRootStateType, string>(state => state.login.user._id)
+    const _id = useSelector<AppRootStateType, string>(state => state.auth.user._id)
 
     useEffect(() => {
         dispatch(setPacksSuccess())

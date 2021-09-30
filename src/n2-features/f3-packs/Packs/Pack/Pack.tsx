@@ -38,7 +38,7 @@ export const Pack: React.FC<PropsType> = (props) => {
 
     const dispatch = useDispatch()
 
-    const user = useSelector<AppRootStateType, UserType | null>(state => state.login.user)
+    const user = useSelector<AppRootStateType, UserType | null>(state => state.auth.user)
 
 
     // const setCardsOfPack = () => dispatch(setCurdsSuccess(_id))

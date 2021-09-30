@@ -20,7 +20,7 @@ const initialState = {
     isLoading: false,
 }
 
-export const loginReducer = (state = initialState, action: ActionsType): typeof initialState => {
+export const authReducer = (state = initialState, action: ActionsType): typeof initialState => {
     switch (action.type) {
         case "SET-USER": {
             return {
@@ -92,7 +92,35 @@ export const logoutSuccess = () => (dispatch: Dispatch) => {
             dispatch(setError(error.response.data.error))
         })
 }
-
+export const setProfileSuccess = () => (dispatch: Dispatch) => {
+    authAPI.me()
+        .then((res) => {
+            dispatch(setUser(res.data, true))
+        })
+        .catch((error) => {
+            // dispatch()
+        })
+}
+export const updateProfileSuccess = (name: string, avatar: string) => (dispatch: Dispatch) => {
+    authAPI.updateMe(name, avatar)
+        .then((res) => {
+            dispatch(setUser({
+                _id: res.data.updatedUser._id,
+                email: res.data.updatedUser.email,
+                name: res.data.updatedUser.name,
+                avatar: res.data.updatedUser.avatar,
+                publicCardPacksCount: res.data.updatedUser.publicCardPacksCount,
+                created: res.data.updatedUser.created,
+                updated: res.data.updatedUser.updated,
+                isAdmin: res.data.updatedUser.isAdmin,
+                verified: res.data.updatedUser.verified,
+                rememberMe: res.data.updatedUser.rememberMe
+            }, true))
+        })
+        .catch((error) => {
+            dispatch(setError(error.response.data.error))
+        })
+}
 // types
 type ActionsType = ReturnType<typeof isLoggedInChange>
     | ReturnType<typeof setError>

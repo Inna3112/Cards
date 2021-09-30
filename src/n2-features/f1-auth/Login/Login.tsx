@@ -3,7 +3,7 @@ import s from './Login.module.css'
 import {useDispatch, useSelector} from 'react-redux';
 import {NavLink, Redirect} from 'react-router-dom';
 import {AppRootStateType} from '../../../n1-main/m2-bll/store';
-import {loginSuccess} from '../../../n1-main/m2-bll/login-reducer';
+import {loginSuccess} from '../../../n1-main/m2-bll/auth-reducer';
 import {SuperInputText} from '../../../common/c1-SuperInputText/SuperInputText';
 import {SuperCheckbox} from '../../../common/c3-SuperCheckbox/SuperCheckbox';
 import {PATH} from '../../../n1-main/m1-ui/routes/Routes';
@@ -13,9 +13,9 @@ import {SuperButton} from '../../../common/c2-SuperButton/SuperButton';
 export const Login = () => {
 
     const dispatch = useDispatch()
-    const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.login.isLoggedIn)
-    const errorFromStore = useSelector<AppRootStateType, string>(state => state.login.error)
-    const isLoading = useSelector<AppRootStateType, boolean>(state => state.login.isLoading)
+    const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.auth.isLoggedIn)
+    const errorFromStore = useSelector<AppRootStateType, string>(state => state.auth.error)
+    const isLoading = useSelector<AppRootStateType, boolean>(state => state.auth.isLoading)
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')

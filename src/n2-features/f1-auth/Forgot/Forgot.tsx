@@ -12,8 +12,8 @@ import {PATH} from '../../../n1-main/m1-ui/routes/Routes';
 
 export const Forgot = () => {
     const dispatch = useDispatch()
-    const error = useSelector<AppRootStateType, string>(state => state.login.error)
-    const isLoading = useSelector<AppRootStateType, boolean>(state => state.login.isLoading)
+    const error = useSelector<AppRootStateType, string>(state => state.auth.error)
+    const isLoading = useSelector<AppRootStateType, boolean>(state => state.auth.isLoading)
     const isEmailSet = useSelector<AppRootStateType, boolean>(state => state.passwordRecover.isEmailSet)
 
     const [email, setEmail] = useState('')

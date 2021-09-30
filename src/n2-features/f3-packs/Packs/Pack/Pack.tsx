@@ -2,10 +2,9 @@ import React from 'react'
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../../n1-main/m2-bll/store';
 import { UserType} from '../../../../n1-main/m3-dal/api';
-import {NavLink, useHistory} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import s from '../Packs.module.css';
-import {deletePack, setPacksSuccess} from '../../../../n1-main/m2-bll/packs-reducer';
-import {setCurdsSuccess} from '../../../../n1-main/m2-bll/cards-reducer';
+import {deletePack} from '../../../../n1-main/m2-bll/packs-reducer';
 
 type PropsType = {
     _id: string
@@ -38,7 +37,6 @@ export const Pack: React.FC<PropsType> = (props) => {
     } = props
 
     const dispatch = useDispatch()
-    const history = useHistory()
 
     const user = useSelector<AppRootStateType, UserType | null>(state => state.login.user)
 
@@ -47,25 +45,14 @@ export const Pack: React.FC<PropsType> = (props) => {
 
     const deleteHandler = () => {
         dispatch(deletePack(_id))
-        dispatch(setPacksSuccess())
     }
     const updateHandler = () => {
         // dispatch(updatePackTC(props._id, packName))
     }
 
-    const onClickQuestionHandle = () => {
-
-    }
-
     return (
 
-        <tr onClick={(e) => {
-            if (e.currentTarget === e.target) {
-                onClickQuestionHandle()
-            }
-            e.stopPropagation()
-        }
-        }>
+        <tr>
             <td>{name}</td>
             <td>{cardsCount}</td>
             <td>{new Date(updated).toLocaleDateString('ru', {day: '2-digit', month: '2-digit', year: 'numeric'})}</td>

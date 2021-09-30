@@ -1,5 +1,6 @@
 import {Dispatch} from 'redux';
-import {CardRequestType, cardsAPI, GetCardsResponseType} from '../m3-dal/api';
+import {CardRequestType, cardsAPI, GetCardsResponseType, SortType} from '../m3-dal/api';
+import {AppRootStateType} from "./store";
 
 
 const initialState = {
@@ -14,12 +15,12 @@ const initialState = {
         _id: ''
     }],
     cardsTotalCount: 0,
-    maxGrade: 0,
+    maxGrade: 6,
     minGrade: 0,
-    page: 0,
-    pageCount: 0,
-    packUserId: ''
-
+    page: 1,
+    pageCount: 5,
+    packUserId: '',
+    sortCards: '0updated' as SortType,
 }
 
 export const cardsReducer = (state = initialState, action: ActionsType): typeof initialState=> {
@@ -39,8 +40,15 @@ export const setCards = (cardsData: GetCardsResponseType ) => ({type: 'SET-CARDS
 
 
 // thunks
-export const setCurdsSuccess = (packId: string) => async (dispatch: Dispatch) => {
-    const res = await cardsAPI.getCards(packId)
+export const setCurdsSuccess = (packId: string) => async (dispatch: Dispatch, getState: () => AppRootStateType) => {
+    const state = getState()
+    const min = state.cards.minGrade
+    const max = state.cards.maxGrade
+    const page = state.cards.page
+    const pageCount = state.cards.pageCount
+    const sortCards = state.cards.sortCards
+
+    const res = await cardsAPI.getCards(packId, min, max, page, pageCount, sortCards)
     dispatch(setCards(res.data))
 }
 export const createCurdSuccess = (card: CardRequestType) => async (dispatch: Dispatch) => {

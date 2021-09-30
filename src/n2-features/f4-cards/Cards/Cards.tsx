@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {Card} from './Card/Card';
 import {AppRootStateType} from '../../../n1-main/m2-bll/store';
 import {createCurdSuccess, setCurdsSuccess} from '../../../n1-main/m2-bll/cards-reducer';
-import {useParams, useLocation} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import {SearchBlock} from '../../../common/SearchBlock/SearchBlock';
 import {CardType} from '../../../n1-main/m3-dal/api';
 
@@ -13,13 +13,13 @@ export const Cards = () => {
     const dispatch = useDispatch()
     const cards = useSelector<AppRootStateType, CardType[]>(state => state.cards.cards)
     const { cardsPackId } = useParams<{cardsPackId: string}>();
-    let location = useLocation()
+
 
     useEffect(() => {
         dispatch(setCurdsSuccess(cardsPackId))
-    }, [])
+    }, [dispatch])
     console.log(cardsPackId)
-    console.log(location)
+
 
     const addCard = () => {
         dispatch(createCurdSuccess({

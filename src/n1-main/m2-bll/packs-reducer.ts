@@ -1,5 +1,5 @@
 import {Dispatch} from 'redux';
-import {CardsPackType, packsAPI, SortPacksType} from '../m3-dal/api';
+import {CardsPackType, packsAPI, SortType} from '../m3-dal/api';
 import {AppRootStateType} from './store';
 
 const initialState = {
@@ -18,13 +18,13 @@ const initialState = {
         updated: ''
     }],
     cardPacksTotalCount: 0,
-    maxCardsCount: 1,
+    maxCardsCount: 6,
     minCardsCount: 0,
     page: 1,
     pageCount: 10,
     user_id: '',
     packName: '',
-    sortPacks: '0updated' as SortPacksType,
+    sortPacks: '0updated' as SortType,
 }
 
 

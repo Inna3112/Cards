@@ -11,15 +11,15 @@ import {SearchBlock} from '../../../common/SearchBlock/SearchBlock';
 
 export const Packs = () => {
     const dispatch = useDispatch()
-    // const user = useSelector<AppRootStateType, UserType>(state => state.profile.userProfile)
     const {cardsPacks, cardPacksTotalCount, pageCount, page, user_id, packName, maxCardsCount,
         minCardsCount} = useSelector((state: AppRootStateType) => state.packs)
     const _id = useSelector<AppRootStateType, string>(state => state.login.user._id)
 
     useEffect(() => {
         dispatch(setPacksSuccess())
-    }, [dispatch, page, pageCount, cardPacksTotalCount, _id, maxCardsCount,
-        minCardsCount, packName])
+    }, [dispatch])
+        // , page, pageCount, cardPacksTotalCount, _id, maxCardsCount,
+        // minCardsCount, packName])
 
     const addPack = () => {
         dispatch(addPacksSuccess())

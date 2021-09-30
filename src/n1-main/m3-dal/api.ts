@@ -95,6 +95,12 @@ export type UserType = {
     name: string,
     avatar: string,
     publicCardPacksCount: number,
+
+    created: string,
+    updated: string,
+    isAdmin: boolean,
+    verified: boolean,
+    rememberMe: boolean
 }
 export type InfoResponseType = {
     info: string,

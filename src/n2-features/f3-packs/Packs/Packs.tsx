@@ -14,7 +14,7 @@ export const Packs = () => {
     // const user = useSelector<AppRootStateType, UserType>(state => state.profile.userProfile)
     const {cardsPacks, cardPacksTotalCount, pageCount, page, user_id, packName, maxCardsCount,
         minCardsCount} = useSelector((state: AppRootStateType) => state.packs)
-    const _id = useSelector<AppRootStateType, string>(state => state.profile.userProfile._id)
+    const _id = useSelector<AppRootStateType, string>(state => state.login.user._id)
 
     useEffect(() => {
         dispatch(setPacksSuccess())
@@ -93,7 +93,6 @@ export const Packs = () => {
                                 {cardsPacks && cardsPacks.map(pack => {
                                     return (
                                         <Pack
-                                            // loading={loading}
                                             key={pack._id}
                                             _id={pack._id}
                                             grade={pack.grade}

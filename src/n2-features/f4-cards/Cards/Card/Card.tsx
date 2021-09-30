@@ -15,7 +15,7 @@ type PropsType = {
 }
 export const Card: React.FC<PropsType> = (props) => {
     const dispatch = useDispatch()
-    const user_id = useSelector<AppRootStateType, string>(state => state.profile.userProfile._id)
+    const user_id = useSelector<AppRootStateType, string>(state => state.login.user._id)
     let {
         question,
         answer,

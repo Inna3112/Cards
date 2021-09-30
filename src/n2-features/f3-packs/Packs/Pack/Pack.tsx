@@ -40,10 +40,10 @@ export const Pack: React.FC<PropsType> = (props) => {
     const dispatch = useDispatch()
     const history = useHistory()
 
-    const user = useSelector<AppRootStateType, UserType | null>(state => state.profile.userProfile)
+    const user = useSelector<AppRootStateType, UserType | null>(state => state.login.user)
 
 
-    const setCardsOfPack = () => dispatch(setCurdsSuccess(_id))
+    // const setCardsOfPack = () => dispatch(setCurdsSuccess(_id))
 
     const deleteHandler = () => {
         dispatch(deletePack(_id))
@@ -77,7 +77,7 @@ export const Pack: React.FC<PropsType> = (props) => {
                 <button className={s.btn} onClick={updateHandler}>update</button>}
                 <NavLink
                     to={`/cards/${_id}`}>
-                    <button className={s.btn} onClick={setCardsOfPack}>learn</button>
+                    <button className={s.btn}>learn</button>
                 </NavLink>
             </td>
         </tr>

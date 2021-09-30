@@ -36,7 +36,7 @@ export const Login = () => {
         setError('')
     }
     if(isLoggedIn){
-        return <Redirect to={'/packs-list'} />
+        return <Redirect to={'/profile'} />
     }
 
     return (

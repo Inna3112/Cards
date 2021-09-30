@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import s from './Cards.module.css'
 import {useDispatch, useSelector} from 'react-redux';
 import {Card} from './Card/Card';
@@ -15,6 +15,9 @@ export const Cards = () => {
     const { cardsPackId } = useParams<{cardsPackId: string}>();
     let location = useLocation()
 
+    useEffect(() => {
+        dispatch(setCurdsSuccess(cardsPackId))
+    }, [])
     console.log(cardsPackId)
     console.log(location)
 

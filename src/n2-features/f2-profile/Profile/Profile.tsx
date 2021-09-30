@@ -4,18 +4,16 @@ import {AppRootStateType} from '../../../n1-main/m2-bll/store';
 import s from './Profile.module.css'
 import {UserType} from '../../../n1-main/m3-dal/api';
 import {updateProfileSuccess} from '../../../n1-main/m2-bll/profile-reducer';
-import {SuperButton} from "../../../common/c2-SuperButton/SuperButton";
-import {NavLink} from "react-router-dom";
-import {logoutSuccess} from "../../../n1-main/m2-bll/login-reducer";
+
 
 
 export const Profile = () => {
 
-    const userProfile = useSelector<AppRootStateType, UserType>(state => state.profile.userProfile)
+    const user = useSelector<AppRootStateType, UserType>(state => state.login.user)
     const dispatch = useDispatch()
 
     const [editMode, setEditMode] = useState(false)
-    const [name, setName] = useState(userProfile.name)
+    const [name, setName] = useState(user.name)
 
     const activateEditMode = () => {
         setEditMode(true)
@@ -24,22 +22,22 @@ export const Profile = () => {
         setName(e.currentTarget.value)
     }
     const setNewName = () => {
-        dispatch(updateProfileSuccess(name, userProfile.avatar))
+        dispatch(updateProfileSuccess(name, user.avatar))
         setEditMode(false)
     }
-    const logoutHandler = () => {
-        dispatch(logoutSuccess())
-    }
+    // const logoutHandler = () => {
+    //     dispatch(logoutSuccess())
+    // }
 
     return (
         <div className={s.profileBlock}>
-            <img className={s.img} src={userProfile.avatar ? userProfile.avatar : "https://klike.net/uploads/posts/2019-03/1551511801_1.jpg"}
+            <img className={s.img} src={user.avatar ? user.avatar : "https://klike.net/uploads/posts/2019-03/1551511801_1.jpg"}
                  alt="avaImg"/>
             { !editMode
-                ? <h3 onClick={activateEditMode}>{userProfile.name}</h3>
+                ? <h3 onClick={activateEditMode}>{user.name}</h3>
                 : <input value={name} onChange={changeName} onBlur={setNewName}/>}
-            <div className={s.counts}>Packs count: {userProfile.publicCardPacksCount}</div>
-            <NavLink to={'/login'}><SuperButton color={"blue"} onClick={logoutHandler}>logout</SuperButton></NavLink>
+            <div className={s.counts}>Packs count: {user.publicCardPacksCount}</div>
+            {/*<NavLink to={'/login'}><SuperButton color={"blue"} onClick={logoutHandler}>logout</SuperButton></NavLink>*/}
         </div>
     )
 }

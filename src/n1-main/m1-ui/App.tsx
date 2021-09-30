@@ -3,16 +3,19 @@ import './App.css';
 import {useDispatch, useSelector} from 'react-redux';
 import Main from './Main';
 import {setProfileSuccess} from '../m2-bll/profile-reducer';
-import {AppRootStateType} from '../m2-bll/store';
+import {AppRootStateType} from "../m2-bll/store";
+import {UserType} from "../m3-dal/api";
 
 
 const App = () => {
     const dispatch = useDispatch()
-    const cardPacksTotalCount = useSelector((state: AppRootStateType) => state.packs)
+    const user = useSelector<AppRootStateType, UserType>(state => state.login.user)
 
     useEffect(() => {
-        dispatch(setProfileSuccess())
-    }, [dispatch, cardPacksTotalCount])
+        if(!user){
+            dispatch(setProfileSuccess())
+        }
+    }, [dispatch])
 
     return (
         <div className="App">

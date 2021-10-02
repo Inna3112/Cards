@@ -1,6 +1,6 @@
 import {Dispatch} from 'redux';
 import {CardRequestType, cardsAPI, GetCardsResponseType, SortType} from '../m3-dal/api';
-import {AppRootStateType} from "./store";
+import {AppRootStateType} from './store';
 
 
 const initialState = {
@@ -23,13 +23,24 @@ const initialState = {
     sortCards: '0updated' as SortType,
 }
 
-export const cardsReducer = (state = initialState, action: ActionsType): typeof initialState=> {
+export const cardsReducer = (state = initialState, action: ActionsType): typeof initialState => {
     switch (action.type) {
         case "SET-CARDS": {
-            debugger
             return {
                 ...state,
                 cards: action.cardsData.cards.map(card => ({...card}))
+            }
+        }
+        case "SET-CARDS-ANSWER": {
+            return {
+                ...state,
+                cards: state.cards.filter(card => card.answer === action.answer)
+            }
+        }
+        case "SET-CARDS-QUESTION": {
+            return {
+                ...state,
+                cards: state.cards.filter(card => card.question === action.question)
             }
         }
         default:
@@ -37,8 +48,9 @@ export const cardsReducer = (state = initialState, action: ActionsType): typeof 
     }
 }
 // AC
-export const setCards = (cardsData: GetCardsResponseType ) => ({type: 'SET-CARDS', cardsData}) as const
-
+export const setCards = (cardsData: GetCardsResponseType) => ({type: 'SET-CARDS', cardsData}) as const
+export const setCardsAnswer = (answer: string) => ({type: 'SET-CARDS-ANSWER', answer}) as const
+export const setCardsQuestion = (question: string) => ({type: 'SET-CARDS-QUESTION', question}) as const
 
 // thunks
 export const setCurdsSuccess = (packId: string) => (dispatch: Dispatch, getState: () => AppRootStateType) => {
@@ -66,4 +78,6 @@ export const deleteCurdSuccess = (cardPackId: string, cardId: string) => async (
 
 // types
 type ActionsType = ReturnType<typeof setCards>
+    | ReturnType<typeof setCardsAnswer>
+    | ReturnType<typeof setCardsQuestion>
 

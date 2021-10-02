@@ -3,9 +3,10 @@ import s from './Cards.module.css'
 import {useDispatch, useSelector} from 'react-redux';
 import {Card} from './Card/Card';
 import {AppRootStateType} from '../../../n1-main/m2-bll/store';
-import {createCurdSuccess, setCurdsSuccess} from '../../../n1-main/m2-bll/cards-reducer';
+import {createCurdSuccess, setCardsAnswer, setCardsQuestion, setCurdsSuccess} from '../../../n1-main/m2-bll/cards-reducer';
 import {useParams} from 'react-router-dom';
 import {CardType} from '../../../n1-main/m3-dal/api';
+import {SearchCardsBlock} from '../../../common/SearchBlock/SearchCardsBlock';
 
 
 export const Cards = () => {
@@ -33,8 +34,8 @@ export const Cards = () => {
     return (
         <div className={s.container}>
             <h2>Cards list</h2>
-            {/*<SearchBlock placeholder={'Search question'} btnName={'Search'} />*/}
-            {/*<SearchBlock placeholder={'Search answer'} btnName={'Search'}/>*/}
+            <SearchCardsBlock placeholder={'Search question'} btnName={'Search'} setNameItem={setCardsQuestion} />
+            <SearchCardsBlock placeholder={'Search answer'} btnName={'Search'} setNameItem={setCardsAnswer}/>
             <div className={s.tableBox}>
                 <table className={s.table}>
                     <thead>

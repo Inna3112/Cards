@@ -7,17 +7,13 @@ type PropsType = {
     placeholder: string
     btnName: string
     setNameItem: (name: string) => void
-    setItemsSuccess: () => void
 }
-export const SearchBlock: React.FC<PropsType> = ({placeholder, btnName, setNameItem, setItemsSuccess}) => {
+export const SearchCardsBlock: React.FC<PropsType> = ({placeholder, btnName, setNameItem}) => {
     const dispatch = useDispatch()
     const [name, setName] = useState('')
 
     const changeHandler = () => {
-        // dispatch(setPackName(name))
-        // dispatch(setPacksSuccess())
         dispatch(setNameItem(name))
-        dispatch(setItemsSuccess())
         setName('')
     }
     return (

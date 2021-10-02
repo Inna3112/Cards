@@ -6,7 +6,7 @@ import {addPacksSuccess, setPackName, setPacksSuccess, setPage, setUserId} from 
 import {Pack} from './Pack/Pack';
 import {Pagination} from '../../../common/Pagination/Pagination';
 import {Profile} from '../../f2-profile/Profile/Profile';
-import {SearchBlock} from '../../../common/SearchBlock/SearchBlock';
+import {SuperButton} from '../../../common/c2-SuperButton/SuperButton';
 
 
 export const Packs = () => {
@@ -44,6 +44,14 @@ export const Packs = () => {
         dispatch(setPacksSuccess())
     }
 
+    //searchBlock
+    const [name, setName] = useState('')
+
+    const changeHandler = () => {
+        dispatch(setPackName(name))
+        dispatch(setPacksSuccess())
+        setName('')
+    }
     return (
         <div className={s.container}>
             <div className={s.box}>
@@ -75,10 +83,16 @@ export const Packs = () => {
                 <div className={s.columnContent}>
                     <div className={s.tableBlock}>
                         <h2>Packs list</h2>
-                        <SearchBlock placeholder={'Search name'}
-                                     btnName={'Search'}
-                                     setNameItem={setPackName}
-                                     setItemsSuccess={setPacksSuccess}/>
+                        <div className={s.searchBlock}>
+                            <input className={s.packInput}
+                                   placeholder={'Search'}
+                                   value={name}
+                                   onChange={(e) => {
+                                       setName(e.currentTarget.value)
+                                   }}
+                            />
+                            <SuperButton color={"blue"} onClick={changeHandler}>'Search'</SuperButton>
+                        </div>
                         <div className={s.tableBox}>
                             <table className={s.table}>
                                 <thead>

@@ -26,6 +26,7 @@ const initialState = {
 export const cardsReducer = (state = initialState, action: ActionsType): typeof initialState=> {
     switch (action.type) {
         case "SET-CARDS": {
+            debugger
             return {
                 ...state,
                 cards: action.cardsData.cards.map(card => ({...card}))
@@ -40,7 +41,7 @@ export const setCards = (cardsData: GetCardsResponseType ) => ({type: 'SET-CARDS
 
 
 // thunks
-export const setCurdsSuccess = (packId: string) => async (dispatch: Dispatch, getState: () => AppRootStateType) => {
+export const setCurdsSuccess = (packId: string) => (dispatch: Dispatch, getState: () => AppRootStateType) => {
     const state = getState()
     const min = state.cards.minGrade
     const max = state.cards.maxGrade
@@ -48,8 +49,14 @@ export const setCurdsSuccess = (packId: string) => async (dispatch: Dispatch, ge
     const pageCount = state.cards.pageCount
     const sortCards = state.cards.sortCards
 
-    const res = await cardsAPI.getCards(packId, min, max, page, pageCount, sortCards)
-    dispatch(setCards(res.data))
+    cardsAPI.getCards(packId, min, max, page, pageCount, sortCards)
+        .then((res) => {
+
+            dispatch(setCards(res.data))
+        })
+        .catch(err => {
+            console.log(err)
+        })
 }
 export const createCurdSuccess = (card: CardRequestType) => async (dispatch: Dispatch) => {
     await cardsAPI.createCard(card)

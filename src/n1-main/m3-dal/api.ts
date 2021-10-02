@@ -56,10 +56,10 @@ export const packsAPI = {
 }
 // `users?page=${currentPage}&count=${pageSize}`
 export const cardsAPI = {
-    getCards(packId: string, min?: number, max?: number, page?: number, pageCount?: number, sortCards?: SortType) {
+    getCards(cardsPack_id: string, min?: number, max?: number, page?: number, pageCount?: number, sortCards?: SortType) {
         return instance.get<GetCardsResponseType>('cards/card', {
             params: {
-                packId,
+                cardsPack_id,
                 min,
                 max,
                 page,

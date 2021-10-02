@@ -16,6 +16,7 @@ export const Cards = () => {
 
 
     useEffect(() => {
+        debugger
         dispatch(setCurdsSuccess(cardsPackId))
     }, [dispatch])
     console.log(cardsPackId)
@@ -51,6 +52,7 @@ export const Cards = () => {
                     {cards && cards.map(card => {
                         return (
                             <Card
+                                key={card._id}
                                 question={card.question}
                                 answer={card.answer}
                                 grade={card.grade}

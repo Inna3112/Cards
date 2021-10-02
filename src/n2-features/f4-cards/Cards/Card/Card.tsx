@@ -2,7 +2,7 @@ import React from 'react'
 import s from '../Cards.module.css';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../../n1-main/m2-bll/store';
-import {deleteCurdSuccess, setCurdsSuccess} from "../../../../n1-main/m2-bll/cards-reducer";
+import {deleteCurd, updateCard} from '../../../../n1-main/m2-bll/cards-reducer';
 
 type PropsType = {
     question?: string
@@ -27,8 +27,10 @@ export const Card: React.FC<PropsType> = (props) => {
     } = props
 
     const deleteCardHandler = () => {
-        dispatch(deleteCurdSuccess(packId, _id))
-        dispatch(setCurdsSuccess(packId))
+        dispatch(deleteCurd(packId, _id))
+    }
+    const updateCardHandler = () => {
+        dispatch(updateCard(_id, packId, 'Update question'))
     }
     return (
 
@@ -41,7 +43,7 @@ export const Card: React.FC<PropsType> = (props) => {
                 {user_id === packUserId &&
                 <button className={s.btn} onClick={deleteCardHandler}>del</button>}
                 {user_id === packUserId &&
-                <button className={s.btn}>update</button>}
+                <button className={s.btn} onClick={updateCardHandler}>update</button>}
             </td>
         </tr>
 

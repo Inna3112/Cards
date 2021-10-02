@@ -69,11 +69,17 @@ export const setCurdsSuccess = (packId: string) => (dispatch: Dispatch, getState
             console.log(err)
         })
 }
-export const createCurdSuccess = (card: CardRequestType) => async (dispatch: Dispatch) => {
+export const createCurd = (card: CardRequestType) => async (dispatch: any) => {
     await cardsAPI.createCard(card)
+    dispatch(setCurdsSuccess(card.cardsPack_id))
 }
-export const deleteCurdSuccess = (cardPackId: string, cardId: string) => async (dispatch: Dispatch) => {
+export const deleteCurd = (cardPackId: string, cardId: string) => async (dispatch: any) => {
     await cardsAPI.deleteCard(cardId)
+    dispatch(setCurdsSuccess(cardPackId))
+}
+export const updateCard = (cardId: string, cardPackId: string, newQuestion?: string, newAnswer?: string) => async (dispatch: any) => {
+    await cardsAPI.updateCards(cardId, newQuestion, newAnswer)
+    dispatch(setCurdsSuccess(cardPackId))
 }
 
 // types

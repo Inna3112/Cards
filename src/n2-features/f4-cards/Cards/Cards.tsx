@@ -5,7 +5,6 @@ import {Card} from './Card/Card';
 import {AppRootStateType} from '../../../n1-main/m2-bll/store';
 import {createCurdSuccess, setCurdsSuccess} from '../../../n1-main/m2-bll/cards-reducer';
 import {useParams} from 'react-router-dom';
-import {SearchBlock} from '../../../common/SearchBlock/SearchBlock';
 import {CardType} from '../../../n1-main/m3-dal/api';
 
 
@@ -16,9 +15,8 @@ export const Cards = () => {
 
 
     useEffect(() => {
-        debugger
         dispatch(setCurdsSuccess(cardsPackId))
-    }, [dispatch])
+    }, [dispatch, cardsPackId])
     console.log(cardsPackId)
 
 
@@ -35,8 +33,8 @@ export const Cards = () => {
     return (
         <div className={s.container}>
             <h2>Cards list</h2>
-            <SearchBlock placeholder={'Search question'} btnName={'Search'} />
-            <SearchBlock placeholder={'Search answer'} btnName={'Search'}/>
+            {/*<SearchBlock placeholder={'Search question'} btnName={'Search'} />*/}
+            {/*<SearchBlock placeholder={'Search answer'} btnName={'Search'}/>*/}
             <div className={s.tableBox}>
                 <table className={s.table}>
                     <thead>

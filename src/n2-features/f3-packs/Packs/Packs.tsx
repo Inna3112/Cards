@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import s from './Packs.module.css'
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../n1-main/m2-bll/store';
-import {addPacksSuccess, setPacksSuccess, setPage, setUserId} from '../../../n1-main/m2-bll/packs-reducer';
+import {addPacksSuccess, setPackName, setPacksSuccess, setPage, setUserId} from '../../../n1-main/m2-bll/packs-reducer';
 import {Pack} from './Pack/Pack';
 import {Pagination} from '../../../common/Pagination/Pagination';
 import {Profile} from '../../f2-profile/Profile/Profile';
@@ -75,7 +75,10 @@ export const Packs = () => {
                 <div className={s.columnContent}>
                     <div className={s.tableBlock}>
                         <h2>Packs list</h2>
-                        <SearchBlock placeholder={'Search name'} btnName={'Search'}/>
+                        <SearchBlock placeholder={'Search name'}
+                                     btnName={'Search'}
+                                     setNameItem={setPackName}
+                                     setItemsSuccess={setPacksSuccess}/>
                         <div className={s.tableBox}>
                             <table className={s.table}>
                                 <thead>

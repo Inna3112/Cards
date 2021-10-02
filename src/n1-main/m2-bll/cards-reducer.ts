@@ -51,7 +51,6 @@ export const setCurdsSuccess = (packId: string) => (dispatch: Dispatch, getState
 
     cardsAPI.getCards(packId, min, max, page, pageCount, sortCards)
         .then((res) => {
-
             dispatch(setCards(res.data))
         })
         .catch(err => {

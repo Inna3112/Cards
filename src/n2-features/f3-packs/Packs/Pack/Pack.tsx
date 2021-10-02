@@ -4,7 +4,7 @@ import {AppRootStateType} from '../../../../n1-main/m2-bll/store';
 import { UserType} from '../../../../n1-main/m3-dal/api';
 import {NavLink} from 'react-router-dom';
 import s from '../Packs.module.css';
-import {deletePack} from '../../../../n1-main/m2-bll/packs-reducer';
+import {deletePack, updatePack} from '../../../../n1-main/m2-bll/packs-reducer';
 
 type PropsType = {
     _id: string
@@ -37,17 +37,14 @@ export const Pack: React.FC<PropsType> = (props) => {
     } = props
 
     const dispatch = useDispatch()
-
     const user = useSelector<AppRootStateType, UserType | null>(state => state.auth.user)
 
-
-    // const setCardsOfPack = () => dispatch(setCurdsSuccess(_id))
 
     const deleteHandler = () => {
         dispatch(deletePack(_id))
     }
     const updateHandler = () => {
-        // dispatch(updatePackTC(props._id, packName))
+        dispatch(updatePack(_id, 'Pack updated3'))
     }
 
     return (

@@ -109,7 +109,10 @@ export const deletePack = (packId: string) => async (dispatch: any) => {
     await packsAPI.deletePack(packId)
     dispatch(setPacksSuccess())
 }
-
+export const updatePack = (packId: string, name: string) => async (dispatch: any) => {
+    await packsAPI.updatePack(packId, name)
+    dispatch(setPacksSuccess())
+}
 
 // types
 type ActionsType = ReturnType<typeof setPacks>

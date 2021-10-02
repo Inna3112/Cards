@@ -17,7 +17,7 @@ export const Packs = () => {
 
     useEffect(() => {
         dispatch(setPacksSuccess())
-    }, [dispatch])
+    }, [dispatch, packName])
         // , page, pageCount, cardPacksTotalCount, _id, maxCardsCount,
         // minCardsCount, packName])
 

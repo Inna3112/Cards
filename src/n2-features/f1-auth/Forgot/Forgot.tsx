@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useState} from 'react'
-import s from '../Login/Login.module.css';
+import s from './Forgot.module.css'
 import {NavLink} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {CheckEmail} from './CheckEmail/CheckEmail';
@@ -33,7 +33,7 @@ export const Forgot = () => {
                             <div className={s.forgotText}>Enter your email address and we will send you further
                                 instructions
                             </div>
-                            <SuperButton className={s.forgotButton} onClick={forgotHandler}>Send Instructions</SuperButton>
+                            <SuperButton className={s.forgotButton} color={'blue'} onClick={forgotHandler}>Send Instructions</SuperButton>
                             <div className={s.forgotText}>Did you remember your password?</div>
                             <NavLink to={PATH.REGISTER} className={s.signUpLink} activeClassName={s.signUpLinkActive}>Try
                                 logging in</NavLink>

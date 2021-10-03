@@ -28,8 +28,11 @@ export const SetPassword = () => {
         <div className={s.setPasswordBlock}>
             <div className={s.setPasswordList}>
                 <h1 className={s.setPasswordTitle}>Create new password</h1>
-                <SuperInputText className={s.setPasswordInput} placeholder={'password'} value={password} onChange={passwordHandler} />
-                <SuperButton className={s.setPasswordBtn} onClick={setNewPassword}>Create new password</SuperButton>
+                <div className={s.setPasswordInput}>
+                    <SuperInputText placeholder={'password'} value={password} onChange={passwordHandler} />
+                </div>
+
+                <SuperButton className={s.setPasswordBtn} color={"blue"} onClick={setNewPassword}>Create new password</SuperButton>
             </div>
         </div>
     )

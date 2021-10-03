@@ -22,10 +22,7 @@
     line-height: 33px;
 }
 .forgotInput{
-    width: 330px;
-    height: 36px;
-    font-size: 16px;
-    line-height: 24px;
+
 }
 .forgotText{
     font-size: 14px;
@@ -34,8 +31,7 @@
     opacity: 50%;
 }
 .forgotButton{
-    margin-top: 130px;
-    width: 266px;
+
 }
 .signUpLink{
     text-decoration: none;

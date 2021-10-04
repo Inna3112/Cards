@@ -17,9 +17,9 @@ export const Packs = () => {
 
     useEffect(() => {
         dispatch(setPacksSuccess())
-    }, [dispatch, packName])
-        // , page, pageCount, cardPacksTotalCount, _id, maxCardsCount,
-        // minCardsCount, packName])
+    }, [dispatch, packName, user_id, page, packName])
+        //  pageCount, cardPacksTotalCount, maxCardsCount,
+        // minCardsCount, ])
 
     const addPack = () => {
         dispatch(addPacksSuccess())
@@ -30,18 +30,15 @@ export const Packs = () => {
 
     const getMyPacks = () => {
         dispatch(setUserId(_id))
-        dispatch(setPacksSuccess())
         setIsMyPacks(true)
     }
     const getAllPacks = () => {
         dispatch(setUserId(''))
-        dispatch(setPacksSuccess())
         setIsMyPacks(false)
     }
     //pagination
     const onPageChangedHandler = (curPage: number) =>{
         dispatch(setPage(curPage))
-        dispatch(setPacksSuccess())
     }
 
     //searchBlock
@@ -49,7 +46,6 @@ export const Packs = () => {
 
     const changeHandler = () => {
         dispatch(setPackName(name))
-        dispatch(setPacksSuccess())
         setName('')
     }
     return (
@@ -91,7 +87,7 @@ export const Packs = () => {
                                        setName(e.currentTarget.value)
                                    }}
                             />
-                            <SuperButton color={"blue"} onClick={changeHandler}>'Search'</SuperButton>
+                            <SuperButton color={"blue"} onClick={changeHandler}>Search</SuperButton>
                         </div>
                         <div className={s.tableBox}>
                             <table className={s.table}>

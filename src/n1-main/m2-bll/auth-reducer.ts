@@ -60,11 +60,10 @@ export const loginSuccess = (loginData: LoginDataType) => (dispatch: any) => {
         .then((res) => {
             dispatch(setIsLoading(false))
             dispatch(isLoggedInChange(true))
-            // dispatch(setProfileSuccess())
             dispatch(setUser(res.data, true))
             dispatch(setError(''))
         })
-        .catch((error) => {
+        .catch(() => {
             dispatch(setIsLoading(false))
             dispatch(isLoggedInChange(false))
             // dispatch(setError(error.response.data.error))
@@ -98,7 +97,7 @@ export const setProfileSuccess = () => (dispatch: Dispatch) => {
             dispatch(setUser(res.data, true))
         })
         .catch((error) => {
-            // dispatch()
+            dispatch(setError(error.response.data.error))
         })
 }
 export const updateProfileSuccess = (name: string, avatar: string) => (dispatch: Dispatch) => {

@@ -49,7 +49,7 @@ export const Pack: React.FC<PropsType> = (props) => {
 
     return (
 
-        <tr>
+        <tr className={s.cardBlock}>
             <td>{name}</td>
             <td>{cardsCount}</td>
             <td>{new Date(updated).toLocaleDateString('ru', {day: '2-digit', month: '2-digit', year: 'numeric'})}</td>
@@ -59,6 +59,11 @@ export const Pack: React.FC<PropsType> = (props) => {
                 <button className={s.btn} onClick={deleteHandler}>del</button>}
                 {user_id === user?._id &&
                 <button className={s.btn} onClick={updateHandler}>update</button>}
+                <div className={s.modalBlock}>
+                    <div className={s.modalWindow}>
+
+                    </div>
+                </div>
                 <NavLink
                     to={`/cards/${_id}`}>
                     <button className={s.btn}>learn</button>

@@ -7,12 +7,12 @@ import {Pack} from './Pack/Pack';
 import {Pagination} from '../../../common/Pagination/Pagination';
 import {Profile} from '../../f2-profile/Profile/Profile';
 import {SuperButton} from '../../../common/c2-SuperButton/SuperButton';
+import {PacksModal} from "../../../n1-main/m1-ui/Components/Modal/PacksModal/PacksModal";
 
 
 export const Packs = () => {
     const dispatch = useDispatch()
-    const {cardsPacks, cardPacksTotalCount, pageCount, page, user_id, packName, maxCardsCount,
-        minCardsCount} = useSelector((state: AppRootStateType) => state.packs)
+    const {cardsPacks, cardPacksTotalCount, pageCount, page, user_id, packName} = useSelector((state: AppRootStateType) => state.packs)
     const _id = useSelector<AppRootStateType, string>(state => state.auth.user._id)
 
     useEffect(() => {
@@ -21,9 +21,13 @@ export const Packs = () => {
         //  pageCount, cardPacksTotalCount, maxCardsCount,
         // minCardsCount, ])
 
-    const addPack = () => {
-        dispatch(addPacksSuccess())
+    //add pack
+    const addPack = (packName: string) => {
+        dispatch(addPacksSuccess(packName))
     }
+    const [isPackModal, setIsPackModal] = useState(true)
+    const openPackModal = () => setIsPackModal(true)
+    const closePackModal = () => setIsPackModal(false)
 
     //my/all packs
     const [isMyPacks, setIsMyPacks] = useState(user_id === _id)
@@ -98,7 +102,7 @@ export const Packs = () => {
                                     <th>update</th>
                                     <th>sort by author</th>
                                     <th>
-                                        <button className={s.btn} onClick={addPack}>Add new pack</button>
+                                        <button className={s.btn} onClick={openPackModal}>Add new pack</button>
                                     </th>
                                 </tr>
                                 </thead>
@@ -124,6 +128,7 @@ export const Packs = () => {
                                 </tbody>
                             </table>
                         </div>
+                        <div>{isPackModal && <PacksModal addPack={addPack}/>}</div>
                         <div className={s.tableSettings}>
                             <Pagination totalItemsCount={cardPacksTotalCount}
                                         pageSize={pageCount}

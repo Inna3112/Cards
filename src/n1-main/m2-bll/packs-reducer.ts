@@ -87,9 +87,9 @@ export const setPacksSuccess = () => async (dispatch: Dispatch, getState: () => 
     dispatch(setPacks(res.data.cardPacks))
     dispatch(setCardsPacksTotalCount(res.data.cardPacksTotalCount))
 }
-export const addPacksSuccess = () => async (dispatch: any) => {
+export const addPacksSuccess = (packName: string) => async (dispatch: any) => {
     const pack = {
-        name: 'My first pack',
+        name: packName,
         path: '',
         grade: 0,
         shots: 0,

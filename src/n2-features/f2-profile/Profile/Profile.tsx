@@ -4,7 +4,8 @@ import {AppRootStateType} from '../../../n1-main/m2-bll/store';
 import s from './Profile.module.css'
 import {UserType} from '../../../n1-main/m3-dal/api';
 import {updateProfileSuccess} from '../../../n1-main/m2-bll/auth-reducer';
-import {Redirect} from "react-router-dom";
+import {Redirect} from 'react-router-dom';
+import {PATH} from '../../../n1-main/m1-ui/routes/Routes';
 
 
 export const Profile = () => {
@@ -29,7 +30,7 @@ export const Profile = () => {
     //     dispatch(logoutSuccess())
     // }
     if(!isLoggedIn){
-        return <Redirect to={'/login'} />
+        return <Redirect to={PATH.LOGIN} />
     }
     return (
         <div className={s.profileBlock}>

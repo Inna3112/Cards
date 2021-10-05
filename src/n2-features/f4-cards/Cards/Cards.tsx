@@ -9,14 +9,16 @@ import {
     setCardsQuestion,
     setCurdsSuccess
 } from '../../../n1-main/m2-bll/cards-reducer';
-import {useParams} from 'react-router-dom';
+import {Redirect, useParams} from 'react-router-dom';
 import {CardType} from '../../../n1-main/m3-dal/api';
 import {SearchCardsBlock} from '../../../common/SearchBlock/SearchCardsBlock';
+import {PATH} from '../../../n1-main/m1-ui/routes/Routes';
 
 
 export const Cards = () => {
     const dispatch = useDispatch()
     const cards = useSelector<AppRootStateType, CardType[]>(state => state.cards.cards)
+    const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.auth.isLoggedIn)
     const { cardsPackId } = useParams<{cardsPackId: string}>();
 
 
@@ -34,7 +36,9 @@ export const Cards = () => {
         }))
     }
 
-
+    if(!isLoggedIn){
+        return <Redirect to={PATH.LOGIN} />
+    }
     return (
         <div className={s.container}>
             <h2>Cards list</h2>

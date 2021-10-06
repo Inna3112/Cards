@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../../n1-main/m2-bll/store';
 import {deleteCurd, updateCard} from '../../../../n1-main/m2-bll/cards-reducer';
 import {CardsModalForDelete} from '../../../../n1-main/m1-ui/Components/Modal/CardsModal/CardsModalForDelete';
+import {CardsModalForUpdate} from "../../../../n1-main/m1-ui/Components/Modal/CardsModal/CardsModalForUpdate";
 
 type PropsType = {
     question?: string
@@ -30,8 +31,8 @@ export const Card: React.FC<PropsType> = (props) => {
     const deleteCardHandler = () => {
         dispatch(deleteCurd(packId, _id))
     }
-    const updateCardHandler = () => {
-        dispatch(updateCard(_id, packId, 'Update question'))
+    const updateCardHandler = (newQuestion: string, newAnswer: string) => {
+        dispatch(updateCard(_id, packId, newQuestion, newAnswer))
     }
     //modal
     const [isCardModal, setIsCardModal] = useState(false)
@@ -54,6 +55,9 @@ export const Card: React.FC<PropsType> = (props) => {
             </tr>
             <div>{isCardModal && <CardsModalForDelete deleteCard={deleteCardHandler}
                                                    closeCardModal={closeCardModal}
+            />}</div>
+            <div>{isCardModal && <CardsModalForUpdate updateCard={updateCardHandler}
+                                                      closeCardModal={closeCardModal}
             />}</div>
         </>
     )

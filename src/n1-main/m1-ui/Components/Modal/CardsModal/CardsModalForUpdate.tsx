@@ -4,24 +4,28 @@ import {SuperButton} from '../../../../../common/c2-SuperButton/SuperButton';
 import s from './../Modal.module.css'
 
 type PropsType = {
-    updatePackName: (newPackName: string) => void
-    closePackModal: () => void
+    updateCard: (newQuestion: string, newAnswer: string) => void
+    closeCardModal: () => void
 }
-export const CardsModalForUpdate: React.FC<PropsType> = ({updatePackName, closePackModal}) => {
+export const CardsModalForUpdate: React.FC<PropsType> = ({updateCard, closeCardModal}) => {
 
-    const [newTitle, setNewTitle] = useState('')
-    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => setNewTitle(e.currentTarget.value)
+    const [newQuestion, setNewQuestion] = useState('')
+    const [newAnswer, setNewAnswer] = useState('')
+    const onChangeQuestionHandler = (e: ChangeEvent<HTMLInputElement>) => setNewQuestion(e.currentTarget.value)
+    const onChangeAnswerHandler = (e: ChangeEvent<HTMLInputElement>) => setNewAnswer(e.currentTarget.value)
+
     const updatePackHandler = () => {
-        updatePackName(newTitle)
-        closePackModal()
+        updateCard(newQuestion, newAnswer)
+        closeCardModal()
     }
     return (
         <div className={s.wrapperModal}>
             <div className={s.modal}>
                 <h3>Enter new packs title!</h3>
                 <div className={s.buttonBlock}>
-                    <SuperInputText value={newTitle} onChange={onChangeHandler}/>
-                    <SuperButton onClick={() => closePackModal()} color={'red'}>Cancel</SuperButton>
+                    <SuperInputText placeholder={'Question'} value={newQuestion} onChange={onChangeQuestionHandler}/>
+                    <SuperInputText placeholder={'Answer'} value={newAnswer} onChange={onChangeAnswerHandler}/>
+                    <SuperButton onClick={() => closeCardModal()} color={'red'}>Cancel</SuperButton>
                     <SuperButton onClick={updatePackHandler} color={'blue'}>Ok</SuperButton>
                 </div>
             </div>

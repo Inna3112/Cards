@@ -31,7 +31,7 @@ export const Card: React.FC<PropsType> = (props) => {
     const deleteCardHandler = () => {
         dispatch(deleteCurd(packId, _id))
     }
-    const updateCardHandler = (newQuestion: string, newAnswer: string) => {
+    const updateCardHandler = (newQuestion?: string, newAnswer?: string) => {
         dispatch(updateCard(_id, packId, newQuestion, newAnswer))
     }
     //modal
@@ -62,6 +62,8 @@ export const Card: React.FC<PropsType> = (props) => {
             />}</div>
             <div>{isCardUpdateModal && <CardsModalForUpdate updateCard={updateCardHandler}
                                                       closeCardModal={closeCardUpdateModal}
+                                                            question={question}
+                                                            answer={answer}
             />}</div>
         </>
     )

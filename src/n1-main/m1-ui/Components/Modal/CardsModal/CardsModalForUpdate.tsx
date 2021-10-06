@@ -4,13 +4,15 @@ import {SuperButton} from '../../../../../common/c2-SuperButton/SuperButton';
 import s from './../Modal.module.css'
 
 type PropsType = {
-    updateCard: (newQuestion: string, newAnswer: string) => void
+    updateCard: (newQuestion?: string, newAnswer?: string) => void
     closeCardModal: () => void
+    question?: string
+    answer?: string
 }
-export const CardsModalForUpdate: React.FC<PropsType> = ({updateCard, closeCardModal}) => {
+export const CardsModalForUpdate: React.FC<PropsType> = ({updateCard, closeCardModal, answer, question}) => {
 
-    const [newQuestion, setNewQuestion] = useState('')
-    const [newAnswer, setNewAnswer] = useState('')
+    const [newQuestion, setNewQuestion] = useState(question)
+    const [newAnswer, setNewAnswer] = useState(answer)
     const onChangeQuestionHandler = (e: ChangeEvent<HTMLInputElement>) => setNewQuestion(e.currentTarget.value)
     const onChangeAnswerHandler = (e: ChangeEvent<HTMLInputElement>) => setNewAnswer(e.currentTarget.value)
 

@@ -41,9 +41,14 @@ export const Pack: React.FC<PropsType> = (props) => {
     const dispatch = useDispatch()
     const user = useSelector<AppRootStateType, UserType | null>(state => state.auth.user)
 
-    const [isPackModal, setIsPackModal] = useState(false)
-    const openPackModal = () => setIsPackModal(true)
-    const closePackModal = () => setIsPackModal(false)
+    //modal
+    const [isPackDeleteModal, setIsPackDeleteModal] = useState(false)
+    const openPackDeleteModal = () => setIsPackDeleteModal(true)
+    const closePackDeleteModal = () => setIsPackDeleteModal(false)
+
+    const [isPackUpdateModal, setIsPackUpdateModal] = useState(false)
+    const openPackUpdateModal = () => setIsPackUpdateModal(true)
+    const closePackUpdateModal = () => setIsPackUpdateModal(false)
 
     const deleteHandler = () => {
         dispatch(deletePack(_id))
@@ -61,14 +66,15 @@ export const Pack: React.FC<PropsType> = (props) => {
             <td>{user_name}</td>
             <td>
                 {user_id === user?._id &&
-                <button className={s.btn} onClick={openPackModal}>del</button>}
+                <button className={s.btn} onClick={openPackDeleteModal}>del</button>}
                 {user_id === user?._id &&
-                <button className={s.btn} onClick={openPackModal}>update</button>}
-                <div>{isPackModal && <PacksModalForDelete deletePack={deleteHandler}
-                                                          closePackModal={closePackModal}
+                <button className={s.btn} onClick={openPackUpdateModal}>update</button>}
+                <div>{isPackDeleteModal && <PacksModalForDelete deletePack={deleteHandler}
+                                                          closePackModal={closePackDeleteModal}
                 />}</div>
-                <div>{isPackModal && <PacksModalForUpdate updatePackName={updateHandler}
-                                                          closePackModal={closePackModal}
+                <div>{isPackUpdateModal && <PacksModalForUpdate updatePackName={updateHandler}
+                                                          closePackModal={closePackUpdateModal}
+                                                                title={name}
                 />}</div>
                 <NavLink
                     to={`/cards/${_id}`}>

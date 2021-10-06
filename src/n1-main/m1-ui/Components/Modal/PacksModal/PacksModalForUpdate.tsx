@@ -6,10 +6,11 @@ import s from './../Modal.module.css'
 type PropsType = {
     updatePackName: (newPackName: string) => void
     closePackModal: () => void
+    title: string
 }
-export const PacksModalForUpdate: React.FC<PropsType> = ({updatePackName, closePackModal}) => {
+export const PacksModalForUpdate: React.FC<PropsType> = ({updatePackName, closePackModal, title}) => {
 
-    const [newTitle, setNewTitle] = useState('')
+    const [newTitle, setNewTitle] = useState(title)
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => setNewTitle(e.currentTarget.value)
     const updatePackHandler = () => {
         updatePackName(newTitle)

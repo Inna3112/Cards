@@ -35,9 +35,13 @@ export const Card: React.FC<PropsType> = (props) => {
         dispatch(updateCard(_id, packId, newQuestion, newAnswer))
     }
     //modal
-    const [isCardModal, setIsCardModal] = useState(false)
-    const openCardModal = () => setIsCardModal(true)
-    const closeCardModal = () => setIsCardModal(false)
+    const [isCardDeleteModal, setIsCardDeleteModal] = useState(false)
+    const openCardDeleteModal = () => setIsCardDeleteModal(true)
+    const closeCardDeleteModal = () => setIsCardDeleteModal(false)
+
+    const [isCardUpdateModal, setIsCardUpdateModal] = useState(false)
+    const openCardUpdateModal = () => setIsCardUpdateModal(true)
+    const closeCardUpdateModal = () => setIsCardUpdateModal(false)
 
     return (
         <>
@@ -48,16 +52,16 @@ export const Card: React.FC<PropsType> = (props) => {
                 <td>{updated}</td>
                 <td>
                     {user_id === packUserId &&
-                    <button className={s.btn} onClick={openCardModal}>del</button>}
+                    <button className={s.btn} onClick={openCardDeleteModal}>del</button>}
                     {user_id === packUserId &&
-                    <button className={s.btn} onClick={openCardModal}>update</button>}
+                    <button className={s.btn} onClick={openCardUpdateModal}>update</button>}
                 </td>
             </tr>
-            <div>{isCardModal && <CardsModalForDelete deleteCard={deleteCardHandler}
-                                                   closeCardModal={closeCardModal}
+            <div>{isCardDeleteModal && <CardsModalForDelete deleteCard={deleteCardHandler}
+                                                   closeCardModal={closeCardDeleteModal}
             />}</div>
-            <div>{isCardModal && <CardsModalForUpdate updateCard={updateCardHandler}
-                                                      closeCardModal={closeCardModal}
+            <div>{isCardUpdateModal && <CardsModalForUpdate updateCard={updateCardHandler}
+                                                      closeCardModal={closeCardUpdateModal}
             />}</div>
         </>
     )

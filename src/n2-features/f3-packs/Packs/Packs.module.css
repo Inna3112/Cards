@@ -28,6 +28,7 @@
     padding: 0;
     background-color: rgb(236, 236, 249);
 }
+
 .profileBox {
     padding: 2.4rem;
     background: rgb(217, 217, 241);
@@ -72,6 +73,7 @@
     border-radius: 0 2px 2px 0;
     border: none;
 }
+
 .activeButton {
     background: #9A91C8;
 }
@@ -82,12 +84,14 @@
     /*padding: 2.4rem 3.6rem;*/
     overflow: hidden;
 }
-.tableBlock{
+
+.tableBlock {
     display: flex;
     flex-direction: column;
     text-align: center;
 }
-.searchBlock{
+
+.searchBlock {
     display: flex;
     justify-content: space-between;
     text-align: center;
@@ -95,9 +99,11 @@
     margin-left: 50px;
     margin-bottom: 10px;
 }
-.packInput{
+
+.packInput {
     width: 700px;
 }
+
 .tableBox {
     overflow: hidden;
     margin: 0 auto;
@@ -107,6 +113,7 @@
 
     background-color: #FEFEFF;
 }
+
 .listItem:nth-child(odd) {
     background-color: #F8F7FD;
 }
@@ -114,10 +121,12 @@
 .listItem:first-child {
     background-color: #ECECF9;
 }
+
 .table {
     width: 100%;
     border-collapse: collapse;
 }
+
 .table th, td {
     text-align: left;
 }
@@ -129,6 +138,17 @@
 .table td {
     padding: 12px 0 12px 24px;
 }
+
+.cardBlock {
+
+}
+
+.cardNameLink {
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+}
+
 .btn {
     padding: 5px 6px 5px 6px;
     margin: 1px;

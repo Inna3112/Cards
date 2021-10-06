@@ -1,12 +1,12 @@
 import React, {useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../../n1-main/m2-bll/store';
-import { UserType} from '../../../../n1-main/m3-dal/api';
+import {UserType} from '../../../../n1-main/m3-dal/api';
 import {NavLink} from 'react-router-dom';
 import s from '../Packs.module.css';
 import {deletePack, updatePack} from '../../../../n1-main/m2-bll/packs-reducer';
-import {PacksModalForDelete} from "../../../../n1-main/m1-ui/Components/Modal/PacksModal/PacksModalForDelete";
-import {PacksModalForUpdate} from "../../../../n1-main/m1-ui/Components/Modal/PacksModal/PacksModalForUpdate";
+import {PacksModalForDelete} from '../../../../n1-main/m1-ui/Components/Modal/PacksModal/PacksModalForDelete';
+import {PacksModalForUpdate} from '../../../../n1-main/m1-ui/Components/Modal/PacksModal/PacksModalForUpdate';
 
 type PropsType = {
     _id: string
@@ -60,7 +60,9 @@ export const Pack: React.FC<PropsType> = (props) => {
     return (
 
         <tr className={s.cardBlock}>
-            <td>{name}</td>
+            <NavLink className={s.cardNameLink} to={`/cards/${_id}`}>
+                <td>{name}</td>
+            </NavLink>
             <td>{cardsCount}</td>
             <td>{new Date(updated).toLocaleDateString('ru', {day: '2-digit', month: '2-digit', year: 'numeric'})}</td>
             <td>{user_name}</td>
@@ -70,16 +72,13 @@ export const Pack: React.FC<PropsType> = (props) => {
                 {user_id === user?._id &&
                 <button className={s.btn} onClick={openPackUpdateModal}>update</button>}
                 <div>{isPackDeleteModal && <PacksModalForDelete deletePack={deleteHandler}
-                                                          closePackModal={closePackDeleteModal}
+                                                                closePackModal={closePackDeleteModal}
                 />}</div>
                 <div>{isPackUpdateModal && <PacksModalForUpdate updatePackName={updateHandler}
-                                                          closePackModal={closePackUpdateModal}
+                                                                closePackModal={closePackUpdateModal}
                                                                 title={name}
                 />}</div>
-                <NavLink
-                    to={`/cards/${_id}`}>
-                    <button className={s.btn}>learn</button>
-                </NavLink>
+                <button className={s.btn}>learn</button>
             </td>
         </tr>
 

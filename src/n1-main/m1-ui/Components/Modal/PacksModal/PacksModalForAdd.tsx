@@ -7,7 +7,7 @@ type PropsType = {
     addPack: (packName: string) => void
     closePackModal: () => void
 }
-export const PacksModal: React.FC<PropsType> = ({addPack, closePackModal}) => {
+export const PacksModalForAdd: React.FC<PropsType> = ({addPack, closePackModal}) => {
 
     const [title, setTitle] = useState('')
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => setTitle(e.currentTarget.value)

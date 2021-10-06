@@ -1,10 +1,11 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../../n1-main/m2-bll/store';
 import { UserType} from '../../../../n1-main/m3-dal/api';
 import {NavLink} from 'react-router-dom';
 import s from '../Packs.module.css';
 import {deletePack, updatePack} from '../../../../n1-main/m2-bll/packs-reducer';
+import {PacksModalForDelete} from "../../../../n1-main/m1-ui/Components/Modal/PacksModal/PacksModalForDelete";
 
 type PropsType = {
     _id: string
@@ -19,6 +20,9 @@ type PropsType = {
     type: string
     created: string
     updated: string
+    // openPacksModal: () => void
+    // closePacksModal: () => void
+    // isPackModal: boolean
 }
 export const Pack: React.FC<PropsType> = (props) => {
     let {
@@ -33,12 +37,18 @@ export const Pack: React.FC<PropsType> = (props) => {
         rating,
         type,
         created,
-        updated
+        updated,
+        // openPacksModal,
+        // closePacksModal,
+        // isPackModal
     } = props
 
     const dispatch = useDispatch()
     const user = useSelector<AppRootStateType, UserType | null>(state => state.auth.user)
 
+    const [isPackModal, setIsPackModal] = useState(false)
+    const openPackModal = () => setIsPackModal(true)
+    const closePackModal = () => setIsPackModal(false)
 
     const deleteHandler = () => {
         dispatch(deletePack(_id))
@@ -56,14 +66,12 @@ export const Pack: React.FC<PropsType> = (props) => {
             <td>{user_name}</td>
             <td>
                 {user_id === user?._id &&
-                <button className={s.btn} onClick={deleteHandler}>del</button>}
+                <button className={s.btn} onClick={openPackModal}>del</button>}
                 {user_id === user?._id &&
                 <button className={s.btn} onClick={updateHandler}>update</button>}
-                <div className={s.modalBlock}>
-                    <div className={s.modalWindow}>
-
-                    </div>
-                </div>
+                <div>{isPackModal && <PacksModalForDelete deletePack={deleteHandler}
+                                                          closePackModal={closePackModal}
+                />}</div>
                 <NavLink
                     to={`/cards/${_id}`}>
                     <button className={s.btn}>learn</button>

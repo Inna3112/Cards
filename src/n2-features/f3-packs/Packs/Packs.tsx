@@ -7,7 +7,7 @@ import {Pack} from './Pack/Pack';
 import {Pagination} from '../../../common/Pagination/Pagination';
 import {Profile} from '../../f2-profile/Profile/Profile';
 import {SuperButton} from '../../../common/c2-SuperButton/SuperButton';
-import {PacksModal} from "../../../n1-main/m1-ui/Components/Modal/PacksModal/PacksModal";
+import {PacksModalForAdd} from "../../../n1-main/m1-ui/Components/Modal/PacksModal/PacksModalForAdd";
 
 
 export const Packs = () => {
@@ -25,7 +25,7 @@ export const Packs = () => {
     const addPack = (packName: string) => {
         dispatch(addPacksSuccess(packName))
     }
-    const [isPackModal, setIsPackModal] = useState(true)
+    const [isPackModal, setIsPackModal] = useState(false)
     const openPackModal = () => setIsPackModal(true)
     const closePackModal = () => setIsPackModal(false)
 
@@ -122,14 +122,18 @@ export const Packs = () => {
                                             user_name={pack.user_name}
                                             updated={pack.updated}
                                             created={pack.created}
-                                            cardsCount={pack.cardsCount}/>
+                                            cardsCount={pack.cardsCount}
+                                            // openPacksModal={openPackModal}
+                                            // closePacksModal={closePackModal}
+                                            // isPackModal={isPackModal}
+                                        />
                                     )
                                 })}
                                 </tbody>
                             </table>
                         </div>
-                        <div>{isPackModal && <PacksModal addPack={addPack}
-                                                         closePackModal={closePackModal}
+                        <div>{isPackModal && <PacksModalForAdd addPack={addPack}
+                                                               closePackModal={closePackModal}
                         />}</div>
                         <div className={s.tableSettings}>
                             <Pagination totalItemsCount={cardPacksTotalCount}

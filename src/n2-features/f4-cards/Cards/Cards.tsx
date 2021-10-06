@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import s from './Cards.module.css'
 import {useDispatch, useSelector} from 'react-redux';
 import {Card} from './Card/Card';
@@ -13,6 +13,7 @@ import {Redirect, useParams} from 'react-router-dom';
 import {CardType} from '../../../n1-main/m3-dal/api';
 import {SearchCardsBlock} from '../../../common/SearchBlock/SearchCardsBlock';
 import {PATH} from '../../../n1-main/m1-ui/routes/Routes';
+import {CardsModalForAdd} from '../../../n1-main/m1-ui/Components/Modal/CardsModal/CardsModalForAdd';
 
 
 export const Cards = () => {
@@ -28,13 +29,16 @@ export const Cards = () => {
     console.log(cardsPackId)
 
 
-    const addCard = () => {
+    const addCard = (question: string, answer: string) => {
         dispatch(createCurd({
             cardsPack_id: cardsPackId,
-            question: 'How?',
-            answer: ';)'
+            question,
+            answer
         }))
     }
+    const [isCardModal, setIsCardModal] = useState(false)
+    const openCardModal = () => setIsCardModal(true)
+    const closeCardModal = () => setIsCardModal(false)
 
     if(!isLoggedIn){
         return <Redirect to={PATH.LOGIN} />
@@ -52,7 +56,7 @@ export const Cards = () => {
                         <th>answer</th>
                         <th>grade</th>
                         <th>updated</th>
-                        <th><button className={s.btn} onClick={addCard}>add</button></th>
+                        <th><button className={s.btn} onClick={openCardModal}>add</button></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -73,6 +77,9 @@ export const Cards = () => {
                     </tbody>
                 </table>
             </div>
+            <div>{isCardModal && <CardsModalForAdd addCard={addCard}
+                                                   closeCardModal={closeCardModal}
+            />}</div>
         </div>
     )
 }

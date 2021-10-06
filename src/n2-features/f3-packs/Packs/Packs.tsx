@@ -123,9 +123,6 @@ export const Packs = () => {
                                             updated={pack.updated}
                                             created={pack.created}
                                             cardsCount={pack.cardsCount}
-                                            // openPacksModal={openPackModal}
-                                            // closePacksModal={closePackModal}
-                                            // isPackModal={isPackModal}
                                         />
                                     )
                                 })}

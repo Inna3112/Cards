@@ -128,7 +128,9 @@ export const Packs = () => {
                                 </tbody>
                             </table>
                         </div>
-                        <div>{isPackModal && <PacksModal addPack={addPack}/>}</div>
+                        <div>{isPackModal && <PacksModal addPack={addPack}
+                                                         closePackModal={closePackModal}
+                        />}</div>
                         <div className={s.tableSettings}>
                             <Pagination totalItemsCount={cardPacksTotalCount}
                                         pageSize={pageCount}

@@ -5,13 +5,15 @@ import s from './../Modal.module.css'
 
 type PropsType = {
     addPack: (packName: string) => void
+    closePackModal: () => void
 }
-export const PacksModal: React.FC<PropsType> = ({addPack}) => {
+export const PacksModal: React.FC<PropsType> = ({addPack, closePackModal}) => {
 
     const [title, setTitle] = useState('')
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => setTitle(e.currentTarget.value)
     const addPackHandler = () => {
         addPack(title)
+        closePackModal()
     }
     return (
         <div className={s.wrapperModal}>
@@ -19,7 +21,7 @@ export const PacksModal: React.FC<PropsType> = ({addPack}) => {
                 <h3>Enter packs title!</h3>
                 <div className={s.buttonBlock}>
                     <SuperInputText value={title} onChange={onChangeHandler}/>
-                    <SuperButton color={'red'}>Cancel</SuperButton>
+                    <SuperButton onClick={() => closePackModal()} color={'red'}>Cancel</SuperButton>
                     <SuperButton onClick={addPackHandler} color={'blue'}>Ok</SuperButton>
                 </div>
             </div>

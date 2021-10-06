@@ -6,6 +6,7 @@ import {NavLink} from 'react-router-dom';
 import s from '../Packs.module.css';
 import {deletePack, updatePack} from '../../../../n1-main/m2-bll/packs-reducer';
 import {PacksModalForDelete} from "../../../../n1-main/m1-ui/Components/Modal/PacksModal/PacksModalForDelete";
+import {PacksModalForUpdate} from "../../../../n1-main/m1-ui/Components/Modal/PacksModal/PacksModalForUpdate";
 
 type PropsType = {
     _id: string
@@ -20,9 +21,6 @@ type PropsType = {
     type: string
     created: string
     updated: string
-    // openPacksModal: () => void
-    // closePacksModal: () => void
-    // isPackModal: boolean
 }
 export const Pack: React.FC<PropsType> = (props) => {
     let {
@@ -37,10 +35,7 @@ export const Pack: React.FC<PropsType> = (props) => {
         rating,
         type,
         created,
-        updated,
-        // openPacksModal,
-        // closePacksModal,
-        // isPackModal
+        updated
     } = props
 
     const dispatch = useDispatch()
@@ -53,8 +48,8 @@ export const Pack: React.FC<PropsType> = (props) => {
     const deleteHandler = () => {
         dispatch(deletePack(_id))
     }
-    const updateHandler = () => {
-        dispatch(updatePack(_id, 'Pack updated3'))
+    const updateHandler = (newPackName: string) => {
+        dispatch(updatePack(_id, newPackName))
     }
 
     return (
@@ -68,8 +63,11 @@ export const Pack: React.FC<PropsType> = (props) => {
                 {user_id === user?._id &&
                 <button className={s.btn} onClick={openPackModal}>del</button>}
                 {user_id === user?._id &&
-                <button className={s.btn} onClick={updateHandler}>update</button>}
+                <button className={s.btn} onClick={openPackModal}>update</button>}
                 <div>{isPackModal && <PacksModalForDelete deletePack={deleteHandler}
+                                                          closePackModal={closePackModal}
+                />}</div>
+                <div>{isPackModal && <PacksModalForUpdate updatePackName={updateHandler}
                                                           closePackModal={closePackModal}
                 />}</div>
                 <NavLink

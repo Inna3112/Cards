@@ -36,6 +36,8 @@ export const Cards = () => {
             answer
         }))
     }
+
+    //modal
     const [isCardModal, setIsCardModal] = useState(false)
     const openCardModal = () => setIsCardModal(true)
     const closeCardModal = () => setIsCardModal(false)

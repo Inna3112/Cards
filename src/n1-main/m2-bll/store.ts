@@ -8,13 +8,12 @@ import {cardsReducer} from './cards-reducer';
 import {packsReducer} from './packs-reducer';
 
 const rootReducer = combineReducers({
-    // profile: profileReducer,
     auth: authReducer,
     registration: registrationReducer,
     passwordRecover: passwordRecoverReducer,
     enterNewPassword: enterNewPasswordReducer,
     packs: packsReducer,
-    cards: cardsReducer,
+    cards: cardsReducer
 })
 // непосредственно создаём store
 export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));

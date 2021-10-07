@@ -1,5 +1,5 @@
 import {Dispatch} from 'redux';
-import {CardRequestType, cardsAPI, GetCardsResponseType, SortType} from '../m3-dal/api';
+import {CardRequestType, cardsAPI, GetCardsResponseType, learnAPI, SortType} from '../m3-dal/api';
 import {AppRootStateType} from './store';
 
 
@@ -43,6 +43,12 @@ export const cardsReducer = (state = initialState, action: ActionsType): typeof 
                 cards: state.cards.filter(card => card.question === action.question)
             }
         }
+        case "UPDATE-CARD-GRADE":{
+            return {
+                ...state,
+                cards: state.cards.map(c => c._id === action.cardId ? {...c, grade: action.grade} : c)
+            }
+        }
         default:
             return state
     }
@@ -51,6 +57,7 @@ export const cardsReducer = (state = initialState, action: ActionsType): typeof 
 export const setCards = (cardsData: GetCardsResponseType) => ({type: 'SET-CARDS', cardsData}) as const
 export const setCardsAnswer = (answer: string) => ({type: 'SET-CARDS-ANSWER', answer}) as const
 export const setCardsQuestion = (question: string) => ({type: 'SET-CARDS-QUESTION', question}) as const
+export const updateCardGrade = (grade: GradeType, cardId: string) => ({type: 'UPDATE-CARD-GRADE', grade, cardId}) as const
 
 // thunks
 export const setCurdsSuccess = (packId: string) => (dispatch: Dispatch, getState: () => AppRootStateType) => {
@@ -81,9 +88,16 @@ export const updateCard = (cardId: string, cardPackId: string, newQuestion?: str
     await cardsAPI.updateCards(cardId, newQuestion, newAnswer)
     dispatch(setCurdsSuccess(cardPackId))
 }
+export const updateCardGradeSuccess = (grade: GradeType, cardId: string) => async (dispatch: Dispatch) => {
+    const res = await learnAPI.updateGrade(grade, cardId)
+    dispatch(updateCardGrade(res.data.grade, res.data.card_id))
+}
+
 
 // types
+export type GradeType = 1 | 2 | 3 | 4 | 5
 type ActionsType = ReturnType<typeof setCards>
     | ReturnType<typeof setCardsAnswer>
     | ReturnType<typeof setCardsQuestion>
+    | ReturnType<typeof updateCardGrade>
 

@@ -69,7 +69,7 @@ export const Learn = () => {
             <h2>Learn page</h2>
             <div> {card.question} </div>
             <div>
-                <SuperButton onClick={() => setIsChecked(true)}>check</SuperButton>
+                <SuperButton color={'blue'} onClick={() => setIsChecked(true)}>check</SuperButton>
             </div>
 
             {isChecked && (
@@ -77,10 +77,10 @@ export const Learn = () => {
                     <div>{card.answer}</div>
 
                     {grades.map((g, i) => (
-                        <SuperButton key={'grade-' + i} onClick={onGrade}>{g}</SuperButton>
+                        <SuperButton key={'grade-' + i}  color={'red'} onClick={onGrade}>{g}</SuperButton>
                     ))}
 
-                    <div><SuperButton onClick={onNext}>next</SuperButton></div>
+                    <div><SuperButton color={'blue'} onClick={onNext}>next</SuperButton></div>
                 </>
             )}
         </div>

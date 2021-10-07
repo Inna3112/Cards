@@ -78,7 +78,9 @@ export const Pack: React.FC<PropsType> = (props) => {
                                                                 closePackModal={closePackUpdateModal}
                                                                 title={name}
                 />}</div>
-                <button className={s.btn}>learn</button>
+                <NavLink className={s.cardNameLink} to={`/learn/${_id}`}>
+                    <button className={s.btn}>learn</button>
+                </NavLink>
             </td>
         </tr>
 

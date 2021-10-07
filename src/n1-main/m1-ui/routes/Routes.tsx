@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch, Redirect, Route } from 'react-router-dom';
+import {Switch, Redirect, Route } from 'react-router-dom';
 import {Main} from './pages/Main';
 import {Login} from '../../../n2-features/f1-auth/Login/Login';
 import {Register} from '../../../n2-features/f1-auth/Register/Register';
@@ -9,6 +9,7 @@ import {Forgot} from '../../../n2-features/f1-auth/Forgot/Forgot';
 import {Error404} from './pages/Error404';
 import {Packs} from '../../../n2-features/f3-packs/Packs/Packs';
 import {Cards} from '../../../n2-features/f4-cards/Cards/Cards';
+import {Learn} from '../../../n2-features/f5-learn/Learn';
 
 
 export const PATH = {
@@ -21,6 +22,7 @@ export const PATH = {
     ERROR404: '/error404',
     PACKS_LIST: '/packs-list',
     CARDS: '/cards/:cardsPackId',
+    LEARN: '/learn'
 }
 
 export const Routes = () => {
@@ -36,6 +38,7 @@ export const Routes = () => {
             <Route path={PATH.FORGOT} render={() => <Forgot />}/>
             <Route path={PATH.PACKS_LIST} render={() => <Packs />}/>
             <Route path={PATH.CARDS} render={() => <Cards />}/>
+            <Route path={PATH.LEARN} render={() => <Learn />}/>
             <Route render={() => <Error404/>}/>
 
             </Switch>

@@ -22,7 +22,7 @@ export const PATH = {
     ERROR404: '/error404',
     PACKS_LIST: '/packs-list',
     CARDS: '/cards/:cardsPackId',
-    LEARN: '/learn'
+    LEARN: '/learn/:cardsPackId'
 }
 
 export const Routes = () => {

@@ -1,5 +1,4 @@
 import axios from 'axios';
-import {GradeType} from '../m2-bll/cards-reducer';
 
 
 const instance = axios.create({
@@ -83,7 +82,7 @@ export const cardsAPI = {
     }
 }
 export const learnAPI = {
-    updateGrade(grade: GradeType, card_id: string) {
+    updateGrade(grade: number, card_id: string) {
         return instance.put<UpdatedGradeResponseType>('cards/grade', {grade, card_id})
     }
 }
@@ -95,7 +94,7 @@ type UpdatedGradeResponseType = {
     cardsPack_id: string
     card_id: string
     user_id: string
-    grade: GradeType
+    grade: number
     shots: number
 }
 
@@ -181,7 +180,7 @@ export type CardType = {
     answer: string
     question: string
     cardsPack_id: string
-    grade: GradeType
+    grade: number
     // rating?: number
     shots: number
     // type?: string

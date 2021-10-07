@@ -3,9 +3,9 @@ import {useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import s from './Learn.module.css'
 import {CardType} from '../../n1-main/m3-dal/api';
-import {AppRootStateType} from "../../n1-main/m2-bll/store";
-import {setCurdsSuccess} from "../../n1-main/m2-bll/cards-reducer";
-import {SuperButton} from "../../common/c2-SuperButton/SuperButton";
+import {AppRootStateType} from '../../n1-main/m2-bll/store';
+import {setCurdsSuccess, updateCardGradeSuccess} from '../../n1-main/m2-bll/cards-reducer';
+import {SuperButton} from '../../common/c2-SuperButton/SuperButton';
 
 
 const grades = ['не знал', 'забыл', 'долго думал', 'перепутал', 'знал'];
@@ -34,7 +34,7 @@ export const Learn = () => {
         answer: 'answer fake',
         question: 'question fake',
         cardsPack_id: '',
-        grade: 0,
+        grade: 1,
         shots: 0,
         user_id: '',
         updated: '',
@@ -62,7 +62,9 @@ export const Learn = () => {
             setCard(getCard(cards));
         }
     }
-    const onGrade = () => {}
+// const onGrade = () => {
+//     updateCardGradeSuccess(4, card._id)
+// }
 
     return (
         <div className={s.container}>
@@ -77,9 +79,9 @@ export const Learn = () => {
                     <div>{card.answer}</div>
 
                     {grades.map((g, i) => (
-                        <SuperButton key={'grade-' + i}  color={'red'} onClick={onGrade}>{g}</SuperButton>
+                        <SuperButton key={'grade-' + i}  color={'red'}
+                                     onClick={() => dispatch(updateCardGradeSuccess(i, card._id))}>{g}</SuperButton>
                     ))}
-
                     <div><SuperButton color={'blue'} onClick={onNext}>next</SuperButton></div>
                 </>
             )}

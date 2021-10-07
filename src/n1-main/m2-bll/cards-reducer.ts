@@ -8,7 +8,7 @@ const initialState = {
         cardsPack_id: '',
         question: '',
         answer: '',
-        grade: 0,
+        grade: 1,
         shots: 0,
         user_id: '',
         updated: '',
@@ -57,7 +57,7 @@ export const cardsReducer = (state = initialState, action: ActionsType): typeof 
 export const setCards = (cardsData: GetCardsResponseType) => ({type: 'SET-CARDS', cardsData}) as const
 export const setCardsAnswer = (answer: string) => ({type: 'SET-CARDS-ANSWER', answer}) as const
 export const setCardsQuestion = (question: string) => ({type: 'SET-CARDS-QUESTION', question}) as const
-export const updateCardGrade = (grade: GradeType, cardId: string) => ({type: 'UPDATE-CARD-GRADE', grade, cardId}) as const
+export const updateCardGrade = (grade: number, cardId: string) => ({type: 'UPDATE-CARD-GRADE', grade, cardId}) as const
 
 // thunks
 export const setCurdsSuccess = (packId: string) => (dispatch: Dispatch, getState: () => AppRootStateType) => {
@@ -88,14 +88,18 @@ export const updateCard = (cardId: string, cardPackId: string, newQuestion?: str
     await cardsAPI.updateCards(cardId, newQuestion, newAnswer)
     dispatch(setCurdsSuccess(cardPackId))
 }
-export const updateCardGradeSuccess = (grade: GradeType, cardId: string) => async (dispatch: Dispatch) => {
-    const res = await learnAPI.updateGrade(grade, cardId)
-    dispatch(updateCardGrade(res.data.grade, res.data.card_id))
+export const updateCardGradeSuccess = (grade: number, card_id: string) => async (dispatch: Dispatch) => {
+    try{
+        const res = await learnAPI.updateGrade(grade, card_id)
+        dispatch(updateCardGrade(res.data.grade, res.data.card_id))
+    }catch (error) {
+        console.log(error)
+    }
 }
 
 
 // types
-export type GradeType = 1 | 2 | 3 | 4 | 5
+// export type GradeType = 1 | 2 | 3 | 4 | 5
 type ActionsType = ReturnType<typeof setCards>
     | ReturnType<typeof setCardsAnswer>
     | ReturnType<typeof setCardsQuestion>

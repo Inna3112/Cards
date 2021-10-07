@@ -81,8 +81,14 @@ export const cardsAPI = {
         return instance.put('cards/card', {card: {_id: cardId, question, answer}})
     }
 }
+export const learnAPI = {
+    updateGrade(grade: GradeType, card_id: string) {
+        return instance.put('cards/grade', {grade, card_id})
+    }
+}
 
 // types
+type GradeType = 1 | 2 | 3 | 4 | 5
 type UpdateUserType = {
     updatedUser: ResponseType,
     token: string,

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {useParams} from 'react-router-dom';
+import {Redirect, useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import s from './Learn.module.css'
 import {CardType} from '../../n1-main/m3-dal/api';
@@ -7,6 +7,7 @@ import {AppRootStateType} from '../../n1-main/m2-bll/store';
 import {setCurdsSuccess, updateCardGradeSuccess} from '../../n1-main/m2-bll/cards-reducer';
 import {SuperButton} from '../../common/c2-SuperButton/SuperButton';
 import {SuperCheckbox} from "../../common/c3-SuperCheckbox/SuperCheckbox";
+import {PATH} from "../../n1-main/m1-ui/routes/Routes";
 
 
 const grades = ['не знал', 'забыл', 'долго думал', 'перепутал', 'знал'];
@@ -27,6 +28,7 @@ const getCard = (cards: CardType[]) => {
 
 export const Learn = () => {
     const dispatch = useDispatch()
+    const {isLoggedIn} = useSelector((state: AppRootStateType) => state.auth)
     const cards = useSelector<AppRootStateType, CardType[]>(state => state.cards.cards)
     const {cardsPackId} = useParams<{ cardsPackId: string }>();
     const [isChecked, setIsChecked] = useState<boolean>(false);
@@ -65,7 +67,9 @@ export const Learn = () => {
             setCard(getCard(cards));
         }
     }
-
+    if (!isLoggedIn) {
+        return <Redirect to={PATH.LOGIN}/>
+    }
     return (
         <div className={s.learnBlock}>
             <div className={s.learnList}>

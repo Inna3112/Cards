@@ -9,12 +9,20 @@ import {PATH} from '../../../n1-main/m1-ui/routes/Routes';
 
 
 export const Profile = () => {
-    const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.auth.isLoggedIn)
+    const {isLoggedIn} = useSelector((state: AppRootStateType) => state.auth)
     const user = useSelector<AppRootStateType, UserType>(state => state.auth.user)
     const dispatch = useDispatch()
 
     const [editMode, setEditMode] = useState(false)
     const [name, setName] = useState(user.name)
+
+    // useEffect(() => {
+    //     if (!isAuth) {
+    //         dispatch(setProfileSuccess())
+    //     } else{
+    //
+    //     }
+    // }, [dispatch, isAuth])
 
     const activateEditMode = () => {
         setEditMode(true)

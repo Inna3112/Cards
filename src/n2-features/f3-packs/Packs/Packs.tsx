@@ -8,12 +8,27 @@ import {Pagination} from '../../../common/Pagination/Pagination';
 import {Profile} from '../../f2-profile/Profile/Profile';
 import {SuperButton} from '../../../common/c2-SuperButton/SuperButton';
 import {PacksModalForAdd} from "../../../n1-main/m1-ui/Components/Modal/PacksModal/PacksModalForAdd";
+import {Redirect} from 'react-router-dom';
+import {PATH} from '../../../n1-main/m1-ui/routes/Routes';
 
 
 export const Packs = () => {
     const dispatch = useDispatch()
     const {cardsPacks, cardPacksTotalCount, pageCount, page, user_id, packName} = useSelector((state: AppRootStateType) => state.packs)
     const _id = useSelector<AppRootStateType, string>(state => state.auth.user._id)
+    const {isLoggedIn} = useSelector((state: AppRootStateType) => state.auth)
+
+    // useEffect(() => {
+    //     if (!isLoggedIn) {
+    //         debugger
+    //         dispatch(setProfileSuccess())
+    //         dispatch(setPacksSuccess())
+    //     } else{
+    //         debugger
+    //         dispatch(setPacksSuccess())
+    //     }
+    // }, [dispatch, packName, user_id, page, packName, isLoggedIn])
+
 
     useEffect(() => {
         dispatch(setPacksSuccess())
@@ -51,6 +66,9 @@ export const Packs = () => {
     const changeHandler = () => {
         dispatch(setPackName(name))
         setName('')
+    }
+    if (!isLoggedIn) {
+        return <Redirect to={PATH.LOGIN}/>
     }
     return (
         <div className={s.container}>

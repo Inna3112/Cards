@@ -21,11 +21,14 @@
 
 .header {
     display: flex;
-    /*transition-duration: 500ms;*/
-    /*transform: translate(-240px);*/
+    justify-content: space-between;
+    align-items: center;
 }
 
 .header:hover {
     transition-duration: 500ms;
     transform: translate(0);
+}
+.links{
+
 }

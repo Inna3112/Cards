@@ -1,20 +1,20 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import './App.css';
-import {useDispatch} from 'react-redux';
 import Main from './Main';
-import {setProfileSuccess} from '../m2-bll/auth-reducer';
 
 
 const App = () => {
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
     // const {isAuth, error} = useSelector((state: AppRootStateType) => state.auth)
-
-    useEffect(() => {
-        // if (!isAuth) {
-            dispatch(setProfileSuccess())
-        // }
-    }, [dispatch])
-
+    //
+    // useEffect(() => {
+    //     if (!isAuth) {
+    //         dispatch(setProfileSuccess())
+    //     } else{
+    //         dispatch(setPacksSuccess())
+    //     }
+    // }, [dispatch])
+    //
     // if (error) {
     //     return <Redirect to={PATH.LOGIN}/>
     // }

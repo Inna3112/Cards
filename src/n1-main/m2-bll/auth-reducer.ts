@@ -96,8 +96,9 @@ export const setProfileSuccess = () => (dispatch: Dispatch) => {
         .then((res) => {
             dispatch(setUser(res.data, true))
         })
-        .catch((error) => {
-            dispatch(setError(error.response.data.error))
+        .catch((e) => {
+            const error = e.response ? e.response.data.error : e.message
+            dispatch(setError(error))
         })
 }
 export const updateProfileSuccess = (name: string, avatar: string) => (dispatch: Dispatch) => {

@@ -40,6 +40,8 @@ export const Learn = () => {
         updated: '',
         _id: 'fake'
     })
+
+
     useEffect(() => {
         console.log('LearnContainer useEffect');
 
@@ -62,9 +64,6 @@ export const Learn = () => {
             setCard(getCard(cards));
         }
     }
-// const onGrade = () => {
-//     updateCardGradeSuccess(4, card._id)
-// }
 
     return (
         <div className={s.container}>
@@ -78,10 +77,16 @@ export const Learn = () => {
                 <>
                     <div>{card.answer}</div>
 
-                    {grades.map((g, i) => (
-                        <SuperButton key={'grade-' + i}  color={'red'}
-                                     onClick={() => dispatch(updateCardGradeSuccess(i, card._id))}>{g}</SuperButton>
-                    ))}
+                    {grades.map((g, i) => {
+                        const onGrade = () => {
+                            dispatch(updateCardGradeSuccess(i, card._id))
+                            onNext()
+                        }
+                        return <SuperButton key={'grade-' + i}
+                                           onClick={onGrade}>{g}</SuperButton>
+                    })}
+
+
                     <div><SuperButton color={'blue'} onClick={onNext}>next</SuperButton></div>
                 </>
             )}

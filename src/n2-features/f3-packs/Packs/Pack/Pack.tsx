@@ -28,13 +28,13 @@ export const Pack: React.FC<PropsType> = (props) => {
         user_id,
         user_name,
         name,
-        path,
+        // path,
         cardsCount,
-        grade,
-        shots,
-        rating,
-        type,
-        created,
+        // grade,
+        // shots,
+        // rating,
+        // type,
+        // created,
         updated
     } = props
 

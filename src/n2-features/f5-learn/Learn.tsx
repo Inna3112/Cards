@@ -6,6 +6,7 @@ import {CardType} from '../../n1-main/m3-dal/api';
 import {AppRootStateType} from '../../n1-main/m2-bll/store';
 import {setCurdsSuccess, updateCardGradeSuccess} from '../../n1-main/m2-bll/cards-reducer';
 import {SuperButton} from '../../common/c2-SuperButton/SuperButton';
+import {SuperCheckbox} from "../../common/c3-SuperCheckbox/SuperCheckbox";
 
 
 const grades = ['не знал', 'забыл', 'долго думал', 'перепутал', 'знал'];
@@ -66,30 +67,33 @@ export const Learn = () => {
     }
 
     return (
-        <div className={s.container}>
-            <h2>Learn page</h2>
-            <div> {card.question} </div>
-            <div>
-                <SuperButton color={'blue'} onClick={() => setIsChecked(true)}>check</SuperButton>
+        <div className={s.learnBlock}>
+            <div className={s.learnList}>
+                <h2>Learn </h2>
+                <div className={s.question}>Question: {card.question} </div>
+                <div>
+                    {!isChecked && <SuperButton color={'blue'} onClick={() => setIsChecked(true)}>Show answer</SuperButton>}
+                </div>
+
+                {isChecked && (
+                    <>
+                        <div className={s.answer}> Answer: {card.answer}</div>
+                        <span>Rate yourself:</span>
+                        <div className={s.rateBlock}>
+                            {grades.map((g, i) => {
+                                const onGrade = () => {
+                                    dispatch(updateCardGradeSuccess(i, card._id))
+                                    onNext()
+                                }
+                                return <SuperCheckbox key={'grade-' + i}
+                                                      onClick={onGrade}>{g}</SuperCheckbox>
+                            })}
+                        </div>
+                        <div><SuperButton color={'blue'} onClick={onNext}>next</SuperButton></div>
+                    </>
+                )}
             </div>
 
-            {isChecked && (
-                <>
-                    <div>{card.answer}</div>
-
-                    {grades.map((g, i) => {
-                        const onGrade = () => {
-                            dispatch(updateCardGradeSuccess(i, card._id))
-                            onNext()
-                        }
-                        return <SuperButton key={'grade-' + i}
-                                           onClick={onGrade}>{g}</SuperButton>
-                    })}
-
-
-                    <div><SuperButton color={'blue'} onClick={onNext}>next</SuperButton></div>
-                </>
-            )}
         </div>
     )
 }

@@ -20,7 +20,7 @@ const initialState = {
     page: 1,
     pageCount: 5,
     packUserId: '',
-    sortCards: '0updated' as SortType,
+    sortCards: '0updated' as SortType
 }
 
 export const cardsReducer = (state = initialState, action: ActionsType): typeof initialState => {

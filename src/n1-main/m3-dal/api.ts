@@ -165,7 +165,7 @@ export type getPackResponseType = {
     pageCount: number
     // user_id: string
 }
-type PackType = {
+export type PackType = {
     name?: string
     path?: string
     grade?: number

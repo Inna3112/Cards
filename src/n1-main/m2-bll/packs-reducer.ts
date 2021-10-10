@@ -25,6 +25,7 @@ const initialState = {
     user_id: '',
     packName: '',
     sortPacks: '0updated' as SortType,
+    packNameForLearn: ''
 }
 
 
@@ -60,6 +61,15 @@ export const packsReducer = (state = initialState, action: ActionsType): typeof 
                 packName: action.packName
             }
         }
+        case "SET-PACK-NAME-FOR-LEARN":{
+            const copyState = {...state}
+            const pack = copyState.cardsPacks.find(pack => pack._id === action.packId)
+            return {
+                ...state,
+                //@ts-ignore
+                packNameForLearn: pack?.name
+            }
+        }
         default:
             return state
     }
@@ -70,6 +80,7 @@ export const setUserId = (userId: string) => ({type: 'SET-USER-ID', userId}) as 
 export const setPage = (curPage: number) => ({type: 'SET-PAGE', curPage}) as const
 export const setCardsPacksTotalCount = (cardsPacksCount: number) => ({type: 'SET-CARDS-PACKS-TOTAL-COUNT', cardsPacksCount}) as const
 export const setPackName = (packName: string) => ({type: 'SET-PACK-NAME', packName}) as const
+export const setPackNameForLearn = (packId: string) => ({type: 'SET-PACK-NAME-FOR-LEARN', packId}) as const
 
 // thunks
 export const setPacksSuccess = () => async (dispatch: Dispatch, getState: () => AppRootStateType) => {
@@ -120,5 +131,6 @@ type ActionsType = ReturnType<typeof setPacks>
     | ReturnType<typeof setPage>
     | ReturnType<typeof setCardsPacksTotalCount>
     | ReturnType<typeof setPackName>
+    | ReturnType<typeof setPackNameForLearn>
 
 

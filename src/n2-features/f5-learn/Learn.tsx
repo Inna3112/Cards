@@ -8,6 +8,7 @@ import {setCurdsSuccess, updateCardGradeSuccess} from '../../n1-main/m2-bll/card
 import {SuperButton} from '../../common/c2-SuperButton/SuperButton';
 import {SuperCheckbox} from "../../common/c3-SuperCheckbox/SuperCheckbox";
 import {PATH} from "../../n1-main/m1-ui/routes/Routes";
+import {setPackNameForLearn} from "../../n1-main/m2-bll/packs-reducer";
 
 
 const grades = ['не знал', 'забыл', 'долго думал', 'перепутал', 'знал'];
@@ -30,6 +31,7 @@ export const Learn = () => {
     const dispatch = useDispatch()
     const {isLoggedIn} = useSelector((state: AppRootStateType) => state.auth)
     const cards = useSelector<AppRootStateType, CardType[]>(state => state.cards.cards)
+    const packName = useSelector<AppRootStateType, string>(state => state.packs.packNameForLearn)
     const {cardsPackId} = useParams<{ cardsPackId: string }>();
     const [isChecked, setIsChecked] = useState<boolean>(false);
     const [first, setFirst] = useState<boolean>(true);
@@ -47,7 +49,7 @@ export const Learn = () => {
 
     useEffect(() => {
         console.log('LearnContainer useEffect');
-
+        dispatch(setPackNameForLearn(cardsPackId))
         if (first) {
             dispatch(setCurdsSuccess(cardsPackId));
             setFirst(false);
@@ -73,7 +75,7 @@ export const Learn = () => {
     return (
         <div className={s.learnBlock}>
             <div className={s.learnList}>
-                <h2>Learn </h2>
+                <h2>Learn {packName}</h2>
                 <div className={s.question}>Question: {card.question} </div>
                 <div>
                     {!isChecked && <SuperButton color={'blue'} onClick={() => setIsChecked(true)}>Show answer</SuperButton>}

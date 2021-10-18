@@ -48,6 +48,7 @@ export const Login = () => {
                                 error={error} value={email} onChange={emailHandler}
                                 onClick={inputOnClickHandler}/>
                 <SuperInputText className={s.loginInput} placeholder={'Password'}
+                                type={'password'}
                                 error={error} value={password} onChange={passwordHandler}
                                 onClick={inputOnClickHandler}/>
                 <div className={s.rememberBlock}>

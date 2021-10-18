@@ -1,5 +1,6 @@
 import {Dispatch} from 'redux';
 import {CardsPackType, packsAPI, SortType} from '../m3-dal/api';
+import {setProfileSuccess} from './auth-reducer';
 import {AppRootStateType} from './store';
 
 const initialState = {
@@ -112,6 +113,7 @@ export const addPacksSuccess = (packName: string) => async (dispatch: any) => {
     try {
         await packsAPI.createPack(pack)
         dispatch(setPacksSuccess())
+        dispatch(setProfileSuccess())
     } catch (err) {
         console.log(err)
     }
@@ -119,6 +121,7 @@ export const addPacksSuccess = (packName: string) => async (dispatch: any) => {
 export const deletePack = (packId: string) => async (dispatch: any) => {
     await packsAPI.deletePack(packId)
     dispatch(setPacksSuccess())
+    dispatch(setProfileSuccess())
 }
 export const updatePack = (packId: string, name: string) => async (dispatch: any) => {
     await packsAPI.updatePack(packId, name)

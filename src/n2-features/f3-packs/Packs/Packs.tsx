@@ -15,6 +15,7 @@ import {PATH} from '../../../n1-main/m1-ui/routes/Routes';
 export const Packs = () => {
     const dispatch = useDispatch()
     const {cardsPacks, cardPacksTotalCount, pageCount, page, user_id, packName} = useSelector((state: AppRootStateType) => state.packs)
+    const userPublicCardPacksCount = useSelector<AppRootStateType, number>(state => state.auth.user.publicCardPacksCount)
     const _id = useSelector<AppRootStateType, string>(state => state.auth.user._id)
     const {isLoggedIn} = useSelector((state: AppRootStateType) => state.auth)
 
@@ -32,7 +33,7 @@ export const Packs = () => {
 
     useEffect(() => {
         dispatch(setPacksSuccess())
-    }, [dispatch, packName, user_id, page, packName])
+    }, [dispatch, packName, user_id, page, cardPacksTotalCount, userPublicCardPacksCount])
         //  pageCount, cardPacksTotalCount, maxCardsCount,
         // minCardsCount, ])
 
